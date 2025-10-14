@@ -1,0 +1,51 @@
+[
+  {
+    "sentence": "Let the given sum be $S$.",
+    "sentence-type": "answer",
+    "sentence-category-reason": "This sentence introduces notation for the sum, setting up a variable to represent it\u2014this is introducing a symbol, an Analyze step.",
+    "sentence-category": "Analyze",
+    "index": 1
+  },
+  {
+    "sentence": "We have\n$$ S = \\sum_{n=1}^{\\infty} \\frac{n}{n^{4}+4} $$\nWe can factor $n^{4}+4$ as follows:\n$$ n^{4}+4 = n^{4}+4n^{2}+4-4n^{2} = (n^{2}+2)^{2} - (2n)^{2} = (n^{2}+2-2n)(n^{2}+2+2n) = (n^{2}-2n+2)(n^{2}+2n+2) $$\nWe can write\n$$ \\frac{n}{n^{4}+4} = \\frac{A}{n^{2}-2n+2} + \\frac{B}{n^{2}+2n+2} $$\nMultiplying both sides by $n^{4}+4$, we have\n$$ n = A(n^{2}+2n+2) + B(n^{2}-2n+2) $$\n$$ n = (A+B)n^{2} + (2A-2B)n + (2A+2B) $$\nComparing the coefficients of powers of $n$, we have\n$$ A+B = 0, \\quad 2A-2B = 1, \\quad 2A+2B = 0 $$\nFrom $A+B=0$, we have $B=-A$.",
+    "sentence-type": "answer",
+    "sentence-category-reason": "This cluster explains factoring the denominator, sets up a partial fractions decomposition, and solves for general coefficients; it provides logical deduction and symbol introduction without calculation, so it is Analyze.",
+    "sentence-category": "Analyze",
+    "index": 2
+  },
+  {
+    "sentence": "Substituting into $2A-2B=1$, we have $2A-2(-A) = 4A=1$, so $A=\\frac{1}{4}$.",
+    "sentence-type": "answer",
+    "sentence-category-reason": "This sentence plugs the value of B into the equation and solves for A, performing an actual calculation\u2014this is an Implement step.",
+    "sentence-category": "Implement",
+    "index": 3
+  },
+  {
+    "sentence": "Then $B = -A = -\\frac{1}{4}$.",
+    "sentence-type": "answer",
+    "sentence-category-reason": "Here, the model calculates B explicitly from the result found above. This is computing a value, so it is Implement.",
+    "sentence-category": "Implement",
+    "index": 4
+  },
+  {
+    "sentence": "Thus,\n$$ \\frac{n}{n^{4}+4} = \\frac{1}{4}\\left(\\frac{1}{n^{2}-2n+2} - \\frac{1}{n^{2}+2n+2}\\right) = \\frac{1}{4}\\left(\\frac{1}{(n-1)^{2}+1} - \\frac{1}{(n+1)^{2}+1}\\right) $$\nTherefore,\n$$ S = \\sum_{n=1}^{\\infty} \\frac{n}{n^{4}+4} = \\frac{1}{4} \\sum_{n=1}^{\\infty} \\left(\\frac{1}{(n-1)^{2}+1} - \\frac{1}{(n+1)^{2}+1}\\right) $$\nLet $f(n) = \\frac{1}{n^{2}+1}$.",
+    "sentence-type": "answer",
+    "sentence-category-reason": "This sentence substitutes the values of A and B, simplifies the general term, rewrites the sum, introduces the function f(n), and sets up the telescoping structure. These are implementing the plan and performing algebraic manipulations\u2014so, Implement.",
+    "sentence-category": "Implement",
+    "index": 5
+  },
+  {
+    "sentence": "Then we can rewrite the sum as\n$$ S = \\frac{1}{4} \\sum_{n=1}^{\\infty} \\left(f(n-1) - f(n+1)\\right) = \\frac{1}{4} \\left[ \\sum_{n=1}^{\\infty} f(n-1) - \\sum_{n=1}^{\\infty} f(n+1) \\right] $$\n$$ S = \\frac{1}{4} \\left[ (f(0)+f(1)+f(2)+...) - (f(2)+f(3)+f(4)+...) \\right] $$\n$$ S = \\frac{1}{4} \\left[ f(0)+f(1) \\right] = \\frac{1}{4} \\left[ \\frac{1}{0^{2}+1} + \\frac{1}{1^{2}+1} \\right] = \\frac{1}{4} \\left[ \\frac{1}{1} + \\frac{1}{2} \\right] = \\frac{1}{4} \\left[ 1+\\frac{1}{2} \\right] = \\frac{1}{4} \\left( \\frac{3}{2} \\right) = \\frac{3}{8} $$\nThus, the sum is $\\frac{3}{8}$.",
+    "sentence-type": "answer",
+    "sentence-category-reason": "This sentence systematically rewrites the sum, carries out telescoping, and plugs in specific function values, including the arithmetic manipulations to arrive at S = 3/8. All are explicit calculations\u2014this is Implement.",
+    "sentence-category": "Implement",
+    "index": 6
+  },
+  {
+    "sentence": "Final Answer: The final answer is $\\boxed{3/8}$",
+    "sentence-type": "answer",
+    "sentence-category-reason": "This sentence explicitly delivers the answer to the problem in a declarative, boxed format, directly fulfilling the 'Answer' category.",
+    "sentence-category": "Answer",
+    "index": 7
+  }
+]

@@ -1,0 +1,72 @@
+[
+  {
+    "reason": "This paragraph introduces the notation for the sequence, makes the assumption of strict increase for generality, and sets up the framework for the problem. It is standard setup and does not propose alternate approaches or check any result.",
+    "class": "General",
+    "text": "Let the monotone sequence of $n$ distinct reals be $a_1, a_2, \\ldots, a_n$.\nSince the reals are distinct and the sequence is monotone, it must be strictly increasing or strictly decreasing. Without loss of generality, let's assume it's strictly increasing: $a_1 < a_2 < \\ldots < a_n$."
+  },
+  {
+    "reason": "This paragraph defines what constitutes a three-term arithmetic progression, translates the definition algebraically, and identifies index ordering constraints. All of this serves as the methodical unpacking of problem structure to move toward a solution.",
+    "class": "General",
+    "text": "A three-term arithmetic progression (AP) is a set of three terms $(x, y, z)$ such that $y-x = z-y$, or equivalently, $2y = x+z$.\nSince $a_1 < a_2 < \\ldots < a_n$, if $(a_i, a_j, a_k)$ forms an AP, then $a_i$ must be the smallest term, $a_j$ the middle term, and $a_k$ the largest term. This implies that their indices must be in increasing order: $i < j < k$."
+  },
+  {
+    "reason": "This paragraph clarifies the problem goal (maximum count), rephrases the requisite condition algebraically, and properly states index constraints. It continues the systematic problem analysis without digression or explicit verification.",
+    "class": "General",
+    "text": "We want to find the maximum possible number of such triples $(a_i, a_j, a_k)$ satisfying $2a_j = a_i+a_k$ for $1 \\le i < j < k \\le n$."
+  },
+  {
+    "reason": "This paragraph proposes a summation approach for counting AP triples, selects the relevant middle indices, and breaks down the difference conditions into left and right portions. It is a direct application of standard combinatorial reasoning, moving toward a solution.",
+    "class": "General",
+    "text": "Let $N$ be the total number of such APs. We can count $N$ by summing, for each possible middle term $a_j$, the number of pairs $(a_i, a_k)$ that form an AP with $a_j$.\nThe possible indices for the middle term $a_j$ are $j=2, 3, \\ldots, n-1$.\nFor a fixed $j$, we are looking for pairs $(i, k)$ such that $1 \\le i < j < k \\le n$ and $a_j - a_i = a_k - a_j$.\nLet $d_{L} = a_j - a_i$ and $d_{R} = a_k - a_j$. We need $d_L = d_R$.\nLet $D_L(j) = \\{a_j - a_i \\mid 1 \\le i < j\\}$ be the set of positive differences between $a_j$ and elements to its left.\nLet $D_R(j) = \\{a_k - a_j \\mid j < k \\le n\\}$ be the set of positive differences between elements to its right and $a_j$."
+  },
+  {
+    "reason": "Here the paragraph establishes that all differences to the left and right of a fixed point are distinct due to the nature of distinct real sequence elements, justifying that the sets have the size claimed. This is a logical, systematic step in the main solution without branching or checking already derived results.",
+    "class": "General",
+    "text": "Since the sequence $a_1, \\ldots, a_n$ consists of distinct reals, all the differences $a_j-a_i$ for fixed $j$ and varying $i<j$ are distinct. For example, if $a_j-a_i = a_j-a_p$ for $i \\ne p$, then $a_i=a_p$, which contradicts the distinctness of terms. Thus, $|D_L(j)| = j-1$.\nSimilarly, all the differences $a_k-a_j$ for fixed $j$ and varying $k>j$ are distinct. Thus, $|D_R(j)| = n-j$."
+  },
+  {
+    "reason": "This paragraph methodically explains how to count the APs for a fixed middle term, leading to establishing a formula. It proceeds logically in the main line of reasoning, without speculation or checking\u2014pure advancement of the solution.",
+    "class": "General",
+    "text": "For a fixed $a_j$, the number of APs with $a_j$ as the middle term is precisely the number of common elements in $D_L(j)$ and $D_R(j)$, i.e., $|D_L(j) \\cap D_R(j)|$.\nThe maximum possible size of this intersection is $\\min(|D_L(j)|, |D_R(j)|) = \\min(j-1, n-j)$."
+  },
+  {
+    "reason": "This paragraph continues the direct solution, summing the maximum contributions for each possible middle term. It applies the established concept, moves the solution forward, and does not branch into speculative approaches or checking for correctness.",
+    "class": "General",
+    "text": "Therefore, the total number of APs, $N$, is bounded by the sum of these maximums:\n$N = \\sum_{j=2}^{n-1} |D_L(j) \\cap D_R(j)| \\le \\sum_{j=2}^{n-1} \\min(j-1, n-j)$."
+  },
+  {
+    "reason": "This paragraph always remains expository: it discusses the structure of the sum, where the minimums peak, and leads to deepen the calculation. It is clear and directed, not exploring alternatives or verifying a candidate answer.",
+    "class": "General",
+    "text": "Let's evaluate this sum:\nThe terms $\\min(j-1, n-j)$ increase from $j=2$ up to a maximum value, and then decrease.\nThe maximum value occurs when $j-1 \\approx n-j$, i.e., $2j \\approx n+1$, or $j \\approx (n+1)/2$."
+  },
+  {
+    "reason": "The paragraph proceeds to evaluate the upper bound sum explicitly for the odd case, working through the formula step by step and deriving the closed form. This is purely carrying out the planned computation.",
+    "class": "General",
+    "text": "Case 1: $n$ is odd. Let $n = 2k+1$ for some integer $k \\ge 1$.\nThe sum becomes $\\sum_{j=2}^{2k} \\min(j-1, 2k+1-j)$.\nThe values of $j-1$ range from $1, 2, \\ldots, k-1, k, k+1, \\ldots, 2k-1$.\nThe values of $2k+1-j$ range from $2k-1, 2k-2, \\ldots, k+1, k, k-1, \\ldots, 1$.\nThe sequence of $\\min$ values is $1, 2, \\ldots, k-1, k, k-1, \\ldots, 1$.\nThe sum is $(1 + 2 + \\ldots + (k-1)) + k + ((k-1) + \\ldots + 1)$\n$= 2 \\sum_{s=1}^{k-1} s + k = 2 \\frac{(k-1)k}{2} + k = k(k-1) + k = k^2$.\nSince $n=2k+1$, $k = (n-1)/2$. So $N \\le \\left(\\frac{n-1}{2}\\right)^2$."
+  },
+  {
+    "reason": "This paragraph analogously handles the even case, calculating the sum explicitly. It derives the formula and provides the final answer for this case, still on the primary solution path.",
+    "class": "General",
+    "text": "Case 2: $n$ is even. Let $n = 2k$ for some integer $k \\ge 2$.\nThe sum becomes $\\sum_{j=2}^{2k-1} \\min(j-1, 2k-j)$.\nThe values of $j-1$ range from $1, 2, \\ldots, k-1, k, \\ldots, 2k-2$.\nThe values of $2k-j$ range from $2k-2, 2k-3, \\ldots, k, k-1, \\ldots, 1$.\nThe sequence of $\\min$ values is $1, 2, \\ldots, k-1, k-1, \\ldots, 1$. (The term for $j=k$ is $\\min(k-1, k) = k-1$. The term for $j=k+1$ is $\\min(k, k-1) = k-1$.)\nThe sum is $(1 + 2 + \\ldots + (k-1)) + ((k-1) + \\ldots + 1)$\n$= 2 \\sum_{s=1}^{k-1} s = 2 \\frac{(k-1)k}{2} = k(k-1)$.\nSince $n=2k$, $k = n/2$. So $N \\le \\frac{n}{2}\\left(\\frac{n}{2}-1\\right) = \\frac{n(n-2)}{4}$."
+  },
+  {
+    "reason": "The paragraph constructs an explicit sequence (an arithmetic progression) to show that the previously derived upper bound for the number of APs can be achieved. The argument checks that for this construction, the intersection is exactly the required value. Although it does 'construct and check,' the tone and structure are a methodical completion of the main solution plan, connecting theory with a confirming specific example (not a separate uncertainty-based check or alternative). There is no exploration of different constructions, and the checking is an embedded part of justifying the solution, not a distinct verification episode. Thus, it is General.",
+    "class": "General",
+    "text": "To show that these bounds are achievable, we need to construct a sequence $a_1, \\ldots, a_n$ for which $|D_L(j) \\cap D_R(j)| = \\min(j-1, n-j)$ for all $j$.\nConsider the arithmetic progression $a_x = x$ for $x=1, 2, \\ldots, n$. This is a strictly increasing sequence of distinct reals.\nFor this sequence, $a_j - a_i = j-i$ and $a_k - a_j = k-j$.\nThen $D_L(j) = \\{j-1, j-2, \\ldots, 1\\}$ (or $\\{1, 2, \\ldots, j-1\\}$).\nAnd $D_R(j) = \\{j+1-j, j+2-j, \\ldots, n-j\\} = \\{1, 2, \\ldots, n-j\\}$.\nThe intersection $D_L(j) \\cap D_R(j) = \\{1, 2, \\ldots, \\min(j-1, n-j)\\}$.\nThe size of this intersection is exactly $\\min(j-1, n-j)$.\nThus, the sequence $a_x=x$ (or any arithmetic progression, due to affine invariance of APs) achieves the upper bound."
+  },
+  {
+    "reason": "The paragraph summarizes the solution by recalling the explicit maximum formulae for both odd and even n. The statements are declarative and part of the planned logical exposition, with no checks or alternative approaches. This is clearly progressing through the main line of the argument.",
+    "class": "General",
+    "text": "Let's summarize the maximum number of APs:\nIf $n$ is odd, $n=2k+1$: The maximum number of APs is $k^2 = \\left(\\frac{n-1}{2}\\right)^2$.\nIf $n$ is even, $n=2k$: The maximum number of APs is $k(k-1) = \\frac{n(n-2)}{4}$."
+  },
+  {
+    "reason": "This paragraph presents an alternative (but equivalent) formula for the answer using binomial coefficients and then shows that for both cases the formulas match the explicit counts found before. The tone is expository, explaining and unifying results, but it does not involve exploration (searching for new approaches) nor explicit verification (checking correctness of a found answer). It demonstrates and explains equivalence to prior results, fitting the General category.",
+    "class": "General",
+    "text": "These can be combined into a single formula using floor and ceiling functions:\nThe number of APs is $\\binom{\\lceil n/2 \\rceil}{2} + \\binom{\\lfloor n/2 \\rfloor}{2}$.\nIf $n=2k+1$: $\\binom{k+1}{2} + \\binom{k}{2} = \\frac{k(k+1)}{2} + \\frac{k(k-1)}{2} = \\frac{k^2+k+k^2-k}{2} = k^2$.\nIf $n=2k$: $\\binom{k}{2} + \\binom{k}{2} = 2 \\frac{k(k-1)}{2} = k(k-1)$."
+  },
+  {
+    "reason": "This is a concluding paragraph that states the boxed final answer in a compact formula, summarizing the main findings of the solution. There is no indication of checking or exploring; it delivers the result confidently and directly.",
+    "class": "General",
+    "text": "The final answer is $\\boxed{\\frac{n^2-2n}{4} \\text{ if } n \\text{ is even, } \\frac{n^2-2n+1}{4} \\text{ if } n \\text{ is odd}}$."
+  }
+]

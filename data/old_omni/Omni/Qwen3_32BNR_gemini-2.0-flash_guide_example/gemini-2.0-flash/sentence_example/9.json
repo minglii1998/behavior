@@ -1,0 +1,415 @@
+[
+  {
+    "text": "We are given a **monotone sequence** of $ n $ **distinct real numbers**, and we are to find the **maximum possible number of three-term arithmetic progressions (3-APs)** in such a sequence.",
+    "class-1-reason": "This paragraph is setting up the problem, defining the goal, and providing context. It can be considered as an initial understanding and representation of the problem.",
+    "class-1": "General",
+    "class-2-reason": "The sentence restates the problem and its constraints, extracting the given information about the monotone sequence and the goal of finding the maximum number of 3-APs.",
+    "class-2": "Read"
+  },
+  {
+    "text": "### Definitions:",
+    "class-1-reason": "This paragraph provides definitions of key concepts related to the problem. It's part of understanding the problem and necessary concepts before attempting to solve it.",
+    "class-1": "General",
+    "class-2-reason": "This sentence is announcing what will follow, which is the definition.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "- A **three-term arithmetic progression (3-AP)** is a triple $ (a_i, a_j, a_k) $ such that $ a_j - a_i = a_k - a_j $, or equivalently $ a_j = \\frac{a_i + a_k}{2} $.",
+    "class-1-reason": "This paragraph gives key definitions. This is General because it states definitions and assumptions which are needed to solve the problem. The definitions are stated without working through the problem.",
+    "class-1": "General",
+    "class-2-reason": "This sentence provides the formal definition of a three-term arithmetic progression (3-AP), which is a necessary concept for understanding and solving the problem.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "- A **monotone sequence** is either **increasing** or **decreasing**.",
+    "class-1-reason": "This paragraph gives key definitions. This is General because it states definitions and assumptions which are needed to solve the problem. The definitions are stated without working through the problem.",
+    "class-1": "General",
+    "class-2-reason": "This sentence provides the definition of a monotone sequence.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Since arithmetic progressions are preserved under reversal, we can assume without loss of generality that the sequence is **increasing**.",
+    "class-1-reason": "This paragraph gives key definitions. This is General because it states definitions and assumptions which are needed to solve the problem. The definitions are stated without working through the problem.",
+    "class-1": "General",
+    "class-2-reason": "The sentence explains that the sequence can be assumed to be increasing without loss of generality, based on the property that arithmetic progressions are preserved under reversal, so it is making an inference.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "---",
+    "class-1-reason": "This paragraph does not contain new information from the previous paragraph.",
+    "class-1": "General",
+    "class-2-reason": "This is a separator.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "### Goal:",
+    "class-1-reason": "This paragraph defines the goal.",
+    "class-1": "General",
+    "class-2-reason": "This sentence is announcing what will follow, which is the goal.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "We want to find the **maximum number** of 3-APs in such a sequence.",
+    "class-1-reason": "This paragraph provides more details on the goal.",
+    "class-1": "General",
+    "class-2-reason": "This sentence restates the objective of the problem, emphasizing that the ultimate aim is to maximize the number of 3-APs.",
+    "class-2": "Read"
+  },
+  {
+    "text": "---",
+    "class-1-reason": "This paragraph is a separator, and doesn't describe any specific action.",
+    "class-1": "General",
+    "class-2-reason": "This is a separator.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "## Step 1: Counting all possible 3-APs in a sequence",
+    "class-1-reason": "This paragraph sets up Step 1 of the problem-solving process.",
+    "class-1": "General",
+    "class-2-reason": "This sentence explicitly states the upcoming step.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "Suppose the sequence is $ a_1 < a_2 < \\cdots < a_n $.",
+    "class-1-reason": "This paragraph defines the arithmetic progression, and gives properties.",
+    "class-1": "General",
+    "class-2-reason": "This sentence introduces the sequence with specific conditions, laying the groundwork for further analysis.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "A 3-AP is a triple $ (a_i, a_j, a_k) $ such that $ a_j = \\frac{a_i + a_k}{2} $.",
+    "class-1-reason": "This paragraph defines the arithmetic progression, and gives properties.",
+    "class-1": "General",
+    "class-2-reason": "This sentence restates the definition of a 3-AP, recalling a relevant theory.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "This is equivalent to saying that $ a_i + a_k = 2a_j $, or that $ a_j $ is the **average** of $ a_i $ and $ a_k $, and $ i < j < k $.",
+    "class-1-reason": "This paragraph defines the arithmetic progression, and gives properties.",
+    "class-1": "General",
+    "class-2-reason": "This sentence provides an equivalent condition and restates the relationship between the terms, expanding on the definition of a 3-AP.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So, for each $ j $ from 2 to $ n-1 $, we can count how many pairs $ (i, k) $ satisfy $ a_i + a_k = 2a_j $, with $ i < j < k $.",
+    "class-1-reason": "This paragraph describes how to count 3-APs for each element in the sequence, by checking pairs (i, k) that satisfy the arithmetic progression condition. This is a general consideration to form the strategy.",
+    "class-1": "General",
+    "class-2-reason": "This sentence describes how to count the number of pairs (i,k) satisfying the arithmetic progression condition, which is an analytical step.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Let\u2019s denote the total number of such 3-APs by $ T $.",
+    "class-1-reason": "This paragraph introduces notation for the total number of 3-APs. This is a general action.",
+    "class-1": "General",
+    "class-2-reason": "This sentence introduces notation for the number of 3-APs, establishing a symbolic representation.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "---",
+    "class-1-reason": "This paragraph is a separator.",
+    "class-1": "General",
+    "class-2-reason": "This sentence is just a separator and has no problem-solving content.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "## Step 2: Maximum number of 3-APs",
+    "class-1-reason": "This paragraph announces the next step, which is about maximizing the number of 3-APs. It's about exploring the problem.",
+    "class-1": "Explore",
+    "class-2-reason": "This is the title of a step and has no real problem-solving content.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "We are to **maximize** the number of such 3-APs in a monotone sequence of $ n $ distinct reals.",
+    "class-1-reason": "This paragraph reiterates the goal: to maximize the number of 3-APs. This is exploration, not directly about solving, but setting up for finding solution.",
+    "class-1": "Explore",
+    "class-2-reason": "This sentence introduces the goal of maximizing the number of 3-APs, expressing uncertainty about how to achieve this.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Let\u2019s consider the structure that **maximizes** the number of 3-APs.",
+    "class-1-reason": "The paragraph sets the stage for exploring potential strategies to maximize the number of 3-APs.",
+    "class-1": "Explore",
+    "class-2-reason": "This sentence proposes considering the structure that maximizes the number of 3-APs, expressing uncertainty about the structure.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "---",
+    "class-1-reason": "This is a separator, contains no information",
+    "class-1": "General",
+    "class-2-reason": "This sentence is just a separator and has no problem-solving content.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "### Key Idea:",
+    "class-1-reason": "This is a section header, containing no information",
+    "class-1": "General",
+    "class-2-reason": "This is a title or heading introducing a key concept, so it can be considered as a plan for what follows.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "An **arithmetic progression (AP)** of length $ n $ has the **maximum number of 3-APs** among all monotone sequences of length $ n $.",
+    "class-1-reason": "The paragraph introduces the idea that an arithmetic progression of length n maximizes the number of 3-APs, representing a key finding or assertion related to the problem.",
+    "class-1": "General",
+    "class-2-reason": "This sentence states a property that maximizes the number of 3-APs. It is providing an explanation.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Why?",
+    "class-1-reason": "The paragraph prompts further investigation into the reasoning behind the key idea, indicating a transition to justification or explanation.",
+    "class-1": "Explore",
+    "class-2-reason": "This is a question expressing uncertainty and prompting further exploration.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "- In an AP, the condition $ a_i + a_k = 2a_j $ is automatically satisfied **for all triples** $ (i, j, k) $ such that $ i + k = 2j $, i.",
+    "class-1-reason": "This paragraph explores the properties of arithmetic progressions and why they maximize the number of 3-APs.",
+    "class-1": "Explore",
+    "class-2-reason": "This sentence explains why an arithmetic progression maximizes 3-APs, detailing a specific condition and its implication. It is providing an explanation.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "e.",
+    "class-1-reason": "This paragraph explores the properties of arithmetic progressions and why they maximize the number of 3-APs.",
+    "class-1": "Explore",
+    "class-2-reason": "This is a pause or interjection, showing a brief hesitation.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": ", $ j $ is the average of $ i $ and $ k $.",
+    "class-1-reason": "This paragraph explores the properties of arithmetic progressions and why they maximize the number of 3-APs.",
+    "class-1": "Explore",
+    "class-2-reason": "This sentence explains further with an equivalent condition. It is an explantion.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "- So in an AP, every such triple with $ i + k = 2j $ is a 3-AP.",
+    "class-1-reason": "This paragraph explores the properties of arithmetic progressions and why they maximize the number of 3-APs.",
+    "class-1": "Explore",
+    "class-2-reason": "This sentence further details how a triple relates to 3-APs within an AP, reinforcing a certain condition. This sentence is explaining.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "- This gives a **large number** of 3-APs.",
+    "class-1-reason": "This paragraph explores the properties of arithmetic progressions and why they maximize the number of 3-APs.",
+    "class-1": "Explore",
+    "class-2-reason": "This sentence concludes that a large number of 3-APs is present.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Let\u2019s count them.",
+    "class-1-reason": "This is a transitional statement indicating the next step: counting the 3-APs.",
+    "class-1": "General",
+    "class-2-reason": "This is a direct statement of the next action, indicating a plan to count the 3-APs.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "---",
+    "class-1-reason": "Separator",
+    "class-1": "General",
+    "class-2-reason": "This is a divider between sections.",
+    "class-2": "Read"
+  },
+  {
+    "text": "### Step 3: Count the number of 3-APs in an AP of length $ n $",
+    "class-1-reason": "This paragraph introduces the next step in problem-solving: counting the number of 3-APs in an arithmetic progression of length n.",
+    "class-1": "General",
+    "class-2-reason": "This sentence announces the next step, which is counting the number of 3-APs, outlining the solution strategy.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "Suppose $ a_1, a_2, \\dots, a_n $ is an arithmetic progression.",
+    "class-1-reason": "This paragraph sets up the scenario for counting 3-APs by defining an arithmetic progression.",
+    "class-1": "General",
+    "class-2-reason": "This sentence introduces the arithmetic progression as a basis for further analysis.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "We want to count the number of 3-APs $ (a_i, a_j, a_k) $ such that $ i < j < k $ and $ a_j = \\frac{a_i + a_k}{2} $, i.",
+    "class-1-reason": "The paragraph introduces the problem of counting 3-APs with specific conditions.",
+    "class-1": "General",
+    "class-2-reason": "This sentence rephrases the goal: counting 3-APs under specific conditions, extracting key information.",
+    "class-2": "Read"
+  },
+  {
+    "text": "e.",
+    "class-1-reason": "The paragraph introduces the problem of counting 3-APs with specific conditions.",
+    "class-1": "General",
+    "class-2-reason": "This sentence is a short interjection that does not contain substantial problem-solving content.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": ", $ i + k = 2j $.",
+    "class-1-reason": "The paragraph introduces the problem of counting 3-APs with specific conditions.",
+    "class-1": "General",
+    "class-2-reason": "This sentence is recalling a necessary formula and deducing the relationship to the problem statement.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "This is equivalent to counting the number of integer solutions to:",
+    "class-1-reason": "This paragraph frames the problem of counting 3-APs as counting integer solutions to an equation.",
+    "class-1": "General",
+    "class-2-reason": "This sentence explains the problem in the context of math. The core activity is explanation or logical inference that sets the stage for the solution.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "$$\ni + k = 2j \\quad \\text{with } 1 \\le i < j < k \\le n\n$$",
+    "class-1-reason": "This paragraph shows the mathematical equation to be solved.",
+    "class-1": "General",
+    "class-2-reason": "This sentence describes the conditions to be met, by recalling the formula.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "We fix $ j $ and count the number of valid $ (i, k) $ such that $ i + k = 2j $, with $ i < j < k $.",
+    "class-1-reason": "The paragraph proposes a strategy to solve the problem by fixing j and counting valid (i, k).",
+    "class-1": "General",
+    "class-2-reason": "This sentence outlines the solution strategy by fixing $j$ and counting valid $(i, k)$. It represents a commitment to a course of action.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "Let\u2019s fix $ j $, and find the number of integer pairs $ (i, k) $ such that $ i + k = 2j $, and $ i < j < k $, with $ i, k \\in \\{1, 2, \\dots, n\\} $.",
+    "class-1-reason": "This paragraph restates the strategy with slightly more detail about constraints on i and k.",
+    "class-1": "General",
+    "class-2-reason": "This sentence outlines the solution strategy by fixing $j$ and counting integer pairs. It represents a commitment to a course of action.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "- Since $ i < j $, and $ k > j $, we have $ i < j < k $, so $ i \\in [1, j-1] $, and $ k = 2j - i $.",
+    "class-1-reason": "Establishes constraints on i and k based on the problem definition. It manipulates equations and inequalities to further define the problem.",
+    "class-1": "General",
+    "class-2-reason": "This sentence explains the constraints on i based on the earlier conditions. It provides explanation for the analysis.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "- We must also have $ k \\le n $, so:",
+    "class-1-reason": "Establishes constraints on i and k based on the problem definition. It manipulates equations and inequalities to further define the problem.",
+    "class-1": "General",
+    "class-2-reason": "States a condition that must be met, based on the problem statement.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "$$\n2j - i \\le n \\Rightarrow i \\ge 2j - n\n$$",
+    "class-1-reason": "Derives another constraint on 'i' based on 'k' and 'n' through algebraic manipulation.",
+    "class-1": "General",
+    "class-2-reason": "Deduces a relationship based on the previous condition.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So for each $ j $, the number of valid $ i $ is:",
+    "class-1-reason": "States the goal of finding the number of valid i for each j.",
+    "class-1": "General",
+    "class-2-reason": "States the goal of the current step, preparing for a calculation.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "$$\n\\text{Number of } i = \\max(0, j - 1 - (2j - n)) = \\max(0, n - j - 1)\n$$",
+    "class-1-reason": "Provides a formula for calculating the number of valid 'i' based on the constraints derived earlier. This involves mathematical manipulation and simplification.",
+    "class-1": "General",
+    "class-2-reason": "Implements the calculation of the number of valid i.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "So for each $ j $, the number of 3-APs with middle index $ j $ is $ \\max(0, n - j - 1) $.",
+    "class-1-reason": "Summarizes the findings, connecting the number of 3-APs to the formula derived in the previous step.",
+    "class-1": "General",
+    "class-2-reason": "Applies the result of the calculation to the original problem.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Thus, total number of 3-APs in an AP of length $ n $ is:",
+    "class-1-reason": "This paragraph introduces the summation representing the total number of 3-APs, setting the stage for the calculation.",
+    "class-1": "General",
+    "class-2-reason": "States the overall goal: to find the total number of 3-APs.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "$$\n\\sum_{j=2}^{n-1} (n - j - 1) = \\sum_{j=2}^{n-1} (n - 1 - j)\n$$",
+    "class-1-reason": "This paragraph explicitly presents the summation to be computed, a mathematical expression derived from the previous reasoning.",
+    "class-1": "General",
+    "class-2-reason": "Formulates a mathematical expression for the total number of 3-APs.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Let\u2019s compute this sum:",
+    "class-1-reason": "This paragraph signals the start of the calculation process for the summation defined in the previous paragraph.",
+    "class-1": "General",
+    "class-2-reason": "States the next step: to compute the sum.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "Let $ k = n - 1 - j $, so $ j = n - 1 - k $, and as $ j $ goes from 2 to $ n-1 $, $ k $ goes from $ n - 3 $ down to 0.",
+    "class-1-reason": "This paragraph introduces a substitution to simplify the summation, a common technique in mathematical problem solving.",
+    "class-1": "General",
+    "class-2-reason": "Introduces a variable substitution to simplify the sum.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So the sum becomes:",
+    "class-1-reason": "This paragraph indicates that the sum will be rewritten based on the substitution performed in the previous step.",
+    "class-1": "General",
+    "class-2-reason": "Indicates that the substitution will now be applied.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "$$\n\\sum_{k=0}^{n-3} k = \\frac{(n - 3)(n - 2)}{2}\n$$",
+    "class-1-reason": "Final calculation of derived formula.",
+    "class-1": "General",
+    "class-2-reason": "This sentence provides the final calculation result.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "---",
+    "class-1-reason": "Separator between calculation and answer.",
+    "class-1": "General",
+    "class-2-reason": "This sentence is a separator, so it does not contain substantial problem-solving content.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "### Final Answer:",
+    "class-1-reason": "Indicates the final answer.",
+    "class-1": "General",
+    "class-2-reason": "The sentence indicates the final answer.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "$$\n\\boxed{\\frac{(n - 2)(n - 3)}{2}}\n$$",
+    "class-1-reason": "Final answer.",
+    "class-1": "General",
+    "class-2-reason": "This sentence provides the final answer.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "This is the **maximum** number of 3-APs in a monotone sequence of $ n $ distinct reals.",
+    "class-1-reason": "States the result and its significance.",
+    "class-1": "General",
+    "class-2-reason": "The sentence gives the final answer, thus verifying it.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "It is achieved when the sequence is an **arithmetic progression**.",
+    "class-1-reason": "States a condition where the maximum is achieved; general statement about the solution.",
+    "class-1": "General",
+    "class-2-reason": "The sentence gives a condition that ensures the maximum.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "---",
+    "class-1-reason": "Separator between steps.",
+    "class-1": "General",
+    "class-2-reason": "This sentence is a separator, so it does not contain substantial problem-solving content.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "### \u2705 Final Result:",
+    "class-1-reason": "Indicates the final result.",
+    "class-1": "General",
+    "class-2-reason": "The sentence indicates the final result.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "$$\n\\boxed{\\frac{(n - 2)(n - 3)}{2}}\n$$",
+    "class-1-reason": "Presents the final answer again.",
+    "class-1": "General",
+    "class-2-reason": "This sentence provides the final answer.",
+    "class-2": "Implement"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "reason": "Defines terms, states the problem setup, and identifies what is to be maximized. This is about orienting to the problem.",
+    "class": "General",
+    "text": "Let $S$ be a monotone sequence of $n$ distinct real numbers. Let $S = \\{a_1, a_2, \\dots, a_n\\}$ with $a_1 < a_2 < \\dots < a_n$ (without loss of generality, we assume the sequence is strictly increasing). We want to find the maximum possible number of three-term arithmetic progressions in $S$."
+  },
+  {
+    "reason": "Defines a function to formalize the goal, which is a typical part of setting up the problem, not yet exploring or verifying.",
+    "class": "General",
+    "text": "Let $A(n)$ be the maximum number of three-term arithmetic progressions in a monotone sequence of $n$ distinct reals."
+  },
+  {
+    "reason": "Clarifies the property that needs to be checked for a 3-term AP. Lays groundwork, still problem setup.",
+    "class": "General",
+    "text": "A three-term arithmetic progression in $S$ is a subsequence $\\{a_i, a_j, a_k\\}$ such that $1 \\le i < j < k \\le n$ and $a_j - a_i = a_k - a_j$, or $2a_j = a_i + a_k$."
+  },
+  {
+    "reason": "Considers small cases and enumerates possible outcomes for small n, making and checking small examples\u2014a prototypical 'Explore' behavior.",
+    "class": "Explore",
+    "text": "For small values of $n$, we can easily find the maximum number of arithmetic progressions:\n\\begin{itemize}\n    \\item $n = 1, 2$: $A(n) = 0$\n    \\item $n = 3$: $A(3) = 1$ (e.g., $\\{1, 2, 3\\}$)\n    \\item $n = 4$: $A(4) = 2$ (e.g., $\\{1, 2, 3, 4\\}$ or $\\{1, 2, 3, 5\\}$)\n    \\item $n = 5$: $A(5) = 4$ (e.g., $\\{1, 2, 3, 4, 5\\}$ or $\\{1, 2, 3, 4, 6\\}$ or $\\{1, 2, 3, 5, 7\\}$)\n\\end{itemize}"
+  },
+  {
+    "reason": "Begins to generalize and formalize the counting of solutions for the canonical monotone sequence. It initiates a systematic approach to find a pattern\u2014this is exploration via example but shifting toward generalization.",
+    "class": "Explore",
+    "text": "Let $S = \\{1, 2, \\dots, n\\}$. Then $a_i = i$ for $i=1, \\dots, n$. We want to count the number of triples $(i, j, k)$ such that $1 \\le i < j < k \\le n$ and $2j = i+k$.\nThis implies that $i$ and $k$ have the same parity.\n\\begin{itemize}\n    \\item If $i$ is even, then $k$ is even. Let $i = 2m$ and $k = 2p$. Then $j = m+p$.\n    \\item If $i$ is odd, then $k$ is odd. Let $i = 2m-1$ and $k = 2p-1$. Then $j = m+p-1$.\n\\end{itemize}"
+  },
+  {
+    "reason": "This paragraph is calculating the number of possible arithmetic progressions by partitioning integers into evens and odds, computing their counts, expressing the formula, and checking cases for even and odd n. This is constructing and justifying an explicit solution, and synthesizing the main idea.",
+    "class": "General",
+    "text": "Let $E$ be the number of even integers in $\\{1, \\dots, n\\}$ and $O$ be the number of odd integers in $\\{1, \\dots, n\\}$.\nThen $E = \\lfloor \\frac{n}{2} \\rfloor$ and $O = \\lceil \\frac{n}{2} \\rceil$.\nThe number of choices for $i$ and $k$ is $\\binom{E}{2} + \\binom{O}{2}$.\nThus, $A(n) \\ge \\binom{\\lfloor n/2 \\rfloor}{2} + \\binom{\\lceil n/2 \\rceil}{2}$.\nIn fact, we can choose $S = \\{1, 2, \\dots, n\\}$ to achieve the maximum number of arithmetic progressions.\nIf $n$ is even, say $n = 2m$, then $E = m$ and $O = m$, so $A(n) = 2\\binom{m}{2} = m(m-1) = \\frac{n}{2}(\\frac{n}{2} - 1) = \\frac{n(n-2)}{4}$.\nIf $n$ is odd, say $n = 2m+1$, then $E = m$ and $O = m+1$, so $A(n) = \\binom{m}{2} + \\binom{m+1}{2} = \\frac{m(m-1)}{2} + \\frac{(m+1)m}{2} = \\frac{m(2m)}{2} = m^2 = \\frac{(n-1)^2}{4}$."
+  },
+  {
+    "reason": "This states a general formula summarizing the results from the previous work, expressing the answer in a universal closed form. This is a synthesis and generalization step.",
+    "class": "General",
+    "text": "In general, $A(n) = \\frac{n^2 - c}{4}$ where $c = 0$ or $c = 1$, i.e., $A(n) = \\lfloor \\frac{n^2}{4} \\rfloor$."
+  },
+  {
+    "reason": "This simply presents the final boxed answer, directly concluding the problem.",
+    "class": "Verify",
+    "text": "Final Answer: The final answer is $\\boxed{\\lfloor n^2/4 \\rfloor}$"
+  }
+]

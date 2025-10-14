@@ -1,0 +1,121 @@
+[
+  {
+    "sentence": "We are given the function: $$\nf(r) = \\sum_{j=2}^{2008} \\frac{1}{j^r}\n$$",
+    "sentence-type": "answer",
+    "sentence-category-reason": "This sentence restates the function definition exactly as given in the problem, focusing on what is provided.",
+    "sentence-category": "Read",
+    "index": 1
+  },
+  {
+    "sentence": "We are to compute: $$\n\\sum_{k=2}^{\\infty} f(k) = \\sum_{k=2}^{\\infty} \\sum_{j=2}^{2008} \\frac{1}{j^k}\n$$",
+    "sentence-type": "answer",
+    "sentence-category-reason": "This sentence restates the goal by transforming the sum in the problem into a double sum, still focused on what the problem is asking for.",
+    "sentence-category": "Read",
+    "index": 2
+  },
+  {
+    "sentence": "### Step 1: Swap the order of summation",
+    "sentence-type": "answer",
+    "sentence-category-reason": "This heading explicitly introduces the next procedure, announcing the intent to swap summation order.",
+    "sentence-category": "Plan",
+    "index": 3
+  },
+  {
+    "sentence": "We are summing over $ j = 2 $ to $ 2008 $, and $ k = 2 $ to $ \\infty $.",
+    "sentence-type": "answer",
+    "sentence-category-reason": "This sentence clarifies the ranges of summation for both indices, interpreting the structure of the problem before executing any manipulation.",
+    "sentence-category": "Analyze",
+    "index": 4
+  },
+  {
+    "sentence": "Since all terms are positive, we can interchange the order of summation (by Tonelli's theorem): $$\n\\sum_{k=2}^{\\infty} f(k) = \\sum_{j=2}^{2008} \\sum_{k=2}^{\\infty} \\frac{1}{j^k}\n$$",
+    "sentence-type": "answer",
+    "sentence-category-reason": "This sentence justifies and performs the change in summation order with an explicit reference to Tonelli's theorem; it explains why the swap is allowed, then executes the swap.",
+    "sentence-category": "Implement",
+    "index": 5
+  },
+  {
+    "sentence": "### Step 2: Compute the inner sum",
+    "sentence-type": "answer",
+    "sentence-category-reason": "This heading introduces the next step of calculating the internal sum, outlining the direction for the next calculations.",
+    "sentence-category": "Plan",
+    "index": 6
+  },
+  {
+    "sentence": "For each fixed $ j \\geq 2 $, consider: $$\n\\sum_{k=2}^{\\infty} \\frac{1}{j^k}\n$$",
+    "sentence-type": "answer",
+    "sentence-category-reason": "This sentence frames the calculation to do for each $j$; it sets up the next object for evaluation.",
+    "sentence-category": "Plan",
+    "index": 7
+  },
+  {
+    "sentence": "This is a geometric series with first term $ \\frac{1}{j^2} $ and common ratio $ \\frac{1}{j} $: $$\n\\sum_{k=2}^{\\infty} \\frac{1}{j^k} = \\frac{\\frac{1}{j^2}}{1 - \\frac{1}{j}} = \\frac{1/j^2}{(j - 1)/j} = \\frac{1}{j(j - 1)}\n$$",
+    "sentence-type": "answer",
+    "sentence-category-reason": "Here, the structure of the sum is recognized as a geometric series, the formula for its sum is derived and simplified to a closed form.",
+    "sentence-category": "Implement",
+    "index": 8
+  },
+  {
+    "sentence": "### Step 3: Final expression",
+    "sentence-type": "answer",
+    "sentence-category-reason": "This heading sets up the collection of previous results into a final form, announcing intent to write the overall result.",
+    "sentence-category": "Plan",
+    "index": 9
+  },
+  {
+    "sentence": "So the total sum becomes: $$\n\\sum_{j=2}^{2008} \\frac{1}{j(j - 1)}\n$$",
+    "sentence-type": "answer",
+    "sentence-category-reason": "The sentence expresses the new formulation of the original sum using the just-derived result from the inner sum.",
+    "sentence-category": "Implement",
+    "index": 10
+  },
+  {
+    "sentence": "This is a **telescoping sum**.",
+    "sentence-type": "answer",
+    "sentence-category-reason": "It recognizes a mathematical property (telescoping) of the current sum, helping to choose the next step.",
+    "sentence-category": "Analyze",
+    "index": 11
+  },
+  {
+    "sentence": "### Step 4: Telescoping sum",
+    "sentence-type": "answer",
+    "sentence-category-reason": "This heading announces the intent to use the telescoping property in the following calculations.",
+    "sentence-category": "Plan",
+    "index": 12
+  },
+  {
+    "sentence": "We use the identity: $$\n\\frac{1}{j(j - 1)} = \\frac{1}{j - 1} - \\frac{1}{j}\n$$",
+    "sentence-type": "answer",
+    "sentence-category-reason": "The sentence gives and explains the decomposition identity that will be used for telescoping.",
+    "sentence-category": "Analyze",
+    "index": 13
+  },
+  {
+    "sentence": "So the sum becomes: $$\n\\sum_{j=2}^{2008} \\left( \\frac{1}{j - 1} - \\frac{1}{j} \\right)\n$$",
+    "sentence-type": "answer",
+    "sentence-category-reason": "The sum is rewritten using the telescoping identity, implementing the previous plan.",
+    "sentence-category": "Implement",
+    "index": 14
+  },
+  {
+    "sentence": "This is a telescoping series: $$\n\\left( \\frac{1}{1} - \\frac{1}{2} \\right) + \\left( \\frac{1}{2} - \\frac{1}{3} \\right) + \\cdots + \\left( \\frac{1}{2007} - \\frac{1}{2008} \\right)\n$$",
+    "sentence-type": "answer",
+    "sentence-category-reason": "This explicitly writes out the expanded form of the telescoping sum to show cancellation, continuing from the previous implementation.",
+    "sentence-category": "Implement",
+    "index": 15
+  },
+  {
+    "sentence": "All intermediate terms cancel, leaving: $$\n1 - \\frac{1}{2008}\n$$",
+    "sentence-type": "answer",
+    "sentence-category-reason": "This sentence states the result after cancellation, showing the remaining terms.",
+    "sentence-category": "Implement",
+    "index": 16
+  },
+  {
+    "sentence": "### \u2705 Final Answer: $$\n\\boxed{1 - \\frac{1}{2008} = \\frac{2007}{2008}}\n$$",
+    "sentence-type": "answer",
+    "sentence-category-reason": "This sentence gives the boxed final answer to the original problem, clearly stating the solution.",
+    "sentence-category": "Answer",
+    "index": 17
+  }
+]

@@ -1,0 +1,1533 @@
+[
+    {
+        "text": "Okay, so I need to find the maximum number of three-term arithmetic progressions (APs) in a monotone sequence of n distinct real numbers.",
+        "gt_class": "Analyze",
+        "labeled_class": "Read"
+    },
+    {
+        "text": "Hmm, let's start by understanding the problem.",
+        "gt_class": "Plan",
+        "labeled_class": "Monitor"
+    },
+    {
+        "class": "Analyze",
+        "text": "First, a monotone sequence means it's either non-decreasing or non-increasing."
+    },
+    {
+        "class": "Analyze",
+        "text": "Since the numbers are distinct, it's strictly increasing or strictly decreasing."
+    },
+    {
+        "class": "Explore",
+        "text": "But since arithmetic progressions are about differences, whether it's increasing or decreasing shouldn't matter, right?"
+    },
+    {
+        "class": "Analyze",
+        "text": "Because an AP in a decreasing sequence is just a reversed AP in an increasing sequence."
+    },
+    {
+        "class": "Explore",
+        "text": "So maybe I can just consider increasing sequences without loss of generality."
+    },
+    {
+        "class": "Analyze",
+        "text": "A three-term arithmetic progression is a sequence of three numbers a, b, c such that b - a = c - b, which simplifies to 2b = a + c."
+    },
+    {
+        "class": "Analyze",
+        "text": "So in other words, the middle term is the average of the first and third terms."
+    },
+    {
+        "text": "So given a sorted sequence, I need to count how many such triplets exist where the middle term is exactly the average of the other two.",
+        "gt_class": "Plan",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Plan",
+        "text": "My goal is to maximize this count."
+    },
+    {
+        "class": "Plan",
+        "text": "So I need to arrange the sequence in such a way that there are as many such triplets as possible."
+    },
+    {
+        "text": "But wait, the sequence is monotone and consists of distinct reals.",
+        "gt_class": "Analyze",
+        "labeled_class": "Read"
+    },
+    {
+        "class": "Explore",
+        "text": "So maybe the way to maximize the number of APs is to have as many evenly spaced numbers as possible?"
+    },
+    {
+        "class": "Analyze",
+        "text": "Because in an evenly spaced sequence (like an arithmetic progression itself), every triplet that is equally spaced forms an AP."
+    },
+    {
+        "class": "Analyze",
+        "text": "But if the entire sequence is an arithmetic progression, then the number of three-term APs would be (n-2 choose 1) because every consecutive triplet is an AP, but actually, in a full arithmetic progression, any three equally spaced terms form an AP."
+    },
+    {
+        "class": "Monitor",
+        "text": "Wait, no."
+    },
+    {
+        "class": "Monitor",
+        "text": "Let me think."
+    },
+    {
+        "text": "In a standard arithmetic progression, say 1, 2, 3, 4, 5, then the three-term APs are 1,2,3; 2,3,4; 3,4,5; but also 1,3,5.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Analyze",
+        "text": "So actually, there are more APs than just the consecutive ones."
+    },
+    {
+        "class": "Explore",
+        "text": "So in general, for a sequence of length n which is itself an arithmetic progression, how many three-term APs does it contain?"
+    },
+    {
+        "class": "Monitor",
+        "text": "Let me see."
+    },
+    {
+        "class": "Analyze",
+        "text": "For each possible common difference d, but since the entire sequence is an arithmetic progression with fixed difference d, then any three terms that are equally spaced will form an AP."
+    },
+    {
+        "text": "So the number of three-term APs in the full arithmetic progression is equal to the number of ways to choose three terms such that the middle term is the average of the first and third.",
+        "gt_class": "Explore",
+        "labeled_class": "Analyze"
+    },
+    {
+        "text": "In the case of the full AP, the number of such triplets is the number of pairs of terms that are symmetric around some middle term.",
+        "gt_class": "Explore",
+        "labeled_class": "Analyze"
+    },
+    {
+        "text": "For each middle term, how many pairs are symmetric around it?",
+        "gt_class": "Explore",
+        "labeled_class": "Plan"
+    },
+    {
+        "class": "Analyze",
+        "text": "For a term at position i (1-based index), the number of pairs symmetric around it would be the minimum of i - 1 and n - i."
+    },
+    {
+        "class": "Monitor",
+        "text": "Wait, maybe not exactly."
+    },
+    {
+        "class": "Plan",
+        "text": "Let me think with an example."
+    },
+    {
+        "class": "Analyze",
+        "text": "Take n = 5: positions 1,2,3,4,5."
+    },
+    {
+        "class": "Analyze",
+        "text": "For the middle term at position 3: the pairs are (1,5), (2,4)."
+    },
+    {
+        "class": "Analyze",
+        "text": "So 2 pairs."
+    },
+    {
+        "class": "Analyze",
+        "text": "For position 2: the only possible pair is (1,3)."
+    },
+    {
+        "class": "Analyze",
+        "text": "For position 4: the only possible pair is (3,5)."
+    },
+    {
+        "class": "Analyze",
+        "text": "For positions 1 and 5: no pairs."
+    },
+    {
+        "class": "Analyze",
+        "text": "So total number of three-term APs: for position 3: 2, positions 2 and 4: 1 each."
+    },
+    {
+        "class": "Analyze",
+        "text": "So total 4."
+    },
+    {
+        "text": "But wait, in the sequence 1,2,3,4,5, the three-term APs are:",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "1,2,3; 2,3,4; 3,4,5; 1,3,5.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "That's 4, which matches."
+    },
+    {
+        "text": "So in general, for a full arithmetic progression of length n, the number of three-term APs is (n - 2) + (n - 4) + .",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": ".",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": ".",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "depending on whether n is odd or even.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Monitor",
+        "text": "Wait, no."
+    },
+    {
+        "text": "Wait, in the n=5 case, it's 4.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "For n=4, let's see: sequence 1,2,3,4.",
+        "gt_class": "Analyze",
+        "labeled_class": "Plan"
+    },
+    {
+        "text": "Three-term APs: 1,2,3; 2,3,4; 1,2,3 (wait, but 1,3,5 isn't there).",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "Wait, n=4: 1,2,3,4.",
+        "gt_class": "Analyze",
+        "labeled_class": "Monitor"
+    },
+    {
+        "text": "APs: 1,2,3; 2,3,4; and 1,2,3 (with difference 1), and 1,3,5 isn't present.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Monitor",
+        "text": "Wait, no."
+    },
+    {
+        "class": "Analyze",
+        "text": "In n=4, the APs are:"
+    },
+    {
+        "class": "Analyze",
+        "text": "1,2,3; 2,3,4; and 1,2,3 (no, that's same as first)."
+    },
+    {
+        "text": "Wait, maybe only 1,2,3; 2,3,4; and 1,3,5 isn't there because 5 isn't in the sequence.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Analyze",
+        "text": "So for n=4, two three-term APs."
+    },
+    {
+        "text": "Wait, but according to the previous method, for each position:",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Analyze",
+        "text": "Position 2: pair (1,3)"
+    },
+    {
+        "class": "Analyze",
+        "text": "Position 3: pair (2,4)"
+    },
+    {
+        "class": "Analyze",
+        "text": "Positions 1 and 4: no pairs."
+    },
+    {
+        "class": "Analyze",
+        "text": "So total 2 three-term APs."
+    },
+    {
+        "class": "Analyze",
+        "text": "So in general, for a full arithmetic progression of length n, the number of three-term APs is (n - 2) + (n - 4) + ."
+    },
+    {
+        "text": ".",
+        "gt_class": "Analyze",
+        "labeled_class": "Monitor"
+    },
+    {
+        "text": ".",
+        "gt_class": "Analyze",
+        "labeled_class": "Monitor"
+    },
+    {
+        "class": "Analyze",
+        "text": "until we reach 0 or 1."
+    },
+    {
+        "class": "Analyze",
+        "text": "Wait, no, actually, for each middle term at position i (from 2 to n-1), the number of APs centered at i is min(i - 1, n - i)."
+    },
+    {
+        "class": "Analyze",
+        "text": "So the total number is sum_{i=2}^{n-1} min(i - 1, n - i)."
+    },
+    {
+        "text": "Wait, let's test this formula for n=5:",
+        "gt_class": "Verify",
+        "labeled_class": "Plan"
+    },
+    {
+        "text": "sum from i=2 to 4 of min(i -1, 5 - i):",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Implement",
+        "text": "i=2: min(1,3) =1"
+    },
+    {
+        "class": "Implement",
+        "text": "i=3: min(2,2)=2"
+    },
+    {
+        "class": "Implement",
+        "text": "i=4: min(3,1)=1"
+    },
+    {
+        "class": "Verify",
+        "text": "Total sum:1+2+1=4, which matches."
+    },
+    {
+        "text": "For n=4:",
+        "gt_class": "Analyze",
+        "labeled_class": "Read"
+    },
+    {
+        "class": "Implement",
+        "text": "i=2: min(1, 2)=1"
+    },
+    {
+        "class": "Implement",
+        "text": "i=3: min(2,1)=1"
+    },
+    {
+        "text": "Total sum:1+1=2, which matches.",
+        "gt_class": "Verify",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "So in general, for a full arithmetic progression, the number of three-term APs is sum_{i=1}^{n-2} min(i, n - 1 - i).",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Wait, maybe another way.",
+        "gt_class": "Explore",
+        "labeled_class": "Monitor"
+    },
+    {
+        "class": "Analyze",
+        "text": "Let's note that the number of three-term APs in a full AP sequence is equal to the number of pairs of terms that are equidistant from some term."
+    },
+    {
+        "class": "Analyze",
+        "text": "For each term, the number of such pairs is the number of terms to the left times the number of terms to the right."
+    },
+    {
+        "class": "Monitor",
+        "text": "Wait, no."
+    },
+    {
+        "class": "Analyze",
+        "text": "For each term, if there are k terms to the left and k terms to the right, then the number of pairs symmetric around that term is k."
+    },
+    {
+        "class": "Analyze",
+        "text": "For example, if a term has m terms on the left and m terms on the right, then there are m possible pairs."
+    },
+    {
+        "class": "Analyze",
+        "text": "If the numbers are unequal, then it's the minimum of left and right."
+    },
+    {
+        "class": "Analyze",
+        "text": "But actually, in a full AP, you can have any pair (a, c) such that (a + c)/2 is also in the sequence."
+    },
+    {
+        "class": "Analyze",
+        "text": "So the total number of such triplets is equal to the number of pairs (a, c) where a < c and (a + c)/2 is in the sequence."
+    },
+    {
+        "class": "Explore",
+        "text": "So for the full AP, this is equivalent to choosing any two terms with an even distance apart?"
+    },
+    {
+        "class": "Monitor",
+        "text": "Wait, no."
+    },
+    {
+        "class": "Monitor",
+        "text": "Let me think again."
+    },
+    {
+        "class": "Analyze",
+        "text": "In the full AP, for any two terms a_i and a_j (i < j), the average (a_i + a_j)/2 is equal to a_{(i + j)/2} if (i + j) is even."
+    },
+    {
+        "class": "Analyze",
+        "text": "So in order for (a_i + a_j)/2 to be present in the sequence, (i + j) must be even, meaning that the indices are both odd or both even, so their sum is even."
+    },
+    {
+        "class": "Analyze",
+        "text": "Therefore, the number of such pairs is equal to the number of pairs of indices i < j such that (i + j) is even."
+    },
+    {
+        "class": "Analyze",
+        "text": "For each such pair, there is a corresponding middle term a_{(i + j)/2}."
+    },
+    {
+        "text": "Therefore, the number of three-term APs in the full AP sequence is equal to the number of pairs of indices with even sum.",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "text": "How many such pairs are there?",
+        "gt_class": "Explore",
+        "labeled_class": "Plan"
+    },
+    {
+        "text": "In a sequence of length n, the number of pairs with even sum can be calculated as follows: Let\u2019s denote m = floor(n/2), k = ceil(n/2).",
+        "gt_class": "Analyze",
+        "labeled_class": "Plan"
+    },
+    {
+        "class": "Analyze",
+        "text": "Then the number of pairs where both indices are even or both are odd."
+    },
+    {
+        "class": "Analyze",
+        "text": "The number of even indices is m, the number of odd indices is k."
+    },
+    {
+        "text": "So the total number is C(m, 2) + C(k, 2).",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Verify",
+        "text": "Wait, for example, if n is even, say n=4."
+    },
+    {
+        "text": "Then m = 2 even indices (2,4), k=2 odd indices (1,3).",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "So C(2,2) + C(2,2) =1 +1=2, which matches our previous result."
+    },
+    {
+        "class": "Verify",
+        "text": "If n=5, then m=2 even indices (2,4), k=3 odd indices (1,3,5)."
+    },
+    {
+        "class": "Verify",
+        "text": "So C(2,2)+C(3,2)=1 +3=4, which matches the n=5 case."
+    },
+    {
+        "class": "Analyze",
+        "text": "So in general, the number of three-term APs in a full arithmetic progression of length n is C(ceil(n/2), 2) + C(floor(n/2), 2)."
+    },
+    {
+        "text": "Which simplifies to:",
+        "gt_class": "Analyze",
+        "labeled_class": "Plan"
+    },
+    {
+        "text": "If n is even: n = 2m, then ceil(n/2) = floor(n/2) = m.",
+        "gt_class": "Implement",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Implement",
+        "text": "So total is 2*C(m,2) = 2*(m(m -1)/2) = m(m -1)."
+    },
+    {
+        "text": "If n is odd: n = 2m +1, then ceil(n/2)=m +1, floor(n/2)=m.",
+        "gt_class": "Implement",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Implement",
+        "text": "So total is C(m +1, 2) + C(m, 2) = [ (m +1)m /2 ] + [ m(m -1)/2 ] = [ m^2 + m + m^2 - m ] / 2 = (2m^2)/2 = m^2."
+    },
+    {
+        "text": "So summarizing:",
+        "gt_class": "Implement",
+        "labeled_class": "Monitor"
+    },
+    {
+        "text": "- If n is even: (n/2 -1)(n/2)\n- If n is odd: ((n -1)/2)^2",
+        "gt_class": "Implement",
+        "labeled_class": "Read"
+    },
+    {
+        "class": "Plan",
+        "text": "But let's write that in terms of n:"
+    },
+    {
+        "class": "Implement",
+        "text": "For even n = 2m: (m -1)m = (n/2 -1)(n/2) = n(n - 2)/4"
+    },
+    {
+        "class": "Implement",
+        "text": "For odd n = 2m +1: m\u00b2 = ((n -1)/2)^2 = (n -1)^2 /4"
+    },
+    {
+        "class": "Analyze",
+        "text": "So in general, the number of three-term APs in a full arithmetic progression is floor((n -1)^2 /4)."
+    },
+    {
+        "class": "Verify",
+        "text": "Wait, let's check:"
+    },
+    {
+        "class": "Implement",
+        "text": "For n even: n(n -2)/4 = (n\u00b2 -2n)/4"
+    },
+    {
+        "text": "For n odd: (n -1)^2 /4",
+        "gt_class": "Implement",
+        "labeled_class": "Read"
+    },
+    {
+        "text": "But floor((n -1)^2 /4) for even n: (n -1)^2 /4 = (2m -1)^2 /4 = (4m\u00b2 -4m +1)/4 = m\u00b2 -m + 0.25, so floor is m\u00b2 -m, which is equal to m(m -1) = n(n -2)/4.",
+        "gt_class": "Implement",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "So yes, both cases can be written as floor((n -1)^2 /4)."
+    },
+    {
+        "text": "Wait, but n(n -2)/4 for even n is equal to m(m -1) where m =n/2, and (n -1)^2 /4 for odd n is ((2m +1)-1)^2 /4 = (2m)^2 /4 = m\u00b2.",
+        "gt_class": "Implement",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "So indeed, the number is floor((n -1)^2 /4)."
+    },
+    {
+        "text": "For even n, (n -1)^2 /4 is not integer, but floor gives the correct integer.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "For example, n=4: (4 -1)^2 /4 =9/4=2.25, floor is 2, which is equal to 4*2/4=2."
+    },
+    {
+        "class": "Verify",
+        "text": "For n=5: (5 -1)^2 /4=16/4=4, which matches."
+    },
+    {
+        "text": "So the number of three-term APs in a full arithmetic progression is floor((n -1)^2 /4).",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Hmm, interesting.",
+        "gt_class": "Monitor",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "So if we have a sequence that is an arithmetic progression, that gives this number of three-term APs.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Explore",
+        "text": "The question is, can we have a monotone sequence (not necessarily an AP) that has more three-term APs?"
+    },
+    {
+        "class": "Explore",
+        "text": "Or is the maximum achieved by the full AP?"
+    },
+    {
+        "class": "Explore",
+        "text": "Intuitively, I might think that the maximum number is achieved when the sequence is an arithmetic progression, because that's the most regular structure, allowing for the most triplets to form APs."
+    },
+    {
+        "text": "But I need to verify this.",
+        "gt_class": "Verify",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Explore",
+        "text": "Alternatively, maybe arranging the sequence in a way that has multiple overlapping APs could create more."
+    },
+    {
+        "text": "For example, if the sequence has several clusters of APs, maybe that could increase the count.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "But since the sequence is strictly monotonic, you can't have repeats, so clusters would have to be spaced apart.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Explore",
+        "text": "But perhaps overlapping APs could give more?"
+    },
+    {
+        "text": "Wait, let me think of a small example.",
+        "gt_class": "Plan",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Take n=4.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "If the sequence is an AP, like 1,2,3,4.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Analyze",
+        "text": "Then the three-term APs are 1,2,3 and 2,3,4, so two APs."
+    },
+    {
+        "text": "But what if the sequence is 1,2,4,5.",
+        "gt_class": "Explore",
+        "labeled_class": "Plan"
+    },
+    {
+        "text": "Then let's see: 1,2,4: 2 -1 =1, 4 -2=2, not AP.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "2,4,5: 4 -2=2, 5 -4=1, not AP.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "1,4,5: 4 -1=3, 5 -4=1, not AP.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "1,2,5: 2 -1=1, 5 -2=3, not AP.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "So only one three-term AP: 1,2,3 is not present."
+    },
+    {
+        "text": "Wait, actually, in this sequence, there are no three-term APs?",
+        "gt_class": "Verify",
+        "labeled_class": "Monitor"
+    },
+    {
+        "text": "That can't be.",
+        "gt_class": "Verify",
+        "labeled_class": "Monitor"
+    },
+    {
+        "class": "Monitor",
+        "text": "Wait, 1,2,4,5."
+    },
+    {
+        "text": "Let's check all triplets:",
+        "gt_class": "Plan",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "1,2,4: differences 1 and 2, not AP.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "1,2,5: differences 1 and 3, not AP.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "1,4,5: differences 3 and 1, not AP.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "2,4,5: differences 2 and 1, not AP.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "So actually, this sequence has no three-term APs."
+    },
+    {
+        "text": "So that's worse.",
+        "gt_class": "Monitor",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Explore",
+        "text": "Alternatively, maybe 1,3,5,7."
+    },
+    {
+        "text": "That's an AP, and has three-term APs: 1,3,5; 3,5,7; and 1,5,9 (but 9 isn't in the sequence).",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "So only two APs, same as the previous AP.",
+        "gt_class": "Verify",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Alternatively, suppose I take 1,2,3,5.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Let's check triplets:",
+        "gt_class": "Plan",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "1,2,3: AP.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Analyze",
+        "text": "1,2,5: differences 1 and 3."
+    },
+    {
+        "class": "Analyze",
+        "text": "1,3,5: differences 2 and 2: AP."
+    },
+    {
+        "class": "Analyze",
+        "text": "2,3,5: differences 1 and 2."
+    },
+    {
+        "class": "Analyze",
+        "text": "So here, there are two APs: 1,2,3 and 1,3,5."
+    },
+    {
+        "text": "So same as the full AP.",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "text": "Wait, so even though the sequence isn't a full AP, it still has two three-term APs.",
+        "gt_class": "Analyze",
+        "labeled_class": "Monitor"
+    },
+    {
+        "text": "So in this case, same number.",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Monitor",
+        "text": "Hmm, interesting."
+    },
+    {
+        "text": "So maybe there are non-AP sequences that have the same number of APs as the full AP.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Explore",
+        "text": "But can we have more?"
+    },
+    {
+        "class": "Plan",
+        "text": "Let me check with n=5."
+    },
+    {
+        "text": "Suppose the sequence is 1,2,3,4,5 (full AP).",
+        "gt_class": "Analyze",
+        "labeled_class": "Read"
+    },
+    {
+        "class": "Analyze",
+        "text": "It has four APs: 1,2,3; 2,3,4; 3,4,5; 1,3,5."
+    },
+    {
+        "text": "If I modify it to 1,2,3,5,6.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Plan",
+        "text": "Let's check triplets:"
+    },
+    {
+        "class": "Analyze",
+        "text": "1,2,3: AP."
+    },
+    {
+        "class": "Analyze",
+        "text": "2,3,5: differences 1 and 2."
+    },
+    {
+        "text": "2,3,6: differences 1 and 3.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "1,3,5: differences 2 and 2: AP.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "1,3,6: differences 2 and 3.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "1,2,5: differences 1 and 3.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "1,2,6: differences 1 and 4.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "1,5,6: differences 4 and 1.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "3,5,6: differences 2 and 1.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Analyze",
+        "text": "So APs: 1,2,3 and 1,3,5."
+    },
+    {
+        "class": "Analyze",
+        "text": "So two APs."
+    },
+    {
+        "class": "Analyze",
+        "text": "The original had four."
+    },
+    {
+        "text": "So worse.",
+        "gt_class": "Monitor",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "Alternatively, what if I have 1,2,4,5,7.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Plan",
+        "text": "Let's check:"
+    },
+    {
+        "class": "Analyze",
+        "text": "Possible APs:"
+    },
+    {
+        "text": "1,2,4: no.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "1,2,5: no.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "1,2,7: no.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "1,4,5: no.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "1,4,7: yes, differences 3 and 3.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "1,5,7: no.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "2,4,5: no.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "2,4,7: no.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "2,5,7: yes, differences 3 and 2.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "4,5,7: no.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "So APs: 1,4,7 and 2,5,8 (but 8 isn't there).",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "Wait, 2,5,7: 5-2=3, 7-5=2.",
+        "gt_class": "Implement",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "Not an AP.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "So only 1,4,7.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "So one AP.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "Worse than the full AP.",
+        "gt_class": "Monitor",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Explore",
+        "text": "Alternatively, maybe 1,3,5,7,9 (full AP)."
+    },
+    {
+        "text": "Then APs are 1,3,5; 3,5,7; 5,7,9; 1,5,9.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "So four APs.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Explore",
+        "text": "If I try to make another sequence with more, maybe 1,2,3,4,5."
+    },
+    {
+        "text": "Wait, that's the same as the full AP.",
+        "gt_class": "Verify",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Let's see, the APs here are 1,2,3; 2,3,4; 3,4,5; 1,3,5.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "So four APs.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Same as the previous full AP.",
+        "gt_class": "Verify",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Wait, but 1,3,5,7,9 has APs: consecutive triplets with difference 2, and then 1,5,9.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "So four APs as well.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Explore",
+        "text": "Wait, maybe the number of APs depends on the common difference?"
+    },
+    {
+        "class": "Analyze",
+        "text": "No, in a full AP, regardless of the difference, the number of three-term APs is determined by the indices."
+    },
+    {
+        "text": "So perhaps for n=5, no matter how you arrange the sequence as an AP, you always get four APs, which seems to be the maximum.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Alternatively, suppose we have a sequence that is not an AP but has more APs.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "For example, 1,2,3,4,6.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Let's check:",
+        "gt_class": "Plan",
+        "labeled_class": "Monitor"
+    },
+    {
+        "text": "1,2,3: AP",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "2,3,4: AP",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "1,2,4: no",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "1,3,4: no",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "1,2,6: no",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "1,3,6: no",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "1,4,6: differences 3 and 2.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "2,3,6: no",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "2,4,6: yes, differences 2 and 2.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "3,4,6: no",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "So APs: 1,2,3; 2,3,4; 2,4,6.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "So three APs.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "Still less than four.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Monitor",
+        "text": "Hmm."
+    },
+    {
+        "text": "So seems like the full AP gives the maximum number.",
+        "gt_class": "Explore",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Explore",
+        "text": "So maybe in general, the maximum number is achieved when the sequence is an AP, and the number is floor((n -1)^2 /4)."
+    },
+    {
+        "text": "Therefore, the answer is \\boxed{\\left\\lfloor \\dfrac{(n-1)^2}{4} \\right\\rfloor}.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Verify",
+        "text": "But wait, let me check n=3."
+    },
+    {
+        "text": "For n=3, any three-term monotone sequence is an AP, so there's 1 AP.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "According to the formula, floor((3 -1)^2 /4) = floor(4/4)=1.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "Correct."
+    },
+    {
+        "text": "n=4: floor((4 -1)^2 /4)= floor(9/4)=2.",
+        "gt_class": "Implement",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "Which matches."
+    },
+    {
+        "text": "n=5: floor(16/4)=4.",
+        "gt_class": "Implement",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "Correct."
+    },
+    {
+        "text": "n=6: floor(25/4)=6.25\u21926.",
+        "gt_class": "Implement",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "Let's check: for n=6, a full AP would have C(3,2)+C(3,2)=3+3=6.",
+        "gt_class": "Implement",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "Yes, so 6 APs."
+    },
+    {
+        "class": "Verify",
+        "text": "So correct."
+    },
+    {
+        "class": "Verify",
+        "text": "But let's verify with another example."
+    },
+    {
+        "text": "Suppose n=6, sequence 1,2,3,4,5,6.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "The three-term APs are:",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "Consecutive triplets: 1,2,3; 2,3,4; 3,4,5; 4,5,6.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "Non-consecutive: 1,3,5; 2,4,6; 1,4,7 (7 not present); so only 1,3,5 and 2,4,6.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "Total of 6 APs.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "Correct."
+    },
+    {
+        "class": "Verify",
+        "text": "So yes, the formula holds."
+    },
+    {
+        "class": "Verify",
+        "text": "Therefore, the maximum number of three-term arithmetic progressions is indeed floor[(n-1)^2 /4]."
+    },
+    {
+        "text": "But wait, the problem states \"a monotone sequence of n distinct reals\".",
+        "gt_class": "Read",
+        "labeled_class": "Monitor"
+    },
+    {
+        "class": "Analyze",
+        "text": "So even if the sequence is not equally spaced, but arranged in a way that maximizes the number of APs."
+    },
+    {
+        "class": "Analyze",
+        "text": "But according to our examples, the maximum seems to be achieved by the equally spaced (i."
+    },
+    {
+        "class": "Analyze",
+        "text": "e."
+    },
+    {
+        "class": "Analyze",
+        "text": ", arithmetic progression) sequence."
+    },
+    {
+        "class": "Verify",
+        "text": "Therefore, the maximum number is floor[(n-1)^2 /4], so the answer is \\boxed{\\left\\lfloor \\dfrac{(n-1)^2}{4} \\right\\rfloor}."
+    },
+    {
+        "class": "Explore",
+        "text": "But just to be thorough, let's consider another structure."
+    },
+    {
+        "class": "Explore",
+        "text": "Suppose we have a sequence that consists of two overlapping arithmetic progressions."
+    },
+    {
+        "text": "For example, 1,2,3,4,5,7.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Wait, in this case, the APs would be:",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "1,2,3; 2,3,4; 3,4,5; 1,3,5; 2,4,6 (6 not present); 4,5,7 (differences 1 and 2).",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "So APs: four, same as n=6 would have 6 APs in a full AP.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "So this is worse.",
+        "gt_class": "Monitor",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Explore",
+        "text": "Alternatively, maybe arranging the sequence with multiple APs."
+    },
+    {
+        "class": "Explore",
+        "text": "For example, 1,2,3,5,6,7."
+    },
+    {
+        "text": "The APs here:",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "1,2,3; 5,6,7; 1,3,5 (diff 2); 2,5,8 (nope); 3,5,7 (diff 2); 1,5,9 (nope).",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "So APs: 1,2,3; 5,6,7; 1,3,5; 3,5,7.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "So four APs.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Still less than six.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Alternatively, 1,2,4,5,7,8.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Let's see:",
+        "gt_class": "Monitor",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "1,2,4: no.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "1,2,5: no.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "1,4,5: no.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "1,2,7: no.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Analyze",
+        "text": "1,5,7: diff 4 and 2."
+    },
+    {
+        "text": "2,4,5: no.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Analyze",
+        "text": "2,5,7: diff 3 and 2."
+    },
+    {
+        "text": "4,5,7: no.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "Similarly on the higher end.",
+        "gt_class": "Verify",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Not many APs.",
+        "gt_class": "Verify",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "So maybe two or three.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "So in all these cases, deviating from the full AP structure reduces the number of APs.",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "text": "So that reinforces that the maximum is achieved by the full AP.",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Explore",
+        "text": "Another angle: suppose we try to model this as a graph problem."
+    },
+    {
+        "text": "Each term is a vertex, and an edge connects two terms if their average is also present.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Then the number of three-term APs is the number of edges in this graph.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Monitor",
+        "text": "Wait, no."
+    },
+    {
+        "text": "Actually, each three-term AP corresponds to a pair of terms whose average is present.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "So the number of three-term APs is equal to the number of such pairs.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Therefore, maximizing the number of three-term APs is equivalent to maximizing the number of pairs (a, c) such that (a + c)/2 is also in the sequence.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Analyze",
+        "text": "In a sorted sequence, for two terms a and c, with a < c, the average (a + c)/2 must be a term in the sequence between a and c."
+    },
+    {
+        "class": "Analyze",
+        "text": "So the problem reduces to choosing as many pairs (a, c) as possible such that their average is also in the sequence."
+    },
+    {
+        "class": "Analyze",
+        "text": "In the arithmetic progression, this is exactly the pairs where the indices have even sum."
+    },
+    {
+        "class": "Verify",
+        "text": "So as previously established."
+    },
+    {
+        "class": "Explore",
+        "text": "But in a non-AP sequence, how many such pairs can we have?"
+    },
+    {
+        "class": "Analyze",
+        "text": "For each pair (a, c), if the average is present, that's one AP."
+    },
+    {
+        "text": "To maximize the total number, we need as many such pairs as possible.",
+        "gt_class": "Analyze",
+        "labeled_class": "Plan"
+    },
+    {
+        "class": "Analyze",
+        "text": "However, in a general monotone sequence, the elements can be arranged in such a way that more averages fall into the sequence."
+    },
+    {
+        "class": "Analyze",
+        "text": "But in reality, arranging the sequence as an AP maximizes the number of such pairs because every pair with an even distance has their average in the sequence, and there's no overlap or gaps."
+    },
+    {
+        "class": "Analyze",
+        "text": "If you deviate from the AP, you might create some averages that are present, but you lose others."
+    },
+    {
+        "class": "Analyze",
+        "text": "For example, inserting a number that is not in the AP would disrupt the existing averages."
+    },
+    {
+        "class": "Explore",
+        "text": "So maybe you can't have more averages than in the AP case."
+    },
+    {
+        "class": "Analyze",
+        "text": "Alternatively, consider that in the AP, the number of such pairs is maximized because of the regular spacing."
+    },
+    {
+        "class": "Analyze",
+        "text": "Any deviation would cause some averages not to be in the sequence, thus reducing the count."
+    },
+    {
+        "class": "Verify",
+        "text": "Therefore, the maximum number is indeed achieved by the arithmetic progression, giving floor[(n-1)^2 /4] three-term APs."
+    },
+    {
+        "class": "Verify",
+        "text": "Hence, the answer should be \\boxed{\\left\\lfloor \\dfrac{(n-1)^2}{4} \\right\\rfloor}."
+    },
+    {
+        "class": "Verify",
+        "text": "**Final Answer**\nThe maximum possible number of three-term arithmetic progressions is \\boxed{\\left\\lfloor \\dfrac{(n-1)^2}{4} \\right\\rfloor}."
+    },
+    {
+        "text": "</think>To find the maximum number of three-term arithmetic progressions (APs) in a monotone sequence of \\( n \\) distinct real numbers, we start by considering the structure of such sequences.",
+        "gt_class": "Plan",
+        "labeled_class": "Read"
+    },
+    {
+        "class": "Analyze",
+        "text": "A three-term AP is a sequence \\( a, b, c \\) such that \\( 2b = a + c \\)."
+    },
+    {
+        "class": "Analyze",
+        "text": "For a sequence to maximize the number of three-term APs, it should be structured as an arithmetic progression."
+    },
+    {
+        "class": "Analyze",
+        "text": "In an arithmetic progression, the number of three-term APs is determined by the number of pairs of terms whose average is also present in the sequence."
+    },
+    {
+        "class": "Analyze",
+        "text": "For a sequence of length \\( n \\):\n- If \\( n \\) is even, the number of three-term APs is given by \\( \\frac{n}{2} \\left( \\frac{n}{2} - 1 \\right) \\)."
+    },
+    {
+        "class": "Analyze",
+        "text": "- If \\( n \\) is odd, the number of three-term APs is given by \\( \\left( \\frac{n - 1}{2} \\right)^2 \\)."
+    },
+    {
+        "class": "Analyze",
+        "text": "Both cases can be unified using the floor function to express the result as \\( \\left\\lfloor \\frac{(n - 1)^2}{4} \\right\\rfloor \\)."
+    },
+    {
+        "text": "### Key Steps:\n1.",
+        "gt_class": "Plan",
+        "labeled_class": "Monitor"
+    },
+    {
+        "class": "Analyze",
+        "text": "**Understanding Arithmetic Progressions**: A three-term AP requires the middle term to be the average of the first and third terms."
+    },
+    {
+        "text": "2.",
+        "gt_class": "Plan",
+        "labeled_class": "Monitor"
+    },
+    {
+        "class": "Analyze",
+        "text": "**Maximizing APs in a Monotone Sequence**: The sequence must be structured to allow the maximum number of such averages, which is achieved by an arithmetic progression."
+    },
+    {
+        "text": "3.",
+        "gt_class": "Plan",
+        "labeled_class": "Monitor"
+    },
+    {
+        "class": "Analyze",
+        "text": "**Counting APs in an Arithmetic Progression**: For each term as the middle term, count pairs of terms equidistant from it."
+    },
+    {
+        "class": "Analyze",
+        "text": "This results in the formula \\( \\left\\lfloor \\frac{(n - 1)^2}{4} \\right\\rfloor \\)."
+    },
+    {
+        "text": "### Conclusion:\nThe maximum number of three-term arithmetic progressions in a monotone sequence of \\( n \\) distinct reals is given by:",
+        "gt_class": "Verify",
+        "labeled_class": "Read"
+    },
+    {
+        "text": "\\[\n\\boxed{\\left\\lfloor \\dfrac{(n-1)^2}{4} \\right\\rfloor}\n\\]",
+        "gt_class": "Verify",
+        "labeled_class": "Implement"
+    }
+]

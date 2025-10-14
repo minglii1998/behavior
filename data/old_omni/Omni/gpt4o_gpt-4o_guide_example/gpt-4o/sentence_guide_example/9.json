@@ -1,0 +1,163 @@
+[
+  {
+    "text": "To solve this problem, we need to find the maximum possible number of three-term arithmetic progressions in a monotone sequence of \\( n \\) distinct real numbers.",
+    "class-1-reason": "This paragraph sets up the problem using known information and indicates a general plan to use combinatorial reasoning to solve it.",
+    "class-1": "General",
+    "class-2-reason": "The sentence outlines the main goal of the problem-solving task, which sets up the understanding of the task.",
+    "class-2": "Read"
+  },
+  {
+    "text": "We'll first try to understand the structure of such sequences, and use combinatorial reasoning to count the number of possible arithmetic progressions.",
+    "class-1-reason": "This paragraph sets up the problem using known information and indicates a general plan to use combinatorial reasoning to solve it.",
+    "class-1": "General",
+    "class-2-reason": "The sentence announces the approach to solve the problem by outlining steps to understand and count arithmetic progressions.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "A three-term arithmetic progression is a sequence of numbers \\( (a, b, c) \\) such that \\( b-a = c-b \\), implying \\( b = \\frac{a+c}{2} \\).",
+    "class-1-reason": "The paragraph introduces a strategy for maximizing the number of arithmetic progressions and explores the sequence structure to find an optimal configuration.",
+    "class-1": "Explore",
+    "class-2-reason": "The sentence explains the definition of a three-term arithmetic progression, based on mathematical concepts.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "To maximize the number of such progressions, we'll consider sequences structured in such a way that whatever two terms we choose, they allow for an arithmetic progression.",
+    "class-1-reason": "The paragraph introduces a strategy for maximizing the number of arithmetic progressions and explores the sequence structure to find an optimal configuration.",
+    "class-1": "Explore",
+    "class-2-reason": "The sentence suggests a strategy to maximize progressions without committing to a specific solution.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "A natural candidate is an increasing sequence of equally spaced numbers.",
+    "class-1-reason": "The solver discusses a specific approach by establishing a natural candidate with equally spaced numbers and explains conditions for progression formation.",
+    "class-1": "Explore",
+    "class-2-reason": "The sentence proposes a potential candidate for maximizing progressions, indicating exploration of possibilities.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Let's consider the sequence \\( 1, 2, 3, \\ldots, n \\).",
+    "class-1-reason": "The solver discusses a specific approach by establishing a natural candidate with equally spaced numbers and explains conditions for progression formation.",
+    "class-1": "Explore",
+    "class-2-reason": "The sentence tries out a specific example sequence for further exploration, showing tentative exploration.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "In this sequence, for any pair of numbers \\( (a, c) \\) where \\( 1 \\leq a < c \\leq n \\), the midpoint \\( b = \\frac{a+c}{2} \\) must be an integer between \\( a \\) and \\( c \\).",
+    "class-1-reason": "The solver discusses a specific approach by establishing a natural candidate with equally spaced numbers and explains conditions for progression formation.",
+    "class-1": "Explore",
+    "class-2-reason": "The sentence analyzes the conditions under which a midpoint b is an integer and part of the sequence.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "This integer \\( b \\) will be part of the sequence \\( 1, 2, \\ldots, n \\) if \\( a \\) and \\( c \\) are both either odd or even (since only then is their average an integer).",
+    "class-1-reason": "The solver discusses a specific approach by establishing a natural candidate with equally spaced numbers and explains conditions for progression formation.",
+    "class-1": "Explore",
+    "class-2-reason": "The sentence analyzes the condition for the midpoint to be in the sequence, based on parity.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Let's count how many such progressions there are when the numbers are \\( 1, 2, \\ldots, n \\).",
+    "class-1-reason": "The paragraph proceeds with computations and explanations related to the established sequence, calculating the necessary amounts without conjectures.",
+    "class-1": "General",
+    "class-2-reason": "The sentence indicates the beginning of the counting process for arithmetic progressions.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "Divide the sequence into odd and even numbers:\n- Odd numbers are \\( 1, 3, 5, \\ldots \\) (sequence length approximately \\( \\lceil \\frac{n}{2} \\rceil \\))\n- Even numbers are \\( 2, 4, 6, \\ldots \\) (sequence length approximately \\( \\lfloor \\frac{n}{2} \\rfloor \\))",
+    "class-1-reason": "The paragraph proceeds with computations and explanations related to the established sequence, calculating the necessary amounts without conjectures.",
+    "class-1": "General",
+    "class-2-reason": "The sentence describes dividing the sequence into parts to facilitate counting, indicating an analytical approach.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "For an arithmetic progression with an odd first and last term, the middle term will also be odd.",
+    "class-1-reason": "This paragraph describes the method to calculate progressions for a given sequence configuration using mathematical formulas.",
+    "class-1": "General",
+    "class-2-reason": "This sentence explains the consequence of having odd first and last terms in an arithmetic progression, showing an inference about the middle term.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So, if there are \\( m \\) odd numbers, we can choose two of them in \\( \\binom{m}{2} \\) ways.",
+    "class-1-reason": "This paragraph describes the method to calculate progressions for a given sequence configuration using mathematical formulas.",
+    "class-1": "General",
+    "class-2-reason": "This sentence outlines a strategy of how to count the number of combinations, indicating a plan for further calculations.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "Similarly, for progressions with an even first and last term, there are \\( \\binom{m'}{2} \\) ways if there are \\( m' \\) even numbers.",
+    "class-1-reason": "This paragraph describes the method to calculate progressions for a given sequence configuration using mathematical formulas.",
+    "class-1": "General",
+    "class-2-reason": "Similar to the previous sentence, this outlines a strategy to count for even numbers and indicates a plan for further calculations.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "Sum these to get the total number of arithmetic progressions:\n\\[\n\\binom{\\lceil \\frac{n}{2} \\rceil}{2} + \\binom{\\lfloor \\frac{n}{2} \\rfloor}{2}\n\\]",
+    "class-1-reason": "The paragraph is methodically summing known binomial coefficients to compute the total number of progressions, which is a straightforward continuation of the problem-solving process.",
+    "class-1": "General",
+    "class-2-reason": "This sentence instructs on the summation of values obtained from the plan, acting as a part of the implementation.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "Evaluating these binomial coefficients:",
+    "class-1-reason": "This paragraph indicates the intention to evaluate specific binomial coefficients, suggesting an exploration of their values rather than calculating them step-by-step.",
+    "class-1": "Explore",
+    "class-2-reason": "Indicates that the process of evaluating the coefficients will follow, expressing a planned intention.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "- \\(\\lceil \\frac{n}{2} \\rceil = \\frac{n+1}{2}\\) when \\( n \\) is odd and \\(\\frac{n}{2}\\) when \\( n \\) is even.",
+    "class-1-reason": "This paragraph analyzes and categorizes the cases for when n is odd or even, identifying the specific values of floor and ceiling, which is straightforward reasoning.",
+    "class-1": "General",
+    "class-2-reason": "Provides evaluations and deductions, explaining the floor and ceiling functions based on n for further analysis.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "- \\(\\lfloor \\frac{n}{2} \\rfloor = \\frac{n-1}{2}\\) when \\( n \\) is odd and \\(\\frac{n}{2}\\) when \\( n \\) is even.",
+    "class-1-reason": "This paragraph analyzes and categorizes the cases for when n is odd or even, identifying the specific values of floor and ceiling, which is straightforward reasoning.",
+    "class-1": "General",
+    "class-2-reason": "Similar to the previous sentence, it provides analysis on the values of floor and ceiling functions.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "In both cases (when \\( n \\) is even or odd), computing the binomials gives us:",
+    "class-1-reason": "The paragraph prepares to apply the previously determined analyses of cases for both odd and even n, moving toward the computation of the binomials.",
+    "class-1": "General",
+    "class-2-reason": "Indicates the computation result of the binomials, acting as a transition to an analytical step.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "- \\( n \\) even:\n  \\[\n  \\binom{\\frac{n}{2}}{2} + \\binom{\\frac{n}{2}}{2} = 2 \\cdot \\frac{(\\frac{n}{2})(\\frac{n}{2} - 1)}{2} = \\left(\\frac{n}{2}\\right)\\left(\\frac{n}{2} - 1\\right)\n  \\]\n  which simplifies to:\n  \\[\n  \\frac{n^2 - 2n}{4}\n  \\]",
+    "class-1-reason": "This paragraph computes the binomial expression for even n, showing straightforward calculation and simplification without exploring new concepts.",
+    "class-1": "General",
+    "class-2-reason": "Performs the analytical procedure by substituting values for n, leading into a calculation.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "- \\( n \\) odd (for example, if \\( n = 2k+1 \\)):\n  \\[\n  \\binom{k+1}{2} + \\binom{k}{2} = \\frac{(k+1)k}{2} + \\frac{k(k-1)}{2} = \\frac{k^2 + k + k^2 - k}{2} = \\frac{2k^2}{2} = k^2\n  \\]",
+    "class-1-reason": "The paragraph provides detailed computation to derive the maximum number of progressions when n is odd, using known formulas in a straightforward manner.",
+    "class-1": "General",
+    "class-2-reason": "Performs the analytical steps to simplify the given expression using a specific value for n.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "Hence, in any case (\\( n = 2k \\) or \\( n = 2k + 1 \\)), the expression becomes:\n\\[\n\\left\\lfloor \\frac{n^2}{4} \\right\\rfloor\n\\]",
+    "class-1-reason": "This paragraph summarizes the derived expression from earlier computations, showing direct progress toward a cohesive solution.",
+    "class-1": "General",
+    "class-2-reason": "The sentence draws a conclusion based on previous calculations and describes it using a specific mathematical formula.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Thus, the maximum number of three-term arithmetic progressions in a monotone sequence of \\( n \\) distinct real numbers is:",
+    "class-1-reason": "The paragraph concludes the solution by stating the maximum number for any n in a clear, definitive manner without additional verification.",
+    "class-1": "General",
+    "class-2-reason": "The sentence announces the final conclusion about the maximum number of progressions, summarizing the result.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "\\[\n\\boxed{\\left\\lfloor \\frac{n^2}{4} \\right\\rfloor}\n\\]",
+    "class-1-reason": "Presents the final answer in boxed form, representing the culmination of the prior reasoning.",
+    "class-1": "General",
+    "class-2-reason": "The boxed expression is the final result of the calculations, confirming the solution found.",
+    "class-2": "Verify"
+  }
+]

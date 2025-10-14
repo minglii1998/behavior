@@ -1,0 +1,322 @@
+[
+  {
+    "reason": "The paragraph is focused on restating and understanding the problem, without any exploratory hypotheses or verification processes. It methodically introduces the problem and sets the stage for solving.",
+    "class": "General",
+    "text": "<think>We are asked: \"Find all the functions f: Z -> Z that satisfy the following property: if a, b, c are integers such that a+b+c=0, then f(a)+f(b)+f(c)=a^2+b^2+c^2.\" Let me re-read: Problem: \"Find all the functions f: Z->Z satisfying the following property: if a, b, c are integers such that a+b+c=0, then f(a)+f(b)+f(c)=a^2+b^2+c^2.\" We want to determine all such functions."
+  },
+  {
+    "reason": "This paragraph restates the problem condition and introduces the functional equation in general terms, outlining how it will be approached, but does not speculate or check results.",
+    "class": "General",
+    "text": "Let's start: Let f be a function from integers to integers. The equation: For all a, b, c in Z with a+b+c=0, f(a) + f(b) + f(c) = a^2 + b^2 + c^2."
+  },
+  {
+    "reason": "The solver actively experiments with possible forms for f, introduces an auxiliary function g, tests specific cases, and conjectures about its properties (such as linearity and oddness). The tone is exploratory and investigative as different scenarios are tried.",
+    "class": "Explore",
+    "text": "Let's try to set up some candidate forms. Let's assume f(x) = x^2 + g(x) where g is something? But then f(a)+f(b)+f(c)= a^2+b^2+c^2 + g(a)+g(b)+g(c). And equation is: a^2+b^2+c^2 + g(a)+g(b)+g(c) = a^2+b^2+c^2, so that forces g(a)+g(b)+g(c)=0 whenever a+b+c=0. So g is any function from Z to Z such that if a+b+c=0 then g(a)+g(b)+g(c)=0. But note we need that for all triple a, b, c with sum zero. But then maybe also try specific values: Let a=b=0, c=0, then g(0)+g(0)+g(0)=3g(0)=0, so g(0)=0. Let a = x, b=-x, c=0 then g(x)+g(-x)+g(0)=g(x)+g(-x)=0 for all x. So g is an odd function. Let a = x, b = -x, c=0, indeed. But what about a = x, b = 0, c = -x: same. But then consider a = x, b = x, c = -2x, then g(x)+g(x)+g(-2x)=0, so 2g(x)+g(-2x)=0, but g(-2x) = -g(2x), so then 2g(x) - g(2x)=0, or g(2x)=2g(x). That is a homogeneity property with respect to doubling. More generally, we might try to guess g is linear. Let g(x)=cx for some constant c in Z. Then f(x)=x^2+cx. And then condition becomes: f(a)+f(b)+f(c)= (a^2+ c a) + (b^2+ c b) + (c^2+ c c) = a^2+b^2+c^2 + c(a+b+c)=a^2+b^2+c^2, because a+b+c=0. So that works. And then any function of the form f(x)=x^2+ c x is a candidate. But does that cover all possibilities? Let's try a different possibility: f(x)=x^2. But that's a special case of f(x)=x^2+cx with c=0."
+  },
+  {
+    "reason": "This paragraph continues probing the properties of g (beyond what has been established), checking for further structure (additivity), and considering implications of earlier deductions. This is systematic investigation, hence exploratory in nature.",
+    "class": "Explore",
+    "text": "Now let\u2019s try: is there any possibility that g is not linear but still satisfies g(x)+g(y)+g(-x-y)=0 for all x,y in Z. And also g(0)=0 and g(-x)=-g(x). And for x=0, g(0)=0. And we already deduced g(2x)=2g(x). But can we get something like g is additive? Let's check additivity: Let y=0, then g(x)+g(0)+g(-x)=g(x)-g(x)=0, trivial. Let y=x, then g(x)+g(x)+g(-2x)=2g(x)-g(2x)=0, so g(2x)=2g(x). Let y=-x, then g(x)+g(-x)+g(0)=0. Not new."
+  },
+  {
+    "reason": "The paragraph summarizes and generalizes from the exploration, deducing the form of g via a functional equation (Cauchy\u2019s equation), and then confidently concludes the only possible form, verifying that the proposed solution meets the requirements. As the main function structure is settled and verified, this is a General step with a concluding rationale.",
+    "class": "General",
+    "text": "Take arbitrary x, y. The condition is: for all x, y in Z, we have g(x)+g(y)+g(-x-y)=0. That is a well-known Cauchy type equation with condition g(-x-y) = -g(x+y) so the condition becomes g(x)+g(y)=g(x+y) for all x, y in Z. So g is additive. And since g is additive and f: Z->Z, it's known that the only additive functions from Z to Z are linear (f(n)=n*g(1)). So then g(x)= kx for some integer k. So the only possible solutions are f(x)=x^2+ kx. But wait, is that indeed the full solution? Let's check: f(x)=x^2+kx. Then f(a)+f(b)+f(c)= a^2+b^2+c^2 + k(a+b+c)= a^2+b^2+c^2, since a+b+c=0. So yes, it's a solution."
+  },
+  {
+    "reason": "This paragraph proceeds methodically by testing whether the function f(x)=x^2+c (a constant shift) satisfies the original condition, deducing that it doesn\u2019t unless c=0. The tone is declarative, the approach is planned, and it states facts and results directly.",
+    "class": "General",
+    "text": "But wait: But perhaps also we can consider functions of the form f(x)=x^2+ c? Let's check: f(x)=x^2+c constant. Then f(a)+f(b)+f(c)= (a^2+b^2+c^2)+3c, which equals a^2+b^2+c^2 if and only if 3c=0 so c=0. So not."
+  },
+  {
+    "reason": "Here, the solver considers a broader form (f(x)=x^2+p(x)) but then methodically applies previously established properties of additive functions, reaffirming that only linear functions over Z work. There's a momentary question at the start, but the major part of the paragraph evaluates and concludes using known facts\u2014it's a logical extension of the planned solution.",
+    "class": "General",
+    "text": "Wait, what about f(x)=x^2+ p(x) where p is any function with property p(x)+p(y)+p(z)=0 whenever x+y+z=0? We already found that that forces p to be additive (and odd). But as explained, the additive functions from Z to Z are linear. But wait, check: any additive function g: Z->Z must satisfy g(n)= n*g(1). So g(x)=kx for some integer k."
+  },
+  {
+    "reason": "This paragraph states the answer in a direct, declarative manner based on collected evidence: f(x)=x^2+kx. There are no checks or alternate exploration, just a summary of the obtained solution.",
+    "class": "General",
+    "text": "So then answer: f(x)=x^2+kx for some integer k."
+  },
+  {
+    "reason": "This paragraph repeats the test for constant terms, methodically showing that nonzero constants are disallowed. It reworks a previous case to reinforce the general solution, without uncertainty or speculative exploration.",
+    "class": "General",
+    "text": "Wait, are there any other possibilities? Let's check constant term: if f(x)=x^2 + c, then summing gives a^2+b^2+c^2 +3c, so then 3c=0. So c=0. But then it's same as the linear solution with k=0."
+  },
+  {
+    "reason": "This paragraph checks the specific case f(x)=x^2+2x, confirming that it fits the required property by substitution. While it concludes with 'So yes', the dominant function is to ensure an example fits the previously derived form\u2014a verification activity.",
+    "class": "Verify",
+    "text": "Now check: f(x)=x^2+2x. Then f(a)+f(b)+f(c)= a^2+b^2+c^2+2(a+b+c)=a^2+b^2+c^2. So yes."
+  },
+  {
+    "reason": "The paragraph summarizes the final form of the solution and elaborates that k can be any integer, simply clarifying the general result. It does not check, explore new ideas, or verify correctness.",
+    "class": "General",
+    "text": "Thus the answer: f(x)= x^2 + k x, for any integer constant k. But wait, note that k can be any integer, including negative integers."
+  },
+  {
+    "reason": "This paragraph checks if there are restrictions on k, re-plugs in values (like a = b = c = 0 and a = x, b = -x, c = 0) to confirm correctness, and aims to ensure the completeness of the form. The explicit double-checking language and plugging in to verify show it's a verification routine.",
+    "class": "Verify",
+    "text": "But wait: Are there any restrictions on k? Let's check f: Z->Z, f(x)= x^2 + kx. That is indeed an integer for any integer x. So answer: f(x)= x^2+ kx, for some integer constant k. But we should double-check that there is no other possibility. Let's check by plugging a=b=0, c=0 gives f(0)=0, so f(0)=0. Then let a=x, b=-x, c=0 gives f(x)+f(-x)= x^2+kx + x^2 - kx=2x^2. So that is consistent with f(x)=x^2+ kx. Yes."
+  },
+  {
+    "reason": "The paragraph explicitly sets values for (a, b, c) to check if the answer works for a specific case, confirming the result is correct, and thus serves as verification.",
+    "class": "Verify",
+    "text": "Double-check: Let a=1, b=2, c=-3. f(1)+f(2)+f(-3)= (1+ k) + (4+2k) + (9-3k)=14, and 1^2+2^2+(-3)^2= 1+4+9=14. So yes."
+  },
+  {
+    "reason": "This is a declarative summary of the result, providing the final answer without verifying or exploring further. It is a restatement and conclusion of general reasoning.",
+    "class": "General",
+    "text": "So answer: f(x)= x^2 + k x, for any integer k."
+  },
+  {
+    "reason": "Here the model briefly considers whether there may be nonlinear solutions, explains that such an additive function g must be linear, and concludes that no other solutions exist. This is reasoning through the logic and ruling out alternatives, but follows a methodical justification rather than trial/error or checking, so it's General.",
+    "class": "General",
+    "text": "I want to consider potential non-linear solution: f(x)= x^2+g(x), with g additive. But as argued, g(x)= kx for all x. So that is it."
+  },
+  {
+    "reason": "This paragraph simply states the function form f(x)=x^2+kx satisfies the domain and reiterates it is the answer; it confidently moves the argument forward without searching or checking.",
+    "class": "General",
+    "text": "I should check the domain: f: Z-> Z. f(x)= x^2+ kx. That is indeed the answer."
+  },
+  {
+    "reason": "This paragraph discusses implications for the formula (such as f(0) and f(1)) and re-derives the explicit parameterization; the 'wait, careful' is a minor internal correction but the paragraph's main thrust is methodical deduction rather than exploration or verification.",
+    "class": "General",
+    "text": "I must mention that f(0)=0. f is determined by f(1)= 1 + k. So answer: All such functions are given by f(n)= n^2 + n * f(1)-1, wait, careful: if we let c = f(1)-1, then f(n)= n^2+ n*(f(1)-1). But it's simpler: Let k be any integer and define f(x)= x^2 + k x."
+  },
+  {
+    "reason": "This passage largely affirms that the previously found function is indeed the full set of solutions; it is a declarative summary with no checking or exploration.",
+    "class": "General",
+    "text": "But I need to check: f(x)= x^2+ k x is clearly the complete set. So answer: f(x)= x^2+ k x for an arbitrary integer k."
+  },
+  {
+    "reason": "Here there is an explicit attempt to try adding a constant term, examines the implication, and rules it out by considering f(0); this is an exploration of a possible form and tests its validity, fitting the 'explore' definition.",
+    "class": "Explore",
+    "text": "Let me check possibility: f(x)= x^2+ k x + C. But then f(0)=C must equal 0 because of a=0, b=0, c=0. So constant term is forced to be 0."
+  },
+  {
+    "reason": "This final statement provides the final form as a conclusion with no evidence of exploration or verification, simply summarizing.",
+    "class": "General",
+    "text": "Thus answer: f(x)= x^2+ k x, where k is any integer."
+  },
+  {
+    "reason": "The paragraph makes a straightforward statement about the determinacy of f by its values on two points, continuing the general analysis of the problem. There is no attempt to check an answer or try out an alternative; it simply notes a structural property in the main solution process.",
+    "class": "General",
+    "text": "I can also check: f is determined by its behavior on two points."
+  },
+  {
+    "reason": "The solver speculates about 'wild' additive functions and discusses structural facts about group homomorphisms on Z, but this is not testing options or validation\u2014it's an expository transition explaining why all additive maps from Z to Z are linear. This discussion is general reasoning advancing the solution.",
+    "class": "General",
+    "text": "I might consider the possibility of \"wild\" additive functions from Z to Z. But there is no \"wild\" additive function because Z is a free abelian group of countable rank, but additive functions from Z to Z are always linear. Actually, more precisely, any group homomorphism from Z to Z is given by multiplication by an integer, so g(n)= n*g(1)."
+  },
+  {
+    "reason": "The paragraph restates the solution formula, summarizing the final answer based on previous reasoning. There is no checking or new exploration\u2014just a declaration of the result.",
+    "class": "General",
+    "text": "Thus answer: f(x)= x^2+cx, where c is any integer."
+  },
+  {
+    "reason": "This is another restatement of the general solution formula in a slightly different form. It advances no new idea, nor does it verify or explore alternatives.",
+    "class": "General",
+    "text": "Thus answer: f(n)= n^2+ cn for any constant c in Z."
+  },
+  {
+    "reason": "This paragraph repeats and concisely states the form of the answer for all x in Z, again summarizing the solution with confidence but without verification.",
+    "class": "General",
+    "text": "Thus answer: f(x)=x^2+cx for all x in Z."
+  },
+  {
+    "reason": "This paragraph simply states the complete solution set using a general formula. It is a summary/result statement without checking or speculation.",
+    "class": "General",
+    "text": "Thus answer: The set of all solutions is { f: Z->Z such that f(x)= x^2 + k x for some integer k }."
+  },
+  {
+    "reason": "This paragraph signals the intent to finalize and produce the answer, but does not actually check or verify any result; it's administrative and part of the general solution finalization.",
+    "class": "General",
+    "text": "I must now produce final answer. We'll produce a final answer."
+  },
+  {
+    "reason": "This is another direct statement of the solution formula for all functions f. It does not involve checking or exploring alternatives.",
+    "class": "General",
+    "text": "Thus answer: f(n)= n^2+kn for some integer k."
+  },
+  {
+    "reason": "Here, the solver checks a specific case by computing f(1) and f(-1), then sums them to affirm a relation, directly validating a property of the function, which is verification.",
+    "class": "Verify",
+    "text": "I must also check possibility: f(1)= 1+k, but then f(-1)= 1- k, and summing them gives 2."
+  },
+  {
+    "reason": "This paragraph again outlines an intent to conclude with a final answer message, and does not involve checking or exploring. It is a general solution wrap-up.",
+    "class": "General",
+    "text": "I must now produce final answer message."
+  },
+  {
+    "reason": "This paragraph is a transition into presenting the answer with some explanatory context; it frames the solution but does not include exploration or verification.",
+    "class": "General",
+    "text": "I'll produce final answer in plain text with explanation."
+  },
+  {
+    "reason": "This is a direct move to state the final answer, proceeding in a straightforward and planned manner with no signs of exploring or reviewing correctness.",
+    "class": "General",
+    "text": "I'll produce final answer."
+  },
+  {
+    "reason": "This paragraph introduces the final answer message, indicating an intent to present the solution. It is procedural and part of the standard concluding sequence.",
+    "class": "General",
+    "text": "I'll produce final answer message."
+  },
+  {
+    "reason": "Similar to previous, this paragraph states the intent to produce the final answer, serving as a methodical transition rather than exploring or verifying.",
+    "class": "General",
+    "text": "I'll produce final answer message."
+  },
+  {
+    "reason": "This paragraph again signals the intention to present the final message, maintaining the logical sequence of wrapping up the solution.",
+    "class": "General",
+    "text": "I'll produce final answer message.</think>We wish to find all functions f from the integers to the integers such that for all integers a, b, and c with"
+  },
+  {
+    "reason": "This is restating the given condition a + b + c = 0; it sets up the problem's constraint in a straightforward, expository manner.",
+    "class": "General",
+    "text": "\u2003\u2003a + b + c = 0"
+  },
+  {
+    "reason": "This introduces 'the equation' that governs the functional equation's condition, serving as a direct setup, not exploratory or verifying in nature.",
+    "class": "General",
+    "text": "the equation"
+  },
+  {
+    "reason": "The paragraph states the main equation f(a) + f(b) + f(c) = a\u00b2 + b\u00b2 + c\u00b2 required for the rest of the solution, continuing the methodical problem setup.",
+    "class": "General",
+    "text": "\u2003\u2003f(a) + f(b) + f(c) = a\u00b2 + b\u00b2 + c\u00b2"
+  },
+  {
+    "reason": "This asserts that the stated equation holds; it's still part of the straightforward presentation of the problem setup, not seeking alternatives or checking correctness.",
+    "class": "General",
+    "text": "holds."
+  },
+  {
+    "reason": "This marks the next step to proceed, signposting a structured, planned move to rewrite or analyze f(x) systematically.",
+    "class": "General",
+    "text": "Step 1. Write f(x) in a suggestive form."
+  },
+  {
+    "reason": "The paragraph motivates a natural choice for the function form based on the structure of the right-hand side, proceeding methodically and directly without uncertainty or speculation.",
+    "class": "General",
+    "text": "Since the right\u2010hand side of the equation is a sum of squares, it is natural to try a function of the form"
+  },
+  {
+    "reason": "This paragraph introduces a functional ansatz for f(x) and proceeds confidently in the solution, representing a standard step in the solution process.",
+    "class": "General",
+    "text": "\u2003\u2003f(x) = x\u00b2 + g(x),"
+  },
+  {
+    "reason": "States the definition of g(x) and prepares for substitution, laying out direct progress in solving the problem rather than exploring alternatives or checking results.",
+    "class": "General",
+    "text": "where g is some function from \u2124 to \u2124. Substituting this into the equation gives"
+  },
+  {
+    "reason": "Substitutes the proposed form of f(x) into the given functional equation, moving methodically through the planned solution steps without exploratory or verification focus.",
+    "class": "General",
+    "text": "\u2003\u2003[a\u00b2 + g(a)] + [b\u00b2 + g(b)] + [c\u00b2 + g(c)] = a\u00b2 + b\u00b2 + c\u00b2."
+  },
+  {
+    "reason": "Performs straightforward algebraic simplification (cancelling quadratic terms) as part of direct solution progress, in line with the main plan.",
+    "class": "General",
+    "text": "Cancelling the quadratic terms we obtain"
+  },
+  {
+    "reason": "Restates the new condition for g resulting from the substitution; it's a direct, methodical step forward in the solution, not exploration or verification.",
+    "class": "General",
+    "text": "\u2003\u2003g(a) + g(b) + g(c) = 0\u2003\u2003whenever\u2003\u2003a + b + c = 0."
+  },
+  {
+    "reason": "Signals the next logical step and transition\u2014to examine the imposed condition on g, but does not stray from the planned path or show uncertainty. This is a methodical, structured advance.",
+    "class": "General",
+    "text": "Step 2. Analyze the condition on g."
+  },
+  {
+    "reason": "Explains the requirement for g for all relevant integers, systematically setting up the generality of the next steps; this is direct logical progress.",
+    "class": "General",
+    "text": "We need g: \u2124 \u2192 \u2124 such that for all integers a, b, c with a + b + c = 0, the sum g(a) + g(b) + g(c) = 0. Notice:"
+  },
+  {
+    "reason": "Applies the functional equation with a specific easy triple (all zero) to deduce a property of g (g(0)=0); this is a standard, straightforward problem-solving move and not exploratory.",
+    "class": "General",
+    "text": "\u2022 If we take a = b = c = 0, then\n\u2003\u2003g(0) + g(0) + g(0) = 3g(0) = 0\u2003\u2003\u21d2\u2003\u2003g(0) = 0."
+  },
+  {
+    "reason": "Chooses a specific substitution to deduce more about g (oddness), directly applying the condition to a new instance and deducing consequences. This is still systematic and not exploratory.",
+    "class": "General",
+    "text": "\u2022 If we take a = x, b = -x, c = 0 (since x + (\u2013x) + 0 = 0), then\n\u2003\u2003g(x) + g(\u2013x) + g(0) = g(x) + g(\u2013x) = 0.\nThus, g(\u2013x) = \u2013g(x), which means g is an odd function."
+  },
+  {
+    "reason": "Restates the problem's functional condition with a specific substitution (a = x, b = y, c = \u2013x \u2013 y), methodically setting up for the next logical step. No sign of uncertainty, trial, or verification\u2014just straightforward application.",
+    "class": "General",
+    "text": "Now, let\u2019s take a = x, b = y, and c = \u2013x \u2013 y (since x + y + (\u2013x \u2013 y) = 0). Then the condition becomes"
+  },
+  {
+    "reason": "Takes the result of the substitution and, using properties established earlier (oddness of g), rewrites the functional equation to a simpler form. The steps simply execute logical deductions required for solving; there is no exploration or explicit verification.",
+    "class": "General",
+    "text": "\u2003\u2003g(x) + g(y) + g(\u2013x \u2013 y) = 0.\nBut since g is odd, g(\u2013x \u2013 y) = \u2013g(x + y). Hence, we have"
+  },
+  {
+    "reason": "Directly derives the additive property g(x + y) = g(x) + g(y) from the previous line, which is a standard logical consequence in the structure of the solution. The paragraph remains in exposition and problem-solving sequence.",
+    "class": "General",
+    "text": "\u2003\u2003g(x) + g(y) \u2013 g(x + y) = 0\u2003\u2003or\u2003\u2003g(x + y) = g(x) + g(y)."
+  },
+  {
+    "reason": "Recognizes the property as Cauchy\u2019s equation, states the known mathematical fact about its solutions for integers, and smoothly moves toward the form of the general solution. This is an expository, mainline reasoning step.",
+    "class": "General",
+    "text": "This is Cauchy\u2019s functional equation on the integers. It is well known that every solution g: \u2124 \u2192 \u2124 to this equation is linear; that is, there exists an integer k such that"
+  },
+  {
+    "reason": "States the explicit solution form to the functional equation, based on established mathematical theory with no speculation or checking; it tells the reader what g(x) must be. This is a clear, definitive solving step.",
+    "class": "General",
+    "text": "\u2003\u2003g(x) = kx\u2003\u2003for all integers x."
+  },
+  {
+    "reason": "This is a transition statement announcing the next step, summarizing progress and about to write the final form for f(x). Not exploratory or checking, just proceeding with the plan.",
+    "class": "General",
+    "text": "Step 3. Write the final form of f."
+  },
+  {
+    "reason": "This paragraph puts together previous results to express f(x) based on earlier findings, making a direct calculation towards the main solution. There is no verification or exploration.",
+    "class": "General",
+    "text": "Recall that f(x) = x\u00b2 + g(x) and we have just found that g(x) = kx for some integer k. Therefore,"
+  },
+  {
+    "reason": "Directly states the form of the function found in the solution, clearly presenting the main result. This is the planned solution path, not verification or exploration.",
+    "class": "General",
+    "text": "\u2003\u2003f(x) = x\u00b2 + kx\u2003\u2003for some integer k."
+  },
+  {
+    "reason": "Indicates a shift into verifying the obtained solution. The sole function is to signal the start of a verification process.",
+    "class": "Verify",
+    "text": "Verification:"
+  },
+  {
+    "reason": "Explicitly plugs the general solution into the original problem statement, showing with algebra that it fulfills the requirement. This is a concrete verification step.",
+    "class": "Verify",
+    "text": "For any integers a, b, and c with a + b + c = 0, we have\n\u2003\u2003f(a) + f(b) + f(c) = (a\u00b2 + ka) + (b\u00b2 + kb) + (c\u00b2 + kc)\n\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003= (a\u00b2 + b\u00b2 + c\u00b2) + k(a + b + c)\n\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003= a\u00b2 + b\u00b2 + c\u00b2\u2003\u2003(since a + b + c = 0)."
+  },
+  {
+    "reason": "This is a concluding statement that affirms the function derived in the preceding steps meets the problem condition. However, it does not perform any explicit check or verification process and also doesn't advance the solution \u2014 it's summarizing the resolution. By default, such statements are classified as General.",
+    "class": "General",
+    "text": "Thus, the function satisfies the given condition."
+  },
+  {
+    "reason": "This is a summary heading or a declarative marker introducing the final boxed answer, not advancing the argument, exploring alternatives, or verifying correctness. Such headings should be tagged as General.",
+    "class": "General",
+    "text": "Final Answer:"
+  },
+  {
+    "reason": "This paragraph restates the problem and provides a general summary of the solution in words. It doesn't contain exploration or verification; it simply recaps in a factual and confident tone what has already been found.",
+    "class": "General",
+    "text": "The functions f: \u2124 \u2192 \u2124 that satisfy\n\u2003\u2003f(a) + f(b) + f(c) = a\u00b2 + b\u00b2 + c\u00b2\u2003\u2003whenever\u2003a + b + c = 0\nare exactly those of the form"
+  },
+  {
+    "reason": "This is the explicit boxed form of the answer, giving the formula for all functions f that solve the condition. There is no checking or exploring\u2014a final factual statement\u2014so it falls under General.",
+    "class": "General",
+    "text": "\u2003\u2003f(x) = x\u00b2 + kx\u2003\u2003for some integer k."
+  }
+]

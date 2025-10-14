@@ -1,0 +1,1063 @@
+[
+    {
+        "class": "Read",
+        "text": "Alright, so I need to find all functions \\( f: \\mathbb{Z} \\to \\mathbb{Z} \\) such that whenever \\( a + b + c = 0 \\), then \\( f(a) + f(b) + f(c) = a^2 + b^2 + c^2 \\)."
+    },
+    {
+        "class": "Monitor",
+        "text": "Hmm, okay."
+    },
+    {
+        "class": "Plan",
+        "text": "Let me start by understanding what this condition really means."
+    },
+    {
+        "class": "Read",
+        "text": "First, the functional equation has to hold for all integers \\( a, b, c \\) where \\( a + b + c = 0 \\)."
+    },
+    {
+        "text": "So, for any three integers that sum to zero, the sum of their function values equals the sum of their squares.",
+        "gt_class": "Analyze",
+        "labeled_class": "Read"
+    },
+    {
+        "text": "That's a pretty strong condition.",
+        "gt_class": "Monitor",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Explore",
+        "text": "Maybe I can plug in specific values for \\( a, b, c \\) to figure out the form of \\( f \\)."
+    },
+    {
+        "class": "Plan",
+        "text": "Let me try some simple cases."
+    },
+    {
+        "text": "Let's set \\( a = b = c = 0 \\).",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Implement",
+        "text": "Then \\( 0 + 0 + 0 = 0 \\), so the equation becomes \\( f(0) + f(0) + f(0) = 0^2 + 0^2 + 0^2 \\), which simplifies to \\( 3f(0) = 0 \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "Therefore, \\( f(0) = 0 \\)."
+    },
+    {
+        "class": "Monitor",
+        "text": "Okay, that's a start."
+    },
+    {
+        "class": "Plan",
+        "text": "Now, let's take two variables to be negatives of each other and the third one to be zero."
+    },
+    {
+        "class": "Analyze",
+        "text": "For example, let \\( c = 0 \\), so \\( a + b = 0 \\), which means \\( b = -a \\)."
+    },
+    {
+        "text": "Then the equation becomes \\( f(a) + f(-a) + f(0) = a^2 + (-a)^2 + 0^2 \\).",
+        "gt_class": "Implement",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Implement",
+        "text": "Since \\( f(0) = 0 \\), this simplifies to \\( f(a) + f(-a) = 2a^2 \\)."
+    },
+    {
+        "class": "Analyze",
+        "text": "So, we have a relation between \\( f(a) \\) and \\( f(-a) \\)."
+    },
+    {
+        "class": "Monitor",
+        "text": "That's useful."
+    },
+    {
+        "class": "Analyze",
+        "text": "This tells me that the function isn't necessarily even or odd, but their sum is \\( 2a^2 \\)."
+    },
+    {
+        "text": "Next, maybe I can set two variables equal and solve for the third.",
+        "gt_class": "Explore",
+        "labeled_class": "Plan"
+    },
+    {
+        "class": "Analyze",
+        "text": "Let's let \\( a = b = k \\), then \\( c = -2k \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "Plugging into the equation: \\( f(k) + f(k) + f(-2k) = k^2 + k^2 + (-2k)^2 \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "Simplifying, that's \\( 2f(k) + f(-2k) = 2k^2 + 4k^2 = 6k^2 \\)."
+    },
+    {
+        "text": "So, \\( 2f(k) + f(-2k) = 6k^2 \\).",
+        "gt_class": "Verify",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Monitor",
+        "text": "Hmm."
+    },
+    {
+        "class": "Analyze",
+        "text": "But we also have from the previous relation \\( f(-2k) = 2(2k)^2 - f(2k) = 8k^2 - f(2k) \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "Wait, substituting that into the previous equation: \\( 2f(k) + 8k^2 - f(2k) = 6k^2 \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "Then rearranged: \\( 2f(k) - f(2k) = 6k^2 - 8k^2 = -2k^2 \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "So, \\( 2f(k) - f(2k) = -2k^2 \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "Let me write that as \\( f(2k) = 2f(k) + 2k^2 \\)."
+    },
+    {
+        "class": "Monitor",
+        "text": "Interesting."
+    },
+    {
+        "class": "Analyze",
+        "text": "So this relates the function at \\( 2k \\) to the function at \\( k \\)."
+    },
+    {
+        "class": "Explore",
+        "text": "Maybe we can use this recursive relation to find a general form for \\( f(k) \\)."
+    },
+    {
+        "text": "Let's suppose that \\( f(k) \\) is a quadratic function.",
+        "gt_class": "Analyze",
+        "labeled_class": "Plan"
+    },
+    {
+        "text": "Let me hypothesize that \\( f(k) = ak^2 + bk + c \\).",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "But we already know that \\( f(0) = 0 \\), so substituting \\( k = 0 \\) gives \\( 0 = a*0 + b*0 + c \\), so \\( c = 0 \\).",
+        "gt_class": "Implement",
+        "labeled_class": "Analyze"
+    },
+    {
+        "text": "Therefore, \\( f(k) = ak^2 + bk \\).",
+        "gt_class": "Implement",
+        "labeled_class": "Analyze"
+    },
+    {
+        "text": "Let's test this.",
+        "gt_class": "Verify",
+        "labeled_class": "Plan"
+    },
+    {
+        "class": "Plan",
+        "text": "First, let's check the relation \\( f(a) + f(-a) = 2a^2 \\)."
+    },
+    {
+        "text": "If \\( f(k) = ak^2 + bk \\), then \\( f(-k) = ak^2 - bk \\).",
+        "gt_class": "Implement",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Implement",
+        "text": "Adding them gives \\( 2ak^2 = 2a^2 \\)."
+    },
+    {
+        "class": "Verify",
+        "text": "Wait, but this has to equal \\( 2k^2 \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "Therefore, \\( 2ak^2 = 2k^2 \\), so \\( a = 1 \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "So, the quadratic coefficient is 1."
+    },
+    {
+        "class": "Implement",
+        "text": "So, \\( f(k) = k^2 + bk \\)."
+    },
+    {
+        "text": "Now, let's check the other relation we had: \\( f(2k) = 2f(k) + 2k^2 \\).",
+        "gt_class": "Verify",
+        "labeled_class": "Read"
+    },
+    {
+        "class": "Plan",
+        "text": "Let's compute both sides."
+    },
+    {
+        "class": "Implement",
+        "text": "Left-hand side: \\( f(2k) = (2k)^2 + b(2k) = 4k^2 + 2bk \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "Right-hand side: \\( 2f(k) + 2k^2 = 2(k^2 + bk) + 2k^2 = 2k^2 + 2bk + 2k^2 = 4k^2 + 2bk \\)."
+    },
+    {
+        "class": "Verify",
+        "text": "So, both sides are equal."
+    },
+    {
+        "text": "So, this relation holds regardless of the value of \\( b \\).",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "text": "So, the coefficient \\( b \\) is still undetermined.",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Monitor",
+        "text": "Hmm."
+    },
+    {
+        "class": "Explore",
+        "text": "Maybe I need another condition to find \\( b \\)."
+    },
+    {
+        "class": "Plan",
+        "text": "Let me try another substitution."
+    },
+    {
+        "text": "Let me set \\( c = -a - b \\), so the condition \\( a + b + c = 0 \\) is satisfied.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Implement",
+        "text": "Then the equation becomes \\( f(a) + f(b) + f(-a - b) = a^2 + b^2 + (-a - b)^2 \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "Let's compute the right-hand side: \\( a^2 + b^2 + (a + b)^2 = a^2 + b^2 + a^2 + 2ab + b^2 = 2a^2 + 2b^2 + 2ab \\)."
+    },
+    {
+        "text": "So, the equation is \\( f(a) + f(b) + f(-a - b) = 2a^2 + 2b^2 + 2ab \\).",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Plan",
+        "text": "Let's substitute our current form of \\( f(k) = k^2 + bk \\)."
+    },
+    {
+        "class": "Monitor",
+        "text": "Then:"
+    },
+    {
+        "class": "Analyze",
+        "text": "Left-hand side: \\( (a^2 + ba) + (b^2 + bb) + ((-a - b)^2 + b(-a - b)) \\)."
+    },
+    {
+        "class": "Plan",
+        "text": "Compute each term:"
+    },
+    {
+        "class": "Analyze",
+        "text": "First term: \\( a^2 + ba \\)."
+    },
+    {
+        "text": "Second term: \\( b^2 + b^2 \\)?",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Monitor",
+        "text": "Wait, no."
+    },
+    {
+        "text": "Wait, if \\( f(k) = k^2 + bk \\), then \\( f(b) = b^2 + b*b = b^2 + b^2 = 2b^2 \\)?",
+        "gt_class": "Verify",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Wait, that can't be right.",
+        "gt_class": "Verify",
+        "labeled_class": "Monitor"
+    },
+    {
+        "class": "Monitor",
+        "text": "Wait, no."
+    },
+    {
+        "class": "Monitor",
+        "text": "Wait, hold on."
+    },
+    {
+        "class": "Implement",
+        "text": "If \\( f(k) = k^2 + bk \\), then \\( f(b) = b^2 + b*b = b^2 + b^2 = 2b^2 \\)."
+    },
+    {
+        "class": "Analyze",
+        "text": "Wait, that would mean \\( f(k) = k^2 + k^2 = 2k^2 \\), but that would imply \\( b = 1 \\)."
+    },
+    {
+        "class": "Monitor",
+        "text": "Wait, no, hold on."
+    },
+    {
+        "class": "Implement",
+        "text": "Wait, if \\( f(k) = k^2 + bk \\), then \\( f(b) = b^2 + b*b = b^2 + b^2 = 2b^2 \\)."
+    },
+    {
+        "class": "Analyze",
+        "text": "Wait, but that would mean that the coefficient \\( b \\) in front of the linear term is equal to the variable \\( b \\)."
+    },
+    {
+        "class": "Monitor",
+        "text": "That's confusing."
+    },
+    {
+        "class": "Explore",
+        "text": "Maybe I should use different letters to avoid confusion."
+    },
+    {
+        "class": "Analyze",
+        "text": "Let me redefine the function as \\( f(k) = k^2 + dk \\), where \\( d \\) is a constant integer."
+    },
+    {
+        "text": "Then \\( f(a) = a^2 + da \\), \\( f(b) = b^2 + db \\), and \\( f(-a - b) = (-a - b)^2 + d(-a - b) = (a + b)^2 - d(a + b) \\).",
+        "gt_class": "Implement",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Plan",
+        "text": "So, substituting into the left-hand side:"
+    },
+    {
+        "class": "Implement",
+        "text": "\\( f(a) + f(b) + f(-a - b) = (a^2 + da) + (b^2 + db) + ((a + b)^2 - d(a + b)) \\)."
+    },
+    {
+        "class": "Plan",
+        "text": "Expanding this:"
+    },
+    {
+        "class": "Implement",
+        "text": "First, \\( a^2 + da + b^2 + db + a^2 + 2ab + b^2 - da - db \\)."
+    },
+    {
+        "class": "Plan",
+        "text": "Combine like terms:"
+    },
+    {
+        "class": "Implement",
+        "text": "\\( a^2 + a^2 = 2a^2 \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "\\( b^2 + b^2 = 2b^2 \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "\\( 2ab \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "\\( da - da = 0 \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "\\( db - db = 0 \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "So total: \\( 2a^2 + 2b^2 + 2ab \\)."
+    },
+    {
+        "text": "Which matches the right-hand side.",
+        "gt_class": "Verify",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "So, regardless of the value of \\( d \\), this equation holds.",
+        "gt_class": "Verify",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Monitor",
+        "text": "Wait, that's strange."
+    },
+    {
+        "text": "So even though we have a linear term \\( dk \\), when we plug into the functional equation, the linear terms cancel out.",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Explore",
+        "text": "That means the functional equation is satisfied for any linear term?"
+    },
+    {
+        "text": "But we also had the previous condition when we set \\( a = b = k \\), leading to the recursive relation, which also didn't restrict \\( d \\).",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Monitor",
+        "text": "Hmm."
+    },
+    {
+        "class": "Explore",
+        "text": "So does that mean \\( d \\) can be any integer?"
+    },
+    {
+        "class": "Read",
+        "text": "But the problem states that \\( f: \\mathbb{Z} \\to \\mathbb{Z} \\)."
+    },
+    {
+        "class": "Explore",
+        "text": "So, as long as \\( d \\) is an integer, the function \\( f(k) = k^2 + dk \\) would satisfy the condition?"
+    },
+    {
+        "text": "Wait, but let's test with specific numbers.",
+        "gt_class": "Plan",
+        "labeled_class": "Monitor"
+    },
+    {
+        "class": "Analyze",
+        "text": "Let's take \\( d = 1 \\), so \\( f(k) = k^2 + k \\)."
+    },
+    {
+        "class": "Plan",
+        "text": "Let's check a case."
+    },
+    {
+        "text": "Let me choose \\( a = 1 \\), \\( b = -1 \\), \\( c = 0 \\).",
+        "gt_class": "Plan",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Implement",
+        "text": "Then \\( f(1) + f(-1) + f(0) = (1 + 1) + (1 - 1) + 0 = 2 + 0 + 0 = 2 \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "The right-hand side is \\( 1 + 1 + 0 = 2 \\)."
+    },
+    {
+        "class": "Verify",
+        "text": "That works."
+    },
+    {
+        "class": "Plan",
+        "text": "Another test: \\( a = 2 \\), \\( b = 3 \\), \\( c = -5 \\)."
+    },
+    {
+        "text": "Then \\( a + b + c = 0 \\).",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Plan",
+        "text": "Compute \\( f(2) + f(3) + f(-5) \\)."
+    },
+    {
+        "text": "If \\( f(k) = k^2 + dk \\), then:",
+        "gt_class": "Analyze",
+        "labeled_class": "Plan"
+    },
+    {
+        "class": "Implement",
+        "text": "\\( f(2) = 4 + 2d \\),"
+    },
+    {
+        "class": "Implement",
+        "text": "\\( f(3) = 9 + 3d \\),"
+    },
+    {
+        "class": "Implement",
+        "text": "\\( f(-5) = 25 - 5d \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "Sum: \\( 4 + 2d + 9 + 3d + 25 - 5d = 4 + 9 + 25 + (2d + 3d -5d) = 38 + 0 = 38 \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "Right-hand side: \\( 2^2 + 3^2 + (-5)^2 = 4 + 9 + 25 = 38 \\)."
+    },
+    {
+        "class": "Verify",
+        "text": "So, that works regardless of \\( d \\)."
+    },
+    {
+        "class": "Explore",
+        "text": "So, does that mean that the function \\( f(k) = k^2 + dk \\) works for any integer \\( d \\)?"
+    },
+    {
+        "class": "Read",
+        "text": "But the problem says \"find all functions\"."
+    },
+    {
+        "class": "Explore",
+        "text": "So, maybe all such functions are of the form \\( f(k) = k^2 + dk \\), where \\( d \\) is a constant integer."
+    },
+    {
+        "text": "But let's check another case.",
+        "gt_class": "Verify",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Suppose \\( d = 0 \\), then \\( f(k) = k^2 \\).",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Let me check a different triplet.",
+        "gt_class": "Plan",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Let me set \\( a = 1 \\), \\( b = 2 \\), \\( c = -3 \\).",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Then \\( f(1) + f(2) + f(-3) = 1 + 4 + 9 = 14 \\).",
+        "gt_class": "Implement",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "The right-hand side is \\( 1 + 4 + 9 = 14 \\).",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "That works.",
+        "gt_class": "Verify",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "If \\( d = 5 \\), then \\( f(k) = k^2 + 5k \\).",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Let's compute \\( f(1) + f(-1) = (1 + 5) + (1 - 5) = 6 - 4 = 2 \\), which is \\( 2*1^2 = 2 \\).",
+        "gt_class": "Implement",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "That works.",
+        "gt_class": "Verify",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Wait, but in our earlier reasoning, we found that \\( f(a) + f(-a) = 2a^2 \\).",
+        "gt_class": "Verify",
+        "labeled_class": "Monitor"
+    },
+    {
+        "text": "Let's check that with \\( f(k) = k^2 + dk \\).",
+        "gt_class": "Verify",
+        "labeled_class": "Plan"
+    },
+    {
+        "class": "Implement",
+        "text": "Then \\( f(a) + f(-a) = (a^2 + da) + (a^2 - da) = 2a^2 \\)."
+    },
+    {
+        "class": "Verify",
+        "text": "Yes, which matches."
+    },
+    {
+        "class": "Verify",
+        "text": "So, that's consistent."
+    },
+    {
+        "class": "Analyze",
+        "text": "But here's the thing: when we derived the relation \\( f(a) + f(-a) = 2a^2 \\), that must hold for all \\( a \\), so that gives us a condition on the function."
+    },
+    {
+        "class": "Analyze",
+        "text": "But when we assume \\( f(k) = k^2 + dk \\), this condition is automatically satisfied regardless of \\( d \\), because the linear terms cancel out."
+    },
+    {
+        "class": "Analyze",
+        "text": "So, the only constraint is from the original functional equation, which also seems to be satisfied for any \\( d \\)."
+    },
+    {
+        "text": "But wait, the problem says that \\( f \\) must be a function from \\( \\mathbb{Z} \\) to \\( \\mathbb{Z} \\).",
+        "gt_class": "Analyze",
+        "labeled_class": "Read"
+    },
+    {
+        "class": "Analyze",
+        "text": "So, as long as \\( d \\) is an integer, \\( f(k) = k^2 + dk \\) will map integers to integers."
+    },
+    {
+        "text": "Therefore, the general solution is \\( f(k) = k^2 + dk \\), where \\( d \\) is an integer constant.",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "text": "But is that all?",
+        "gt_class": "Explore",
+        "labeled_class": "Monitor"
+    },
+    {
+        "text": "Let me check if there are any other possible functions.",
+        "gt_class": "Verify",
+        "labeled_class": "Plan"
+    },
+    {
+        "class": "Explore",
+        "text": "Wait, maybe we can try to assume that the function has a different form."
+    },
+    {
+        "class": "Explore",
+        "text": "Suppose, for example, \\( f(k) = k^2 + g(k) \\), where \\( g(k) \\) is some function."
+    },
+    {
+        "class": "Explore",
+        "text": "Then the functional equation becomes:"
+    },
+    {
+        "class": "Implement",
+        "text": "\\( (a^2 + g(a)) + (b^2 + g(b)) + (c^2 + g(c)) = a^2 + b^2 + c^2 \\)."
+    },
+    {
+        "text": "Simplifying, this would require \\( g(a) + g(b) + g(c) = 0 \\) whenever \\( a + b + c = 0 \\).",
+        "gt_class": "Verify",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "So, \\( g \\) must satisfy that for any three integers \\( a, b, c \\) summing to zero, the sum of \\( g(a) + g(b) + g(c) \\) is zero.",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "text": "This is a standard type of functional equation.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "What functions \\( g: \\mathbb{Z} \\to \\mathbb{Z} \\) satisfy \\( g(a) + g(b) + g(c) = 0 \\) whenever \\( a + b + c = 0 \\)?",
+        "gt_class": "Read",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Monitor",
+        "text": "Let me think."
+    },
+    {
+        "class": "Plan",
+        "text": "Let's set \\( c = -a - b \\)."
+    },
+    {
+        "text": "So, for any \\( a, b \\in \\mathbb{Z} \\), \\( g(a) + g(b) + g(-a - b) = 0 \\).",
+        "gt_class": "Implement",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Analyze",
+        "text": "This resembles a Cauchy-like equation but in three variables."
+    },
+    {
+        "class": "Plan",
+        "text": "Let's try some substitutions."
+    },
+    {
+        "class": "Implement",
+        "text": "Let \\( a = 0 \\), then \\( g(0) + g(b) + g(-b) = 0 \\)."
+    },
+    {
+        "class": "Analyze",
+        "text": "But we also know from earlier that when we set \\( a = 0 \\), \\( f(0) = 0 \\), so \\( g(0) = 0 \\)."
+    },
+    {
+        "class": "Analyze",
+        "text": "Therefore, \\( 0 + g(b) + g(-b) = 0 \\implies g(-b) = -g(b) \\)."
+    },
+    {
+        "class": "Analyze",
+        "text": "So, \\( g \\) is an odd function."
+    },
+    {
+        "class": "Plan",
+        "text": "Next, let's set \\( b = -a \\)."
+    },
+    {
+        "class": "Analyze",
+        "text": "Then \\( a + (-a) + c = 0 \\implies c = 0 \\)."
+    },
+    {
+        "class": "Analyze",
+        "text": "So, \\( g(a) + g(-a) + g(0) = 0 \\)."
+    },
+    {
+        "text": "But since \\( g(0) = 0 \\), this gives \\( g(a) + g(-a) = 0 \\), which is consistent with \\( g \\) being odd.",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "text": "Another substitution: Let \\( b = a \\), then \\( a + a + c = 0 \\implies c = -2a \\).",
+        "gt_class": "Explore",
+        "labeled_class": "Plan"
+    },
+    {
+        "class": "Analyze",
+        "text": "Then, \\( g(a) + g(a) + g(-2a) = 0 \\implies 2g(a) + g(-2a) = 0 \\)."
+    },
+    {
+        "text": "Since \\( g \\) is odd, \\( g(-2a) = -g(2a) \\), so \\( 2g(a) - g(2a) = 0 \\implies g(2a) = 2g(a) \\).",
+        "gt_class": "Implement",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Analyze",
+        "text": "Therefore, \\( g \\) is homogeneous of degree 1 with respect to scaling by 2."
+    },
+    {
+        "class": "Analyze",
+        "text": "That is, \\( g(2a) = 2g(a) \\)."
+    },
+    {
+        "class": "Explore",
+        "text": "Similarly, maybe we can use induction to show that \\( g(ka) = kg(a) \\) for all integers \\( k \\)."
+    },
+    {
+        "class": "Monitor",
+        "text": "Let's try to see."
+    },
+    {
+        "class": "Analyze",
+        "text": "Suppose \\( g(2a) = 2g(a) \\)."
+    },
+    {
+        "class": "Plan",
+        "text": "Then, let's try \\( g(3a) \\)."
+    },
+    {
+        "text": "Let me set \\( a = a \\), \\( b = a \\), \\( c = -2a \\).",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Implement",
+        "text": "Then, \\( g(a) + g(a) + g(-2a) = 0 \\implies 2g(a) - g(2a) = 0 \\), which is already given."
+    },
+    {
+        "class": "Monitor",
+        "text": "Hmm."
+    },
+    {
+        "text": "Alternatively, set \\( a = a \\), \\( b = 2a \\), \\( c = -3a \\).",
+        "gt_class": "Analyze",
+        "labeled_class": "Plan"
+    },
+    {
+        "class": "Implement",
+        "text": "Then, \\( g(a) + g(2a) + g(-3a) = 0 \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "But \\( g(-3a) = -g(3a) \\), so \\( g(a) + 2g(a) - g(3a) = 0 \\implies 3g(a) - g(3a) = 0 \\implies g(3a) = 3g(a) \\)."
+    },
+    {
+        "class": "Analyze",
+        "text": "Similarly, proceeding this way, we can show that \\( g(ka) = kg(a) \\) for all integers \\( k \\)."
+    },
+    {
+        "class": "Analyze",
+        "text": "Thus, \\( g \\) is a linear function."
+    },
+    {
+        "class": "Analyze",
+        "text": "Since \\( g \\) is additive over the integers and satisfies \\( g(ka) = kg(a) \\), which is the definition of a linear function on integers."
+    },
+    {
+        "class": "Analyze",
+        "text": "The only functions \\( g: \\mathbb{Z} \\to \\mathbb{Z} \\) that are linear are of the form \\( g(k) = dk \\) for some integer \\( d \\)."
+    },
+    {
+        "class": "Analyze",
+        "text": "Because, for integer functions, linearity requires \\( g(k) = g(1) \\cdot k \\)."
+    },
+    {
+        "class": "Verify",
+        "text": "Let me confirm that."
+    },
+    {
+        "text": "Suppose \\( g \\) is additive: \\( g(a + b) = g(a) + g(b) \\).",
+        "gt_class": "Analyze",
+        "labeled_class": "Read"
+    },
+    {
+        "class": "Analyze",
+        "text": "Then, for integer functions, additive functions are linear."
+    },
+    {
+        "class": "Analyze",
+        "text": "Since \\( \\mathbb{Z} \\) is a cyclic group generated by 1, so any additive function on \\( \\mathbb{Z} \\) must satisfy \\( g(k) = k \\cdot g(1) \\)."
+    },
+    {
+        "class": "Analyze",
+        "text": "Let \\( d = g(1) \\)."
+    },
+    {
+        "class": "Analyze",
+        "text": "Then, \\( g(k) = dk \\)."
+    },
+    {
+        "text": "But in our case, \\( g \\) is not just additive, but satisfies the stronger condition \\( g(a) + g(b) + g(-a - b) = 0 \\).",
+        "gt_class": "Analyze",
+        "labeled_class": "Read"
+    },
+    {
+        "text": "However, if \\( g \\) is linear, then \\( g(a) + g(b) + g(-a - b) = da + db + d(-a - b) = 0 \\), which holds.",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Analyze",
+        "text": "So, all linear functions satisfy this condition, and the only additive functions on \\( \\mathbb{Z} \\) are linear."
+    },
+    {
+        "text": "Therefore, \\( g(k) = dk \\) for some integer \\( d \\).",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "text": "Hence, the general solution is \\( f(k) = k^2 + dk \\), where \\( d \\) is an integer constant.",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Analyze",
+        "text": "Therefore, the functions satisfying the given condition are exactly those of the form \\( f(k) = k^2 + dk \\) for some integer \\( d \\)."
+    },
+    {
+        "class": "Verify",
+        "text": "Wait, but let me verify with another example."
+    },
+    {
+        "text": "Let's take \\( d = 5 \\), so \\( f(k) = k^2 + 5k \\).",
+        "gt_class": "Implement",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "Let's test \\( a = 1 \\), \\( b = 2 \\), \\( c = -3 \\).",
+        "gt_class": "Plan",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "Then, \\( f(1) + f(2) + f(-3) = (1 + 5) + (4 + 10) + (9 - 15) = 6 + 14 - 6 = 14 \\).",
+        "gt_class": "Implement",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "The sum of squares is \\( 1 + 4 + 9 = 14 \\).",
+        "gt_class": "Implement",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "It works."
+    },
+    {
+        "class": "Verify",
+        "text": "Another test: \\( a = 3 \\), \\( b = -1 \\), \\( c = -2 \\)."
+    },
+    {
+        "text": "Then, \\( f(3) + f(-1) + f(-2) = (9 + 15) + (1 - 5) + (4 - 10) = 24 - 4 - 6 = 14 \\).",
+        "gt_class": "Implement",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "Sum of squares: \\( 9 + 1 + 4 = 14 \\).",
+        "gt_class": "Implement",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "It works."
+    },
+    {
+        "text": "But wait, what if \\( d \\) is not an integer?",
+        "gt_class": "Explore",
+        "labeled_class": "Monitor"
+    },
+    {
+        "class": "Analyze",
+        "text": "For example, if \\( d = 1/2 \\), then \\( f(k) = k^2 + (1/2)k \\), but this doesn't map integers to integers."
+    },
+    {
+        "class": "Analyze",
+        "text": "However, the problem states that \\( f: \\mathbb{Z} \\to \\mathbb{Z} \\), so \\( d \\) must be an integer."
+    },
+    {
+        "text": "Therefore, the only solutions are \\( f(k) = k^2 + dk \\) where \\( d \\in \\mathbb{Z} \\).",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Explore",
+        "text": "Is there a possibility of other non-linear functions?"
+    },
+    {
+        "text": "Suppose someone tries to add a cubic term.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Let's say \\( f(k) = k^2 + dk + ek^3 \\).",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Then, plugging into the functional equation:",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "\\( f(a) + f(b) + f(c) = (a^2 + da + ea^3) + (b^2 + db + eb^3) + (c^2 + dc + ec^3) \\).",
+        "gt_class": "Implement",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "This must equal \\( a^2 + b^2 + c^2 \\).",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Therefore, we need:",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Analyze",
+        "text": "\\( (a^2 + b^2 + c^2) + d(a + b + c) + e(a^3 + b^3 + c^3) = a^2 + b^2 + c^2 \\)."
+    },
+    {
+        "class": "Analyze",
+        "text": "Since \\( a + b + c = 0 \\), the term \\( d(a + b + c) = 0 \\)."
+    },
+    {
+        "class": "Analyze",
+        "text": "So, we need \\( e(a^3 + b^3 + c^3) = 0 \\)."
+    },
+    {
+        "text": "But in general, \\( a^3 + b^3 + c^3 \\) is not zero when \\( a + b + c = 0 \\).",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "For example, take \\( a = 1 \\), \\( b = 1 \\), \\( c = -2 \\).",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "Then \\( a^3 + b^3 + c^3 = 1 + 1 + (-8) = -6 \\).",
+        "gt_class": "Implement",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "Therefore, unless \\( e = 0 \\), this term would not vanish."
+    },
+    {
+        "class": "Verify",
+        "text": "Hence, \\( e \\) must be zero."
+    },
+    {
+        "class": "Verify",
+        "text": "Therefore, no cubic or higher terms are allowed."
+    },
+    {
+        "class": "Analyze",
+        "text": "Similarly, if we tried adding a periodic function, like \\( f(k) = k^2 + dk + \\sin(\\pi k) \\), but since we are mapping integers to integers, the sine term would always be zero, so that doesn't help."
+    },
+    {
+        "class": "Analyze",
+        "text": "Any other function that's non-linear would likely interfere with the equation, as shown with the cubic example."
+    },
+    {
+        "text": "Therefore, the only solutions are quadratic functions of the form \\( f(k) = k^2 + dk \\).",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "text": "Hence, the conclusion is that all such functions are given by \\( f(n) = n^2 + dn \\), where \\( d \\) is a fixed integer.",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "text": "Therefore, the final answer is \\( f(n) = n^2 + dn \\) for some constant \\( d \\in \\mathbb{Z} \\).",
+        "gt_class": "Verify",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "**Final Answer**\nThe functions satisfying the condition are precisely those of the form \\( \\boxed{f(x) = x^2 + kx} \\) where \\( k \\) is an integer constant.",
+        "gt_class": "Verify",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Plan",
+        "text": "</think>To find all functions \\( f: \\mathbb{Z} \\to \\mathbb{Z} \\) such that whenever \\( a + b + c = 0 \\), then \\( f(a) + f(b) + f(c) = a^2 + b^2 + c^2 \\), we start by analyzing specific cases and deriving necessary conditions."
+    },
+    {
+        "text": "1. **Initial Condition**:\n   - Setting \\( a = b = c = 0 \\), we get \\( 3f(0) = 0 \\), hence \\( f(0) = 0 \\).",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "2. **Symmetry Condition**:\n   - Setting \\( c = 0 \\) and \\( b = -a \\), we get \\( f(a) + f(-a) = 2a^2 \\).",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Implement",
+        "text": "3. **Recursive Relation**:\n   - Setting \\( a = b = k \\) and \\( c = -2k \\), we derive \\( 2f(k) + f(-2k) = 6k^2 \\)."
+    },
+    {
+        "class": "Implement",
+        "text": "Using the symmetry condition, we substitute \\( f(-2k) = 8k^2 - f(2k) \\) to get \\( f(2k) = 2f(k) + 2k^2 \\)."
+    },
+    {
+        "class": "Plan",
+        "text": "4. **General Form Hypothesis**:\n   - Assuming \\( f(k) \\) is a quadratic function, we propose \\( f(k) = k^2 + dk \\)."
+    },
+    {
+        "text": "This form satisfies the symmetry condition \\( f(a) + f(-a) = 2a^2 \\) and the recursive relation \\( f(2k) = 2f(k) + 2k^2 \\).",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Verify",
+        "text": "5. **Verification**:\n   - Substituting \\( f(k) = k^2 + dk \\) into the functional equation with \\( a + b + c = 0 \\), we verify that the linear terms cancel out, leaving the sum of squares."
+    },
+    {
+        "class": "Verify",
+        "text": "This confirms the form satisfies the given condition for any integer \\( d \\)."
+    },
+    {
+        "class": "Analyze",
+        "text": "6. **Conclusion**:\n   - The functions must be quadratic polynomials of the form \\( f(k) = k^2 + dk \\) where \\( d \\) is an integer."
+    },
+    {
+        "class": "Verify",
+        "text": "This form is confirmed through various substitutions and verifications, ensuring all conditions are met."
+    },
+    {
+        "text": "Thus, the functions satisfying the condition are precisely those of the form \\( \\boxed{f(x) = x^2 + kx} \\) where \\( k \\) is an integer constant.",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    }
+]

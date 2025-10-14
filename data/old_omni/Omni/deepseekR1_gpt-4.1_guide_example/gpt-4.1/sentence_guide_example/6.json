@@ -1,0 +1,2375 @@
+[
+  {
+    "text": "Okay, so I need to find the maximum number of three-term arithmetic progressions (APs) in a monotone sequence of n distinct real numbers.",
+    "class-1-reason": "This paragraph restates the problem and begins by clarifying the task. There is no evidence of speculation, multiple approaches, or checking/correcting work; it's focused on understanding the problem and stating the solution goal.",
+    "class-1": "General",
+    "class-2-reason": "Restates the task in the question, repeating the target (maximum possible number of 3-term APs in a monotone sequence of n distinct reals) without further reasoning.",
+    "class-2": "Read"
+  },
+  {
+    "text": "Hmm, let's start by understanding the problem.",
+    "class-1-reason": "This paragraph restates the problem and begins by clarifying the task. There is no evidence of speculation, multiple approaches, or checking/correcting work; it's focused on understanding the problem and stating the solution goal.",
+    "class-1": "General",
+    "class-2-reason": "Meta-cognitive phrase signaling intent to begin understanding; acts as a bridge indicating the reasoning is just starting.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "First, a monotone sequence means it's either non-decreasing or non-increasing.",
+    "class-1-reason": "Here the solver methodically analyzes what a monotone sequence implies, explaining that it suffices to consider strictly increasing sequences. It concludes with a logical reduction (\u2018without loss of generality\u2019) rather than exploring alternatives or verifying an answer.",
+    "class-1": "General",
+    "class-2-reason": "Explains the definition of a monotone sequence, converting the term from the problem into precise math language.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Since the numbers are distinct, it's strictly increasing or strictly decreasing.",
+    "class-1-reason": "Here the solver methodically analyzes what a monotone sequence implies, explaining that it suffices to consider strictly increasing sequences. It concludes with a logical reduction (\u2018without loss of generality\u2019) rather than exploring alternatives or verifying an answer.",
+    "class-1": "General",
+    "class-2-reason": "Deduces a logical consequence of the 'distinct' condition for monotonicity (must be strictly, not just monotone).",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "But since arithmetic progressions are about differences, whether it's increasing or decreasing shouldn't matter, right?",
+    "class-1-reason": "Here the solver methodically analyzes what a monotone sequence implies, explaining that it suffices to consider strictly increasing sequences. It concludes with a logical reduction (\u2018without loss of generality\u2019) rather than exploring alternatives or verifying an answer.",
+    "class-1": "General",
+    "class-2-reason": "Speculates about whether direction matters for arithmetic progressions; the phrase 'shouldn't matter, right?' introduces uncertainty and a tentative hypothesis.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Because an AP in a decreasing sequence is just a reversed AP in an increasing sequence.",
+    "class-1-reason": "Here the solver methodically analyzes what a monotone sequence implies, explaining that it suffices to consider strictly increasing sequences. It concludes with a logical reduction (\u2018without loss of generality\u2019) rather than exploring alternatives or verifying an answer.",
+    "class-1": "General",
+    "class-2-reason": "Explains the previous idea with certain logical reasoning that decreasing APs are reversed increasing APs, showing a confident deduction.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So maybe I can just consider increasing sequences without loss of generality.",
+    "class-1-reason": "Here the solver methodically analyzes what a monotone sequence implies, explaining that it suffices to consider strictly increasing sequences. It concludes with a logical reduction (\u2018without loss of generality\u2019) rather than exploring alternatives or verifying an answer.",
+    "class-1": "General",
+    "class-2-reason": "Uses the phrase 'maybe I can just consider...' to tentatively propose focusing on increasing sequences; uncertainty is present.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "A three-term arithmetic progression is a sequence of three numbers a, b, c such that b - a = c - b, which simplifies to 2b = a + c.",
+    "class-1-reason": "This paragraph formally defines what constitutes a three-term arithmetic progression and restates how such triplets would be counted in a sorted sequence. It is factual and moves the solution forward; there is no hypothesis testing or solution checking.",
+    "class-1": "General",
+    "class-2-reason": "Presents the definition and mathematical condition for a 3-term AP, reformulating for analysis.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So in other words, the middle term is the average of the first and third terms.",
+    "class-1-reason": "This paragraph formally defines what constitutes a three-term arithmetic progression and restates how such triplets would be counted in a sorted sequence. It is factual and moves the solution forward; there is no hypothesis testing or solution checking.",
+    "class-1": "General",
+    "class-2-reason": "Restates another mathematical characterization (middle term as average) based on the previous equation; provides an equivalent analytic reformulation.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So given a sorted sequence, I need to count how many such triplets exist where the middle term is exactly the average of the other two.",
+    "class-1-reason": "This paragraph formally defines what constitutes a three-term arithmetic progression and restates how such triplets would be counted in a sorted sequence. It is factual and moves the solution forward; there is no hypothesis testing or solution checking.",
+    "class-1": "General",
+    "class-2-reason": "Restates the problem in new terms for the specific situation (sorted sequence, wanting to count triplets), focusing on the target to be counted, no calculation yet.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "My goal is to maximize this count.",
+    "class-1-reason": "The solver starts by stating the goal and then speculates about how to arrange the sequence for maximal APs. Phrases like 'maybe the way to maximize...' and 'wait, no. Let me think.' signal exploration and uncertainty. The solver considers possibilities and questions prior assertions, characteristic of exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "States the problem-solving goal and sets direction without exploring options or making tentative statements.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "So I need to arrange the sequence in such a way that there are as many such triplets as possible.",
+    "class-1-reason": "The solver starts by stating the goal and then speculates about how to arrange the sequence for maximal APs. Phrases like 'maybe the way to maximize...' and 'wait, no. Let me think.' signal exploration and uncertainty. The solver considers possibilities and questions prior assertions, characteristic of exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Describes the intended approach (arranging the sequence for maximum triplets) as a commitment, not a hypothesis.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "But wait, the sequence is monotone and consists of distinct reals.",
+    "class-1-reason": "The solver starts by stating the goal and then speculates about how to arrange the sequence for maximal APs. Phrases like 'maybe the way to maximize...' and 'wait, no. Let me think.' signal exploration and uncertainty. The solver considers possibilities and questions prior assertions, characteristic of exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Restates a given constraint from the problem statement without analysis or inference.",
+    "class-2": "Read"
+  },
+  {
+    "text": "So maybe the way to maximize the number of APs is to have as many evenly spaced numbers as possible?",
+    "class-1-reason": "The solver starts by stating the goal and then speculates about how to arrange the sequence for maximal APs. Phrases like 'maybe the way to maximize...' and 'wait, no. Let me think.' signal exploration and uncertainty. The solver considers possibilities and questions prior assertions, characteristic of exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Considers a hypothetical and introduces uncertainty (\u201cmaybe\u201d), speculating on a maximizing strategy.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Because in an evenly spaced sequence (like an arithmetic progression itself), every triplet that is equally spaced forms an AP.",
+    "class-1-reason": "The solver starts by stating the goal and then speculates about how to arrange the sequence for maximal APs. Phrases like 'maybe the way to maximize...' and 'wait, no. Let me think.' signal exploration and uncertainty. The solver considers possibilities and questions prior assertions, characteristic of exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Explains why an even spacing would help, moving from a possible idea to a reasoned argument.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "But if the entire sequence is an arithmetic progression, then the number of three-term APs would be (n-2 choose 1) because every consecutive triplet is an AP, but actually, in a full arithmetic progression, any three equally spaced terms form an AP.",
+    "class-1-reason": "The solver starts by stating the goal and then speculates about how to arrange the sequence for maximal APs. Phrases like 'maybe the way to maximize...' and 'wait, no. Let me think.' signal exploration and uncertainty. The solver considers possibilities and questions prior assertions, characteristic of exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Analyzes the count of APs in a full arithmetic progression, tries to quantify and correct the understanding.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Wait, no.",
+    "class-1-reason": "The solver starts by stating the goal and then speculates about how to arrange the sequence for maximal APs. Phrases like 'maybe the way to maximize...' and 'wait, no. Let me think.' signal exploration and uncertainty. The solver considers possibilities and questions prior assertions, characteristic of exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Expresses hesitation and re-evaluation; a brief interjection reflecting self-monitoring.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "Let me think.",
+    "class-1-reason": "The solver starts by stating the goal and then speculates about how to arrange the sequence for maximal APs. Phrases like 'maybe the way to maximize...' and 'wait, no. Let me think.' signal exploration and uncertainty. The solver considers possibilities and questions prior assertions, characteristic of exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "A meta-cognitive pause indicating the model is thinking or reconsidering.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "In a standard arithmetic progression, say 1, 2, 3, 4, 5, then the three-term APs are 1,2,3; 2,3,4; 3,4,5; but also 1,3,5.",
+    "class-1-reason": "This paragraph explores a specific instance (the sequence 1,2,3,4,5), counting possible APs and generalizing to an n-term AP. The solver is investigating patterns and possibilities rather than methodically executing a fixed plan, so this paragraph is exploratory.",
+    "class-1": "Explore",
+    "class-2-reason": "Provides a concrete example and lists three-term APs, illustrating with specific data.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "So actually, there are more APs than just the consecutive ones.",
+    "class-1-reason": "This paragraph explores a specific instance (the sequence 1,2,3,4,5), counting possible APs and generalizing to an n-term AP. The solver is investigating patterns and possibilities rather than methodically executing a fixed plan, so this paragraph is exploratory.",
+    "class-1": "Explore",
+    "class-2-reason": "Infers from the previous implementation that the number of APs exceeds the consecutive case, analytically clarifying.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So in general, for a sequence of length n which is itself an arithmetic progression, how many three-term APs does it contain?",
+    "class-1-reason": "This paragraph explores a specific instance (the sequence 1,2,3,4,5), counting possible APs and generalizing to an n-term AP. The solver is investigating patterns and possibilities rather than methodically executing a fixed plan, so this paragraph is exploratory.",
+    "class-1": "Explore",
+    "class-2-reason": "Asks a speculative question about the number of APs in an AP sequence; expresses uncertainty with 'how many'.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Let me see.",
+    "class-1-reason": "This paragraph methodically analyzes how to count three-term APs in a full arithmetic progression, applying standard reasoning and restating the problem in mathematical terms without uncertainty or trial-and-error. It proceeds with the plan initiated earlier.",
+    "class-1": "General",
+    "class-2-reason": "Short phrase indicating pausing to think or monitor reasoning.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "For each possible common difference d, but since the entire sequence is an arithmetic progression with fixed difference d, then any three terms that are equally spaced will form an AP.",
+    "class-1-reason": "This paragraph methodically analyzes how to count three-term APs in a full arithmetic progression, applying standard reasoning and restating the problem in mathematical terms without uncertainty or trial-and-error. It proceeds with the plan initiated earlier.",
+    "class-1": "General",
+    "class-2-reason": "Explains how, in an arithmetic progression, any three equally spaced terms make an AP; gives mathematical explanation/certainty.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So the number of three-term APs in the full arithmetic progression is equal to the number of ways to choose three terms such that the middle term is the average of the first and third.",
+    "class-1-reason": "This paragraph methodically analyzes how to count three-term APs in a full arithmetic progression, applying standard reasoning and restating the problem in mathematical terms without uncertainty or trial-and-error. It proceeds with the plan initiated earlier.",
+    "class-1": "General",
+    "class-2-reason": "Makes a clear analytic statement deducing the mathematical condition for a three-term AP in an arithmetic progression.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "In the case of the full AP, the number of such triplets is the number of pairs of terms that are symmetric around some middle term.",
+    "class-1-reason": "Here, the solver continues systematically working through the counting strategy for APs, logically stepping through the arrangement and the combinatorics involved, and starts to test with a specific example but within the main reasoning flow. There is no exploratory or verification tone.",
+    "class-1": "General",
+    "class-2-reason": "Analyzes the structure of AP triplets by referring to symmetry around a middle term, making a deduction.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "For each middle term, how many pairs are symmetric around it?",
+    "class-1-reason": "Here, the solver continues systematically working through the counting strategy for APs, logically stepping through the arrangement and the combinatorics involved, and starts to test with a specific example but within the main reasoning flow. There is no exploratory or verification tone.",
+    "class-1": "General",
+    "class-2-reason": "Announces a plan to count for each middle term (outlines a mathematical approach).",
+    "class-2": "Plan"
+  },
+  {
+    "text": "For a term at position i (1-based index), the number of pairs symmetric around it would be the minimum of i - 1 and n - i.",
+    "class-1-reason": "Here, the solver continues systematically working through the counting strategy for APs, logically stepping through the arrangement and the combinatorics involved, and starts to test with a specific example but within the main reasoning flow. There is no exploratory or verification tone.",
+    "class-1": "General",
+    "class-2-reason": "States the analytic formula for the number of symmetric pairs given a position i, explaining the idea in precise mathematical terms.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Wait, maybe not exactly.",
+    "class-1-reason": "Here, the solver continues systematically working through the counting strategy for APs, logically stepping through the arrangement and the combinatorics involved, and starts to test with a specific example but within the main reasoning flow. There is no exploratory or verification tone.",
+    "class-1": "General",
+    "class-2-reason": "Short interjection, signals doubt or a pause to reconsider reasoning.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "Let me think with an example.",
+    "class-1-reason": "Here, the solver continues systematically working through the counting strategy for APs, logically stepping through the arrangement and the combinatorics involved, and starts to test with a specific example but within the main reasoning flow. There is no exploratory or verification tone.",
+    "class-1": "General",
+    "class-2-reason": "Announces the intent to work through a specific example, outlining the next (mathematical) action.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "Take n = 5: positions 1,2,3,4,5.",
+    "class-1-reason": "This paragraph selects a concrete example (n = 5) to illustrate the general logic. Although this particularizes, it does so in service of the original plan to clarify the abstract reasoning and is not trying an unplanned or alternate approach.",
+    "class-1": "General",
+    "class-2-reason": "Specifies the setup for the example (states data for analysis); introduces positions for use in the next calculation.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "For the middle term at position 3: the pairs are (1,5), (2,4).",
+    "class-1-reason": "The solver applies their general scheme to the position 3 case for n = 5, directly deriving the number of symmetric pairs\u2014straight computation for illustration, continuing the prior logical sequence.",
+    "class-1": "General",
+    "class-2-reason": "Describes how pairs are constructed for a specific middle term; it is applying the analytic framework to an explicit example, stating which pairs are symmetric.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So 2 pairs.",
+    "class-1-reason": "The solver applies their general scheme to the position 3 case for n = 5, directly deriving the number of symmetric pairs\u2014straight computation for illustration, continuing the prior logical sequence.",
+    "class-1": "General",
+    "class-2-reason": "States the direct count of pairs for the given case, summarizing the previous analytic breakdown.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "For position 2: the only possible pair is (1,3).",
+    "class-1-reason": "In this paragraph, the solver similarly processes position 2 for n = 5, computing the number of symmetric pairs; this is a step-by-step, confident application of earlier logic, with no evidence of exploratory or verification focus.",
+    "class-1": "General",
+    "class-2-reason": "Applies the structural rule (symmetric pairs) to another position, identifying the only valid symmetric pair.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "For position 4: the only possible pair is (3,5).",
+    "class-1-reason": "The paragraph systematically examines the possible symmetric pair for position 4 in the example (n=5), extending the case-by-case enumeration from the prior analysis. There is no sign of uncertainty or a search for new avenues; it simply continues the logical calculation. Thus, this is stepwise solution work.",
+    "class-1": "General",
+    "class-2-reason": "Similar to sentence 3, explicitly identifies the only possible symmetric pair for a specific position.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "For positions 1 and 5: no pairs.",
+    "class-1-reason": "Here, the paragraph completes the direct computation for the edge cases (positions 1 and 5), confirming that there are no possible symmetric pairs for those positions. This continues the same methodical counting and does not explore alternatives or verify past results.",
+    "class-1": "General",
+    "class-2-reason": "Analyzes and states that certain positions do not allow for any symmetric pairs, based on their endpoints.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So total number of three-term APs: for position 3: 2, positions 2 and 4: 1 each.",
+    "class-1-reason": "This paragraph summarizes the findings of the previous computations, tallying up the total number of three-term APs found through the systematic approach. This is a straightforward conclusion of the prior steps, with no speculative or checking tone.",
+    "class-1": "General",
+    "class-2-reason": "Sums the analytically determined counts for each position to reach a subtotal; this is summing logical conclusions.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So total 4.",
+    "class-1-reason": "This paragraph summarizes the findings of the previous computations, tallying up the total number of three-term APs found through the systematic approach. This is a straightforward conclusion of the prior steps, with no speculative or checking tone.",
+    "class-1": "General",
+    "class-2-reason": "States the final count obtained by analytic reasoning, acting as a summary of calculated results.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "But wait, in the sequence 1,2,3,4,5, the three-term APs are:",
+    "class-1-reason": "This paragraph is a reflective check: it lists out the actual three-term APs for the specific sequence (1,2,3,4,5) as a cross-verification of the count previously computed, introducing doubt ('But wait') and directly comparing the established total to an explicit enumeration. This is a purposeful verification step.",
+    "class-1": "Verify",
+    "class-2-reason": "Shifts to an explicit check/enumeration of actual APs for a sanity check, marking the start of verification.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "1,2,3; 2,3,4; 3,4,5; 1,3,5.",
+    "class-1-reason": "This is the conclusion of the verification routine, explicitly enumerating all possible three-term APs in the example and confirming that the count matches the earlier calculation. Its main function is to validate correctness, not to drive the solution forward.",
+    "class-1": "Verify",
+    "class-2-reason": "Explicitly lists the triplets in the sequence to confirm the analytic count, a direct verification step.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "That's 4, which matches.",
+    "class-1-reason": "This is the conclusion of the verification routine, explicitly enumerating all possible three-term APs in the example and confirming that the count matches the earlier calculation. Its main function is to validate correctness, not to drive the solution forward.",
+    "class-1": "Verify",
+    "class-2-reason": "Confirms the match between the previously calculated total and the enumerated APs, finalizing the verification.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "So in general, for a full arithmetic progression of length n, the number of three-term APs is (n - 2) + (n - 4) + .",
+    "class-1-reason": "The paragraph attempts to generalize the count of three-term APs for arbitrary n, tries a formula, then pauses, notices a possible error, and returns to n=4 as a check. The tone is uncertain and investigates different approaches/formulas, pointing to exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Suggests a general formula, but the sentence ends with a '.', showing uncertainty and not completion; it's an unfinished or tentative idea, not a concrete plan, analysis, or calculation.",
+    "class-2": "Explore"
+  },
+  {
+    "text": ".",
+    "class-1-reason": "The paragraph attempts to generalize the count of three-term APs for arbitrary n, tries a formula, then pauses, notices a possible error, and returns to n=4 as a check. The tone is uncertain and investigates different approaches/formulas, pointing to exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Is just a continuation of the uncertainty or incompleteness of the previous thought, no declaration of intent, analysis, or calculation.",
+    "class-2": "Explore"
+  },
+  {
+    "text": ".",
+    "class-1-reason": "The paragraph attempts to generalize the count of three-term APs for arbitrary n, tries a formula, then pauses, notices a possible error, and returns to n=4 as a check. The tone is uncertain and investigates different approaches/formulas, pointing to exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Continues the previous line's unfinished, speculative, or tentative thread; conveys uncertainty, not explicit analysis nor action.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "depending on whether n is odd or even.",
+    "class-1-reason": "The paragraph attempts to generalize the count of three-term APs for arbitrary n, tries a formula, then pauses, notices a possible error, and returns to n=4 as a check. The tone is uncertain and investigates different approaches/formulas, pointing to exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Presents an open condition that depends on further cases, using uncertain/conditional language; it is not analysis or implementation, just exploring alternative cases or outcomes.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Wait, no.",
+    "class-1-reason": "The paragraph attempts to generalize the count of three-term APs for arbitrary n, tries a formula, then pauses, notices a possible error, and returns to n=4 as a check. The tone is uncertain and investigates different approaches/formulas, pointing to exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "An interjection marking self-correction or doubt\u2014shows transition or hesitation but with no substantive math content.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "Wait, in the n=5 case, it's 4.",
+    "class-1-reason": "The paragraph attempts to generalize the count of three-term APs for arbitrary n, tries a formula, then pauses, notices a possible error, and returns to n=4 as a check. The tone is uncertain and investigates different approaches/formulas, pointing to exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "This sentence reflects checking by recounting an earlier case 'Wait, in the n=5 case, it's 4.' which shows an explicit evaluation of previous work\u2014counts as Verify per guidebook.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "For n=4, let's see: sequence 1,2,3,4.",
+    "class-1-reason": "The paragraph attempts to generalize the count of three-term APs for arbitrary n, tries a formula, then pauses, notices a possible error, and returns to n=4 as a check. The tone is uncertain and investigates different approaches/formulas, pointing to exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Announces checking another specific case with 'let's see:'; this is a declaration of intent to check/evaluate, so it is Plan.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "Three-term APs: 1,2,3; 2,3,4; 1,2,3 (wait, but 1,3,5 isn't there).",
+    "class-1-reason": "This paragraph tries to list the APs explicitly for n=4, expresses confusion ('wait'), and considers missing APs. The solver is examining possibilities to clarify (testing cases), which is exploratory in nature.",
+    "class-1": "Explore",
+    "class-2-reason": "Lists specific APs found and performs variant arithmetic checks, but includes a side note ('wait, but 1,3,5 isn\u2019t there'), evaluating and verifying against expectations. The main function is evaluative\u2014checking presence/absence, so Verify.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Wait, n=4: 1,2,3,4.",
+    "class-1-reason": "This paragraph tries to list the APs explicitly for n=4, expresses confusion ('wait'), and considers missing APs. The solver is examining possibilities to clarify (testing cases), which is exploratory in nature.",
+    "class-1": "Explore",
+    "class-2-reason": "'Wait, n=4: 1,2,3,4.' is a monitoring phrase followed by re-stating a case for scrutiny. The 'Wait' makes this a Monitor class; it's a metacognitive pause.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "APs: 1,2,3; 2,3,4; and 1,2,3 (with difference 1), and 1,3,5 isn't present.",
+    "class-1-reason": "Here, the solver continues testing the n=4 case, checks explicit APs, and corrects earlier statements, questioning which APs exist. This is still a process of exploring the example to find a pattern or correct count.",
+    "class-1": "Explore",
+    "class-2-reason": "Lists APs and parenthetically notes absence ('and 1,2,3 (with difference 1), and 1,3,5 isn\u2019t present'); actively checking and confirming sequences\u2014best matched to Verify.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Wait, no.",
+    "class-1-reason": "Here, the solver continues testing the n=4 case, checks explicit APs, and corrects earlier statements, questioning which APs exist. This is still a process of exploring the example to find a pattern or correct count.",
+    "class-1": "Explore",
+    "class-2-reason": "Short interjection expressing hesitation and realizing a previous error; no substantive problem-solving.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "In n=4, the APs are:",
+    "class-1-reason": "Here, the solver continues testing the n=4 case, checks explicit APs, and corrects earlier statements, questioning which APs exist. This is still a process of exploring the example to find a pattern or correct count.",
+    "class-1": "Explore",
+    "class-2-reason": "Restating information to list all the APs appearing in n=4, setting up enumeration; describing structure for further analysis.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "1,2,3; 2,3,4; and 1,2,3 (no, that's same as first).",
+    "class-1-reason": "The solver is still sorting through which APs are present for n=4, clarifies the missing APs, discusses why certain sequences are absent, and re-examines the counting. This paragraph is investigative rather than assertive, so it's exploratory.",
+    "class-1": "Explore",
+    "class-2-reason": "Enumerating individual APs and recognizing overlap/sameness of the previously listed ones; checking the structure and content analytically.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Wait, maybe only 1,2,3; 2,3,4; and 1,3,5 isn't there because 5 isn't in the sequence.",
+    "class-1-reason": "The solver is still sorting through which APs are present for n=4, clarifies the missing APs, discusses why certain sequences are absent, and re-examines the counting. This paragraph is investigative rather than assertive, so it's exploratory.",
+    "class-1": "Explore",
+    "class-2-reason": "Tentatively supposing a reason for the missing AP and expressing this with uncertainty using 'maybe'; suggesting a possible explanation.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "So for n=4, two three-term APs.",
+    "class-1-reason": "The solver is still sorting through which APs are present for n=4, clarifies the missing APs, discusses why certain sequences are absent, and re-examines the counting. This paragraph is investigative rather than assertive, so it's exploratory.",
+    "class-1": "Explore",
+    "class-2-reason": "Drawing a conclusion from the enumeration, stating the number of APs in the example sequence based on previous reasoning steps.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Wait, but according to the previous method, for each position:",
+    "class-1-reason": "The solver is still sorting through which APs are present for n=4, clarifies the missing APs, discusses why certain sequences are absent, and re-examines the counting. This paragraph is investigative rather than assertive, so it's exploratory.",
+    "class-1": "Explore",
+    "class-2-reason": "Expressing doubt and referencing a previous method as a possible alternative approach, indicated by 'but according to the previous method'; shows uncertainty.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Position 2: pair (1,3)",
+    "class-1-reason": "This line starts calculating potential APs for a specific position using a methodical approach, but continues the case-testing process with concrete examples. The context is still exploration of n=4 to understand the general pattern.",
+    "class-1": "Explore",
+    "class-2-reason": "Reporting a specific pair possibility in a given sequence position; concretely identifying an AP (not planning, just stating the instance).",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Position 3: pair (2,4)",
+    "class-1-reason": "This paragraph is simply identifying a possible pair for position 3, systematically proceeding through the procedure for listing APs in the sequence and does not show hedging or any checking activity.",
+    "class-1": "General",
+    "class-2-reason": "Reporting another concrete AP for position 3, mirroring the analytic enumeration of APs as in previous steps.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Positions 1 and 4: no pairs.",
+    "class-1-reason": "This step continues the systematic enumeration of APs by examining remaining positions; it\u2019s factual commentary, not experimental or checking.",
+    "class-1": "General",
+    "class-2-reason": "Stating that edge positions yield no pairs for three-term APs, again analytically explaining the structure based on sequence positions.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So total 2 three-term APs.",
+    "class-1-reason": "The paragraph transitions to generalization, summarizing a possible formula for the total number of APs and then suggesting a correction or refinement to the approach, ultimately proposing a formula. The overall paragraph is advancing the solution methodically, with corrections being part of general problem-solving, rather than engaging in open-ended exploration or checking correctness.",
+    "class-1": "General",
+    "class-2-reason": "Summarizing and concluding from explicit count of APs, affirming the total found in enumeration.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So in general, for a full arithmetic progression of length n, the number of three-term APs is (n - 2) + (n - 4) + .",
+    "class-1-reason": "The paragraph transitions to generalization, summarizing a possible formula for the total number of APs and then suggesting a correction or refinement to the approach, ultimately proposing a formula. The overall paragraph is advancing the solution methodically, with corrections being part of general problem-solving, rather than engaging in open-ended exploration or checking correctness.",
+    "class-1": "General",
+    "class-2-reason": "The sentence generalizes a counting method for APs with a partial sum expression, deducing a formula based on analytic reasoning.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": ".",
+    "class-1-reason": "The paragraph transitions to generalization, summarizing a possible formula for the total number of APs and then suggesting a correction or refinement to the approach, ultimately proposing a formula. The overall paragraph is advancing the solution methodically, with corrections being part of general problem-solving, rather than engaging in open-ended exploration or checking correctness.",
+    "class-1": "General",
+    "class-2-reason": "Isolated punctuation, does not express a mathematical step, reasoning, or reflection; acts as a filler.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": ".",
+    "class-1-reason": "The paragraph transitions to generalization, summarizing a possible formula for the total number of APs and then suggesting a correction or refinement to the approach, ultimately proposing a formula. The overall paragraph is advancing the solution methodically, with corrections being part of general problem-solving, rather than engaging in open-ended exploration or checking correctness.",
+    "class-1": "General",
+    "class-2-reason": "Same as previous\u2014punctuation or ellipsis that acts as a thinking pause or place-holder.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "until we reach 0 or 1.",
+    "class-1-reason": "The paragraph transitions to generalization, summarizing a possible formula for the total number of APs and then suggesting a correction or refinement to the approach, ultimately proposing a formula. The overall paragraph is advancing the solution methodically, with corrections being part of general problem-solving, rather than engaging in open-ended exploration or checking correctness.",
+    "class-1": "General",
+    "class-2-reason": "This is a clarification of the summing procedure in the formula, setting a logical boundary (0 or 1) for the summation; it explains analytic limits.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Wait, no, actually, for each middle term at position i (from 2 to n-1), the number of APs centered at i is min(i - 1, n - i).",
+    "class-1-reason": "The paragraph transitions to generalization, summarizing a possible formula for the total number of APs and then suggesting a correction or refinement to the approach, ultimately proposing a formula. The overall paragraph is advancing the solution methodically, with corrections being part of general problem-solving, rather than engaging in open-ended exploration or checking correctness.",
+    "class-1": "General",
+    "class-2-reason": "Explains, with certainty, the formula for APs centered at position i, introducing the min-expression for analytical generalization.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So the total number is sum_{i=2}^{n-1} min(i - 1, n - i).",
+    "class-1-reason": "The paragraph transitions to generalization, summarizing a possible formula for the total number of APs and then suggesting a correction or refinement to the approach, ultimately proposing a formula. The overall paragraph is advancing the solution methodically, with corrections being part of general problem-solving, rather than engaging in open-ended exploration or checking correctness.",
+    "class-1": "General",
+    "class-2-reason": "Deduces the overall analytic formula by summing over a specified range using the min-expression.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Wait, let's test this formula for n=5:",
+    "class-1-reason": "This paragraph explicitly states an intent to test the previously suggested formula for a specific value (n=5), which is an exploratory activity to gather insight about the formula's validity rather than systematic solution progress or formal verification. The purpose is to see if the general formula matches known outcomes.",
+    "class-1": "Explore",
+    "class-2-reason": "Announces the explicit test of a derived formula for a specific value\u2014it is a plan to check an example, a specific intention to proceed.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "sum from i=2 to 4 of min(i -1, 5 - i):",
+    "class-1-reason": "This paragraph works through the test case invoked in the preceding 'Explore' episode, carrying out the actual computation and calculation for the specific n=5 example, supporting the exploration by checking a concrete case. The process of summing up min(i - 1, 5 - i) is part of exploring the formula through an example.",
+    "class-1": "Explore",
+    "class-2-reason": "States concretely the chosen sum for the specific test, implementing the calculation step-by-step.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "i=2: min(1,3) =1",
+    "class-1-reason": "This paragraph is directly calculating the value of min(i-1, n-i) for i=2 without any uncertainty or verification\u2014it's methodically implementing a solution step.",
+    "class-1": "General",
+    "class-2-reason": "Executes one term of the summation (setting i=2 and evaluating the min expression) as part of the computation.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "i=3: min(2,2)=2",
+    "class-1-reason": "This paragraph continues the systematic computation for i=3, just as part of the standard calculation. There's no exploration of alternatives or explicit checking.",
+    "class-1": "General",
+    "class-2-reason": "Executes the next term of the summation (i=3), providing the explicit value\u2014direct calculation.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "i=4: min(3,1)=1",
+    "class-1-reason": "This is a direct computation for i=4, similar in function and tone to the previous paragraphs. It's a straightforward application of the procedure.",
+    "class-1": "General",
+    "class-2-reason": "Explicitly calculates min(3,1)=1 as part of summing AP counts; it's a concrete computation.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "Total sum:1+2+1=4, which matches.",
+    "class-1-reason": "Here the sum of the computed values is calculated and compared to a previously determined value ('which matches'), confirming the correctness. The explicit comparison and confirmation constitute verification.",
+    "class-1": "Verify",
+    "class-2-reason": "States that the sum matches the test case; this is concluding and confirming correctness.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "For n=4:",
+    "class-1-reason": "This is introducing a new value of n (n=4) to repeat the established process. The action is not exploratory or checking, just setting up the next standard case.",
+    "class-1": "General",
+    "class-2-reason": "Identifies the value of n for a new test case, directly specifying a given parameter.",
+    "class-2": "Read"
+  },
+  {
+    "text": "i=2: min(1, 2)=1",
+    "class-1-reason": "This paragraph carries out and states a specific computation for a concrete value of i in the context of the sequence, methodically applying min(i-1, n-i) for i = 2 in the sequence. There is no indication of uncertainty, checking, or investigating an alternative approach\u2014it\u2019s a straightforward application toward the solution.",
+    "class-1": "General",
+    "class-2-reason": "Carries out min(1,2)=1 as a step in summing up for n=4, which is a concrete operation.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "i=3: min(2,1)=1",
+    "class-1-reason": "Similar to paragraph 1, this step explicitly calculates another value of min(i-1, n-i), namely for i = 3, again with a direct calculation and no exploratory or verification focus.",
+    "class-1": "General",
+    "class-2-reason": "Carries out min(2,1)=1 as computation for the test case; it's a concrete calculation.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "Total sum:1+1=2, which matches.",
+    "class-1-reason": "This paragraph sums previous computed terms, confirming that the total matches the required count, but this is the natural culmination of computations within the mainline reasoning rather than an explicit act of checking correctness outside of solution progress.",
+    "class-1": "General",
+    "class-2-reason": "States the total and notes it matches (but without explicit confirmation language); just sums the computed values.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "So in general, for a full arithmetic progression, the number of three-term APs is sum_{i=1}^{n-2} min(i, n - 1 - i).",
+    "class-1-reason": "Here, the solver proposes a general summation formula and then immediately begins to question and investigate whether another perspective might clarify or alter how to count the three-term APs. The phrases 'Wait, maybe another way,' and 'Let's note that...' signal the solver is exploring structural interpretations and not just carrying out an established plan. The paragraph's dominant purpose is exploratory: searching for an alternative or more insightful way to generalize the counting.",
+    "class-1": "Explore",
+    "class-2-reason": "Suggests a general formula and explores its possible correctness; the language 'so in general' and presenting a new sum are exploratory.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Wait, maybe another way.",
+    "class-1-reason": "Here, the solver proposes a general summation formula and then immediately begins to question and investigate whether another perspective might clarify or alter how to count the three-term APs. The phrases 'Wait, maybe another way,' and 'Let's note that...' signal the solver is exploring structural interpretations and not just carrying out an established plan. The paragraph's dominant purpose is exploratory: searching for an alternative or more insightful way to generalize the counting.",
+    "class-1": "Explore",
+    "class-2-reason": "\u2018Wait, maybe another way\u2019 is tentative and announces uncertainty/consideration of alternatives.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "Let's note that the number of three-term APs in a full AP sequence is equal to the number of pairs of terms that are equidistant from some term.",
+    "class-1-reason": "Here, the solver proposes a general summation formula and then immediately begins to question and investigate whether another perspective might clarify or alter how to count the three-term APs. The phrases 'Wait, maybe another way,' and 'Let's note that...' signal the solver is exploring structural interpretations and not just carrying out an established plan. The paragraph's dominant purpose is exploratory: searching for an alternative or more insightful way to generalize the counting.",
+    "class-1": "Explore",
+    "class-2-reason": "'Let's note that...' analyzes a structure and introduces a general correspondence, a theoretical observation.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "For each term, the number of such pairs is the number of terms to the left times the number of terms to the right.",
+    "class-1-reason": "Here, the solver proposes a general summation formula and then immediately begins to question and investigate whether another perspective might clarify or alter how to count the three-term APs. The phrases 'Wait, maybe another way,' and 'Let's note that...' signal the solver is exploring structural interpretations and not just carrying out an established plan. The paragraph's dominant purpose is exploratory: searching for an alternative or more insightful way to generalize the counting.",
+    "class-1": "Explore",
+    "class-2-reason": "Explains the analytical structure: number of pairs as product of left and right, which is reasoning about the problem structure.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Wait, no.",
+    "class-1-reason": "Here, the solver proposes a general summation formula and then immediately begins to question and investigate whether another perspective might clarify or alter how to count the three-term APs. The phrases 'Wait, maybe another way,' and 'Let's note that...' signal the solver is exploring structural interpretations and not just carrying out an established plan. The paragraph's dominant purpose is exploratory: searching for an alternative or more insightful way to generalize the counting.",
+    "class-1": "Explore",
+    "class-2-reason": "Short interjection showing self-monitoring and pausing, not substantive problem solving.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "For each term, if there are k terms to the left and k terms to the right, then the number of pairs symmetric around that term is k.",
+    "class-1-reason": "Here, the solver proposes a general summation formula and then immediately begins to question and investigate whether another perspective might clarify or alter how to count the three-term APs. The phrases 'Wait, maybe another way,' and 'Let's note that...' signal the solver is exploring structural interpretations and not just carrying out an established plan. The paragraph's dominant purpose is exploratory: searching for an alternative or more insightful way to generalize the counting.",
+    "class-1": "Explore",
+    "class-2-reason": "Logical deduction about the structure: stating how symmetry leads to k pairs, showing mathematical inference.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "For example, if a term has m terms on the left and m terms on the right, then there are m possible pairs.",
+    "class-1-reason": "Here, the solver proposes a general summation formula and then immediately begins to question and investigate whether another perspective might clarify or alter how to count the three-term APs. The phrases 'Wait, maybe another way,' and 'Let's note that...' signal the solver is exploring structural interpretations and not just carrying out an established plan. The paragraph's dominant purpose is exploratory: searching for an alternative or more insightful way to generalize the counting.",
+    "class-1": "Explore",
+    "class-2-reason": "Explains with a concrete example, expressing a general analytic truth, not tentative.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "If the numbers are unequal, then it's the minimum of left and right.",
+    "class-1-reason": "Here, the solver proposes a general summation formula and then immediately begins to question and investigate whether another perspective might clarify or alter how to count the three-term APs. The phrases 'Wait, maybe another way,' and 'Let's note that...' signal the solver is exploring structural interpretations and not just carrying out an established plan. The paragraph's dominant purpose is exploratory: searching for an alternative or more insightful way to generalize the counting.",
+    "class-1": "Explore",
+    "class-2-reason": "States a mathematical rule (min of left/right) with certainty, not exploring options.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "But actually, in a full AP, you can have any pair (a, c) such that (a + c)/2 is also in the sequence.",
+    "class-1-reason": "Again, the solver expresses explicit uncertainty about whether their most recent interpretation captures the correct set of triplets, revisiting the underlying structure with phrases like 'Wait, no. Let me think again.' The focus is on re-examining and searching for the right combinatorial characterization, manifestly exploring further possibilities and interpretations.",
+    "class-1": "Explore",
+    "class-2-reason": "Restates the general structural property of APs, logical deduction about valid triples.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So the total number of such triplets is equal to the number of pairs (a, c) where a < c and (a + c)/2 is in the sequence.",
+    "class-1-reason": "Again, the solver expresses explicit uncertainty about whether their most recent interpretation captures the correct set of triplets, revisiting the underlying structure with phrases like 'Wait, no. Let me think again.' The focus is on re-examining and searching for the right combinatorial characterization, manifestly exploring further possibilities and interpretations.",
+    "class-1": "Explore",
+    "class-2-reason": "Provides a definite conclusion about counting triplets, not a speculative exploration.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So for the full AP, this is equivalent to choosing any two terms with an even distance apart?",
+    "class-1-reason": "Again, the solver expresses explicit uncertainty about whether their most recent interpretation captures the correct set of triplets, revisiting the underlying structure with phrases like 'Wait, no. Let me think again.' The focus is on re-examining and searching for the right combinatorial characterization, manifestly exploring further possibilities and interpretations.",
+    "class-1": "Explore",
+    "class-2-reason": "Explicitly asks a clarifying question, shows tentativeness with a question mark\u2014uncertainty about the equivalence.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Wait, no.",
+    "class-1-reason": "Again, the solver expresses explicit uncertainty about whether their most recent interpretation captures the correct set of triplets, revisiting the underlying structure with phrases like 'Wait, no. Let me think again.' The focus is on re-examining and searching for the right combinatorial characterization, manifestly exploring further possibilities and interpretations.",
+    "class-1": "Explore",
+    "class-2-reason": "Brief self-correction/pause, reflects metacognitive monitoring with no content.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "Let me think again.",
+    "class-1-reason": "Again, the solver expresses explicit uncertainty about whether their most recent interpretation captures the correct set of triplets, revisiting the underlying structure with phrases like 'Wait, no. Let me think again.' The focus is on re-examining and searching for the right combinatorial characterization, manifestly exploring further possibilities and interpretations.",
+    "class-1": "Explore",
+    "class-2-reason": "Shows a pause to reflect and reconsider, metacognitive, not analytic or implementational.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "In the full AP, for any two terms a_i and a_j (i < j), the average (a_i + a_j)/2 is equal to a_{(i + j)/2} if (i + j) is even.",
+    "class-1-reason": "This paragraph presents a step-by-step generalization of the 3-term AP count in a full arithmetic progression. The reasoning is methodical, declaratively working through the relationship between indices without speculation or checking\u2014it's pushing the solution forward based on prior observations.",
+    "class-1": "General",
+    "class-2-reason": "States an analytic property connecting indices and values in a full AP, explaining a mathematical relationship.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So in order for (a_i + a_j)/2 to be present in the sequence, (i + j) must be even, meaning that the indices are both odd or both even, so their sum is even.",
+    "class-1-reason": "This paragraph presents a step-by-step generalization of the 3-term AP count in a full arithmetic progression. The reasoning is methodical, declaratively working through the relationship between indices without speculation or checking\u2014it's pushing the solution forward based on prior observations.",
+    "class-1": "General",
+    "class-2-reason": "This sentence deduces a necessary condition for (a_i + a_j)/2 to be present in the sequence, logically inferring the constraint based on index parity.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Therefore, the number of such pairs is equal to the number of pairs of indices i < j such that (i + j) is even.",
+    "class-1-reason": "This paragraph presents a step-by-step generalization of the 3-term AP count in a full arithmetic progression. The reasoning is methodical, declaratively working through the relationship between indices without speculation or checking\u2014it's pushing the solution forward based on prior observations.",
+    "class-1": "General",
+    "class-2-reason": "It logically concludes the previous deduction to a statement about counting such index pairs.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "For each such pair, there is a corresponding middle term a_{(i + j)/2}.",
+    "class-1-reason": "This paragraph presents a step-by-step generalization of the 3-term AP count in a full arithmetic progression. The reasoning is methodical, declaratively working through the relationship between indices without speculation or checking\u2014it's pushing the solution forward based on prior observations.",
+    "class-1": "General",
+    "class-2-reason": "This sentence associates a mathematical structure to each valid index pair, making a certain logical observation.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Therefore, the number of three-term APs in the full AP sequence is equal to the number of pairs of indices with even sum.",
+    "class-1-reason": "Here, the solver translates the prior step into a clear equivalence: the number of 3-term APs equals the number of pairs of indices with even sum, and sets up the task of counting those pairs. There is no uncertainty or checking; it's an explicit step in the planned solution.",
+    "class-1": "General",
+    "class-2-reason": "Summarizes and confirms the analytic result, connecting the number of APs to index pairs with even sum.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "How many such pairs are there?",
+    "class-1-reason": "Here, the solver translates the prior step into a clear equivalence: the number of 3-term APs equals the number of pairs of indices with even sum, and sets up the task of counting those pairs. There is no uncertainty or checking; it's an explicit step in the planned solution.",
+    "class-1": "General",
+    "class-2-reason": "The sentence raises a sub-question about enumeration, initiating a subproblem for explicit calculation. It is planning to calculate but does not yet do so.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "In a sequence of length n, the number of pairs with even sum can be calculated as follows: Let\u2019s denote m = floor(n/2), k = ceil(n/2).",
+    "class-1-reason": "This paragraph computes, in general terms, how to count the pairs with even sums, introducing variables and a formula. It continues the planned, systematic solution without divergence or uncertainty.",
+    "class-1": "General",
+    "class-2-reason": "This sentence announces the approach to calculate the number, defines needed notation (m, k), setting up for concrete computation.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "Then the number of pairs where both indices are even or both are odd.",
+    "class-1-reason": "This paragraph computes, in general terms, how to count the pairs with even sums, introducing variables and a formula. It continues the planned, systematic solution without divergence or uncertainty.",
+    "class-1": "General",
+    "class-2-reason": "This sentence explicitly describes the category being counted, as part of analytic organization.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "The number of even indices is m, the number of odd indices is k.",
+    "class-1-reason": "This paragraph computes, in general terms, how to count the pairs with even sums, introducing variables and a formula. It continues the planned, systematic solution without divergence or uncertainty.",
+    "class-1": "General",
+    "class-2-reason": "Here, the sentence provides explicit formulas for the number of even and odd indices, doing direct deduction/observation.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So the total number is C(m, 2) + C(k, 2).",
+    "class-1-reason": "This paragraph computes, in general terms, how to count the pairs with even sums, introducing variables and a formula. It continues the planned, systematic solution without divergence or uncertainty.",
+    "class-1": "General",
+    "class-2-reason": "Gives the general formula for the total number, performing the main calculation step.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "Wait, for example, if n is even, say n=4.",
+    "class-1-reason": "This paragraph explicitly pauses to check the formula with a concrete numerical example (n=4), and comments that the result matches previous calculations. This is a verification of the developed formula against an example case.",
+    "class-1": "Verify",
+    "class-2-reason": "This sentence signals a meta-reflective move to check with a concrete example, introducing the verification by a specific case.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Then m = 2 even indices (2,4), k=2 odd indices (1,3).",
+    "class-1-reason": "This paragraph explicitly pauses to check the formula with a concrete numerical example (n=4), and comments that the result matches previous calculations. This is a verification of the developed formula against an example case.",
+    "class-1": "Verify",
+    "class-2-reason": "This sentence lists the computed counts of even/odd indices for a specific n and assigns them to m and k, which is an explicit calculation for verification.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "So C(2,2) + C(2,2) =1 +1=2, which matches our previous result.",
+    "class-1-reason": "This paragraph explicitly pauses to check the formula with a concrete numerical example (n=4), and comments that the result matches previous calculations. This is a verification of the developed formula against an example case.",
+    "class-1": "Verify",
+    "class-2-reason": "Performs the computation of the binomial coefficients and compares to the previous result, confirming the correctness.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "If n=5, then m=2 even indices (2,4), k=3 odd indices (1,3,5).",
+    "class-1-reason": "Again, this paragraph checks the formula for another example (n=5), explicitly comparing the formula's result to the known count and affirming 'which matches.' The focus is verifying correctness for a specific instance.",
+    "class-1": "Verify",
+    "class-2-reason": "Computes the values of m and k for n=5, associating them with their respective indices, as a concrete example for checking.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "So C(2,2)+C(3,2)=1 +3=4, which matches the n=5 case.",
+    "class-1-reason": "Again, this paragraph checks the formula for another example (n=5), explicitly comparing the formula's result to the known count and affirming 'which matches.' The focus is verifying correctness for a specific instance.",
+    "class-1": "Verify",
+    "class-2-reason": "Computes the binomial sums and explicitly matches with the n=5 case, verifying the pattern with another instance.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "So in general, the number of three-term APs in a full arithmetic progression of length n is C(ceil(n/2), 2) + C(floor(n/2), 2).",
+    "class-1-reason": "States the general formula for counting three-term APs for full arithmetic progressions and sets up the simplification step. It proceeds with methodical calculation and no indication of uncertainty or checking.",
+    "class-1": "General",
+    "class-2-reason": "Generalizes the previous concrete computations into a universal formula for arbitrary n, explaining the result.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Which simplifies to:",
+    "class-1-reason": "States the general formula for counting three-term APs for full arithmetic progressions and sets up the simplification step. It proceeds with methodical calculation and no indication of uncertainty or checking.",
+    "class-1": "General",
+    "class-2-reason": "Signals a move to explicit manipulation/simplification of the general formula, which is a plan to compute further.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "If n is even: n = 2m, then ceil(n/2) = floor(n/2) = m.",
+    "class-1-reason": "Systematically derives the formula for the case when n is even, performing logical steps and clarifying each algebraic move toward a result.",
+    "class-1": "General",
+    "class-2-reason": "Considers the even case for n, providing the values for ceil and floor in terms of m, laying out structural analysis.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So total is 2*C(m,2) = 2*(m(m -1)/2) = m(m -1).",
+    "class-1-reason": "Systematically derives the formula for the case when n is even, performing logical steps and clarifying each algebraic move toward a result.",
+    "class-1": "General",
+    "class-2-reason": "Performs a symbolic calculation to simplify the formula for the even-n case, showing step-by-step computation.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "If n is odd: n = 2m +1, then ceil(n/2)=m +1, floor(n/2)=m.",
+    "class-1-reason": "Analogous to paragraph 2, this develops the formula for odd n directly using standard algebraic manipulations, driving the main solution forward.",
+    "class-1": "General",
+    "class-2-reason": "Considers the case when n is odd, expressing ceil and floor with respect to m, structurally defining parameters.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So total is C(m +1, 2) + C(m, 2) = [ (m +1)m /2 ] + [ m(m -1)/2 ] = [ m^2 + m + m^2 - m ] / 2 = (2m^2)/2 = m^2.",
+    "class-1-reason": "Analogous to paragraph 2, this develops the formula for odd n directly using standard algebraic manipulations, driving the main solution forward.",
+    "class-1": "General",
+    "class-2-reason": "Carries out symbolic computation for the odd-n case, step-by-step simplifying the binomial sum to m^2.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "So summarizing:",
+    "class-1-reason": "Summarizes the preceding computations in a concise manner, highlighting findings. No evidence of verification or exploratory language; just reporting established results.",
+    "class-1": "General",
+    "class-2-reason": "This is an organizational statement signaling a summary without committing to a math step or plan.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "- If n is even: (n/2 -1)(n/2)\n- If n is odd: ((n -1)/2)^2",
+    "class-1-reason": "States final simplified forms for both even and odd n based on prior work, presenting the formulas without speculation or double-checking. Declarative presentation of the main result.",
+    "class-1": "General",
+    "class-2-reason": "These are direct formulaic restatements of previous results for even/odd n, not new calculation or reasoning.",
+    "class-2": "Read"
+  },
+  {
+    "text": "But let's write that in terms of n:",
+    "class-1-reason": "This paragraph transitions from the summary to expressing the results in terms of n, which is a direct, methodical continuation of the solution.",
+    "class-1": "General",
+    "class-2-reason": "This sentence announces the intent to rewrite the formulas in terms of n\u2014a statement of intended action.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "For even n = 2m: (m -1)m = (n/2 -1)(n/2) = n(n - 2)/4",
+    "class-1-reason": "This paragraph rewrites the even case formula in terms of n and simplifies it, sticking to the planned computational line.",
+    "class-1": "General",
+    "class-2-reason": "This sentence translates the formula from m to n using algebraic manipulation\u2014reworking the result, not explaining a new concept.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "For odd n = 2m +1: m\u00b2 = ((n -1)/2)^2 = (n -1)^2 /4",
+    "class-1-reason": "This paragraph does the same for the odd case, restating and simplifying the result using n; it follows the general solution steps.",
+    "class-1": "General",
+    "class-2-reason": "Similar to the previous, this restates the formula for the odd case using n; it's carrying out formula conversion.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "So in general, the number of three-term APs in a full arithmetic progression is floor((n -1)^2 /4).",
+    "class-1-reason": "This paragraph attempts to generalize both previous cases into a single formula and signals a plan to check the result with 'Wait, let's check:', clearly beginning a checking/verification routine.",
+    "class-1": "Verify",
+    "class-2-reason": "This sentence asserts a general, possibly new summary result by drawing a general formula from the previous cases, connecting and concluding.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Wait, let's check:",
+    "class-1-reason": "This paragraph attempts to generalize both previous cases into a single formula and signals a plan to check the result with 'Wait, let's check:', clearly beginning a checking/verification routine.",
+    "class-1": "Verify",
+    "class-2-reason": "This sentence introduces a check or verification step, expressing intent to ensure correctness.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "For n even: n(n -2)/4 = (n\u00b2 -2n)/4",
+    "class-1-reason": "This paragraph begins the explicit check for the even case, breaking down and validating the earlier derived formula; it is part of the verification process.",
+    "class-1": "Verify",
+    "class-2-reason": "This rewrites the even-n result using algebra to check correspondence; it's a calculation step.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "For n odd: (n -1)^2 /4",
+    "class-1-reason": "This paragraph continues the systematic calculation for the odd-n case, expressing the formula for the number of APs in algebraic terms without suggesting uncertainty or exploration; it is part of the main solution path.",
+    "class-1": "General",
+    "class-2-reason": "This simply re-copies the odd-n case without manipulation or explanation; it's just a factual repetition.",
+    "class-2": "Read"
+  },
+  {
+    "text": "But floor((n -1)^2 /4) for even n: (n -1)^2 /4 = (2m -1)^2 /4 = (4m\u00b2 -4m +1)/4 = m\u00b2 -m + 0.25, so floor is m\u00b2 -m, which is equal to m(m -1) = n(n -2)/4.",
+    "class-1-reason": "In this paragraph, the solver elaborately checks the equivalence of the general formula for both even and odd n, plugging in values and confirming the results for small n. Despite the phrase 'Wait', the main activity is verifying the correctness of the derived formula with examples, which is checking rather than just forward solving.",
+    "class-1": "Verify",
+    "class-2-reason": "This works through substituting n=2m into the general floor formula, and checking algebra to show the two forms match; it's implementing a verification.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "So yes, both cases can be written as floor((n -1)^2 /4).",
+    "class-1-reason": "In this paragraph, the solver elaborately checks the equivalence of the general formula for both even and odd n, plugging in values and confirming the results for small n. Despite the phrase 'Wait', the main activity is verifying the correctness of the derived formula with examples, which is checking rather than just forward solving.",
+    "class-1": "Verify",
+    "class-2-reason": "This sentence affirms with certainty that both formula cases can be written as the floor formula, confirming a result (no uncertainty, definite evaluation).",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Wait, but n(n -2)/4 for even n is equal to m(m -1) where m =n/2, and (n -1)^2 /4 for odd n is ((2m +1)-1)^2 /4 = (2m)^2 /4 = m\u00b2.",
+    "class-1-reason": "In this paragraph, the solver elaborately checks the equivalence of the general formula for both even and odd n, plugging in values and confirming the results for small n. Despite the phrase 'Wait', the main activity is verifying the correctness of the derived formula with examples, which is checking rather than just forward solving.",
+    "class-1": "Verify",
+    "class-2-reason": "This sentence checks that the formulas for odd and even n are indeed equivalent as claimed, and includes a step-by-step confirmation.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "So indeed, the number is floor((n -1)^2 /4).",
+    "class-1-reason": "In this paragraph, the solver elaborately checks the equivalence of the general formula for both even and odd n, plugging in values and confirming the results for small n. Despite the phrase 'Wait', the main activity is verifying the correctness of the derived formula with examples, which is checking rather than just forward solving.",
+    "class-1": "Verify",
+    "class-2-reason": "The phrase 'So indeed' concludes with certainty that the formula is correct, affirming earlier deductions.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "For even n, (n -1)^2 /4 is not integer, but floor gives the correct integer.",
+    "class-1-reason": "In this paragraph, the solver elaborately checks the equivalence of the general formula for both even and odd n, plugging in values and confirming the results for small n. Despite the phrase 'Wait', the main activity is verifying the correctness of the derived formula with examples, which is checking rather than just forward solving.",
+    "class-1": "Verify",
+    "class-2-reason": "This sentence checks the correctness of applying the floor operation and confirms its appropriateness for even n.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "For example, n=4: (4 -1)^2 /4 =9/4=2.25, floor is 2, which is equal to 4*2/4=2.",
+    "class-1-reason": "In this paragraph, the solver elaborately checks the equivalence of the general formula for both even and odd n, plugging in values and confirming the results for small n. Despite the phrase 'Wait', the main activity is verifying the correctness of the derived formula with examples, which is checking rather than just forward solving.",
+    "class-1": "Verify",
+    "class-2-reason": "Gives a numerical example to check the formula and confirms the result by direct calculation (example-based confirmation).",
+    "class-2": "Verify"
+  },
+  {
+    "text": "For n=5: (5 -1)^2 /4=16/4=4, which matches.",
+    "class-1-reason": "In this paragraph, the solver elaborately checks the equivalence of the general formula for both even and odd n, plugging in values and confirming the results for small n. Despite the phrase 'Wait', the main activity is verifying the correctness of the derived formula with examples, which is checking rather than just forward solving.",
+    "class-1": "Verify",
+    "class-2-reason": "Another example is calculated and checked to see if it matches the formula; this is a correctness check.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "So the number of three-term APs in a full arithmetic progression is floor((n -1)^2 /4).",
+    "class-1-reason": "This paragraph summarizes the finding so far and then raises a key sub-question: whether arrangements other than an arithmetic progression could give more three-term APs. The solver is stepping away from the main calculation to question if a better construction exists\u2014an explicit exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Restates the previously confirmed result but introduces an implicit uncertainty (positioned after multiple checks), suggesting reconsideration; this could be Explore if it is reconsidering, but as it lacks direct uncertainty or new idea, it's more like a restatement.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Hmm, interesting.",
+    "class-1-reason": "This paragraph summarizes the finding so far and then raises a key sub-question: whether arrangements other than an arithmetic progression could give more three-term APs. The solver is stepping away from the main calculation to question if a better construction exists\u2014an explicit exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Short reflective comment, expressing the solver's reaction and a hint of uncertainty. Fits the tone of speculation characteristic of Explore.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "So if we have a sequence that is an arithmetic progression, that gives this number of three-term APs.",
+    "class-1-reason": "This paragraph summarizes the finding so far and then raises a key sub-question: whether arrangements other than an arithmetic progression could give more three-term APs. The solver is stepping away from the main calculation to question if a better construction exists\u2014an explicit exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Describes a situation and hints at possibility, although no calculation is done; it's exploring the implications of having the sequence as an arithmetic progression.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "The question is, can we have a monotone sequence (not necessarily an AP) that has more three-term APs?",
+    "class-1-reason": "This paragraph summarizes the finding so far and then raises a key sub-question: whether arrangements other than an arithmetic progression could give more three-term APs. The solver is stepping away from the main calculation to question if a better construction exists\u2014an explicit exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Poses an open question about the maximality of the number in non-AP monotone sequences; this is prototypical Explore (speculate/questioning further possibilities).",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Or is the maximum achieved by the full AP?",
+    "class-1-reason": "This paragraph summarizes the finding so far and then raises a key sub-question: whether arrangements other than an arithmetic progression could give more three-term APs. The solver is stepping away from the main calculation to question if a better construction exists\u2014an explicit exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "A question expressing uncertainty about whether the maximum is always achieved by an arithmetic progression; prototypical Explore behavior.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Intuitively, I might think that the maximum number is achieved when the sequence is an arithmetic progression, because that's the most regular structure, allowing for the most triplets to form APs.",
+    "class-1-reason": "Here, the solver proposes an intuitive hypothesis about the arithmetic progression maximizing the number\u2013but immediately notes the need to rigorously verify it. The content is still exploring the justification for the hypothesis and describes intent to verify, but does not begin verification. The tone is conjectural and probing.",
+    "class-1": "Explore",
+    "class-2-reason": "Speculates (uses 'I might think') about why an AP could maximize AP triplets, showing uncertainty and speculation rather than deduction.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "But I need to verify this.",
+    "class-1-reason": "Here, the solver proposes an intuitive hypothesis about the arithmetic progression maximizing the number\u2013but immediately notes the need to rigorously verify it. The content is still exploring the justification for the hypothesis and describes intent to verify, but does not begin verification. The tone is conjectural and probing.",
+    "class-1": "Explore",
+    "class-2-reason": "States a need to check/validate an assumption, showing intent to check rather than planning the concrete next mathematical step.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Alternatively, maybe arranging the sequence in a way that has multiple overlapping APs could create more.",
+    "class-1-reason": "This paragraph explicitly considers the possibilities of alternate arrangements (e.g. overlapping APs or clusters) and works through whether the monotonic constraint allows for maximization in another way. The solver is exploring potentially better constructions and examining the limits of the problem.",
+    "class-1": "Explore",
+    "class-2-reason": "Suggests an alternative scenario with 'maybe', exploring other potential arrangements without committing to a strategy.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "For example, if the sequence has several clusters of APs, maybe that could increase the count.",
+    "class-1-reason": "This paragraph explicitly considers the possibilities of alternate arrangements (e.g. overlapping APs or clusters) and works through whether the monotonic constraint allows for maximization in another way. The solver is exploring potentially better constructions and examining the limits of the problem.",
+    "class-1": "Explore",
+    "class-2-reason": "Gives another speculative possibility using 'maybe', not yet deciding or calculating, just generating ideas.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "But since the sequence is strictly monotonic, you can't have repeats, so clusters would have to be spaced apart.",
+    "class-1-reason": "This paragraph explicitly considers the possibilities of alternate arrangements (e.g. overlapping APs or clusters) and works through whether the monotonic constraint allows for maximization in another way. The solver is exploring potentially better constructions and examining the limits of the problem.",
+    "class-1": "Explore",
+    "class-2-reason": "Considers the constraints on the sequence structure ('since the sequence is strictly monotonic...'), but still in the context of speculative brainstorming.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "But perhaps overlapping APs could give more?",
+    "class-1-reason": "This paragraph explicitly considers the possibilities of alternate arrangements (e.g. overlapping APs or clusters) and works through whether the monotonic constraint allows for maximization in another way. The solver is exploring potentially better constructions and examining the limits of the problem.",
+    "class-1": "Explore",
+    "class-2-reason": "Asks if a feature is possible with a question mark, marking this as tentative and exploratory.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Wait, let me think of a small example.",
+    "class-1-reason": "This paragraph initiates an exploration by attempting a new small example (n=4) to probe the behavior of three-term APs, rather than proceeding with the established general method. The reasoning is tentative and investigatory.",
+    "class-1": "Explore",
+    "class-2-reason": "Meta-cognitive phrase followed by announcing an exploratory step, showing the intent to investigate with a small example.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Take n=4.",
+    "class-1-reason": "This paragraph initiates an exploration by attempting a new small example (n=4) to probe the behavior of three-term APs, rather than proceeding with the established general method. The reasoning is tentative and investigatory.",
+    "class-1": "Explore",
+    "class-2-reason": "Initiates a specific case by selecting n=4, as part of the ongoing exploration (not yet calculating/implementing).",
+    "class-2": "Explore"
+  },
+  {
+    "text": "If the sequence is an AP, like 1,2,3,4.",
+    "class-1-reason": "This paragraph initiates an exploration by attempting a new small example (n=4) to probe the behavior of three-term APs, rather than proceeding with the established general method. The reasoning is tentative and investigatory.",
+    "class-1": "Explore",
+    "class-2-reason": "Provides an instance for exploration (an AP sequence for n=4), still considering examples as part of an exploratory phase.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Then the three-term APs are 1,2,3 and 2,3,4, so two APs.",
+    "class-1-reason": "This paragraph initiates an exploration by attempting a new small example (n=4) to probe the behavior of three-term APs, rather than proceeding with the established general method. The reasoning is tentative and investigatory.",
+    "class-1": "Explore",
+    "class-2-reason": "This sentence directly lists the number and identity of three-term APs present in a specific sequence (i.e., it is reporting the result of checking for APs in an example, not suggesting or planning, and is a result of implementation/calculation inside the perspective of an Explore paragraph, but at the sentence level it is just stating a factual count). Although it numerically resolves to an implemented result, the structure and context ('then the three-term APs are ...') is analyzing the count based on a chosen sequence.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "But what if the sequence is 1,2,4,5.",
+    "class-1-reason": "This paragraph systematically checks all three-term combinations in a non-AP monotonic sequence, explicitly questioning and scrutinizing the result to ensure accuracy. The repeated 'let's check' and 'that can't be' indicate a verifying process.",
+    "class-1": "Verify",
+    "class-2-reason": "Here, the model is proposing a different sequence (1,2,4,5) as an alternative to the full AP, to check if the number of three-term APs changes. The sentence itself is not proposing how to solve but setting up a new input\u2014within the context of 'let's check this case.' This is similar to planning to verify a hypothesis by trying a direct computation on a new sequence.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "Then let's see: 1,2,4: 2 -1 =1, 4 -2=2, not AP.",
+    "class-1-reason": "This paragraph systematically checks all three-term combinations in a non-AP monotonic sequence, explicitly questioning and scrutinizing the result to ensure accuracy. The repeated 'let's check' and 'that can't be' indicate a verifying process.",
+    "class-1": "Verify",
+    "class-2-reason": "This sentence represents doing the actual verification step for a triplet (1,2,4), with explicit calculations ('2-1=1, 4-2=2, not AP'). It involves direct checking/enumeration to see if the triplet is an AP.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "2,4,5: 4 -2=2, 5 -4=1, not AP.",
+    "class-1-reason": "This paragraph systematically checks all three-term combinations in a non-AP monotonic sequence, explicitly questioning and scrutinizing the result to ensure accuracy. The repeated 'let's check' and 'that can't be' indicate a verifying process.",
+    "class-1": "Verify",
+    "class-2-reason": "This is another step of explicit verification for a particular triplet, directly testing whether 2,4,5 form an AP by calculation and stating the result.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "1,4,5: 4 -1=3, 5 -4=1, not AP.",
+    "class-1-reason": "This paragraph systematically checks all three-term combinations in a non-AP monotonic sequence, explicitly questioning and scrutinizing the result to ensure accuracy. The repeated 'let's check' and 'that can't be' indicate a verifying process.",
+    "class-1": "Verify",
+    "class-2-reason": "Again, enumerates and verifies whether 1,4,5 form a three-term AP, carrying out the calculations and checking result.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "1,2,5: 2 -1=1, 5 -2=3, not AP.",
+    "class-1-reason": "This paragraph systematically checks all three-term combinations in a non-AP monotonic sequence, explicitly questioning and scrutinizing the result to ensure accuracy. The repeated 'let's check' and 'that can't be' indicate a verifying process.",
+    "class-1": "Verify",
+    "class-2-reason": "Does the computation and checks 1,2,5 for being an AP; again, direct verification by calculation.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "So only one three-term AP: 1,2,3 is not present.",
+    "class-1-reason": "This paragraph systematically checks all three-term combinations in a non-AP monotonic sequence, explicitly questioning and scrutinizing the result to ensure accuracy. The repeated 'let's check' and 'that can't be' indicate a verifying process.",
+    "class-1": "Verify",
+    "class-2-reason": "This reports the finding from the previous verification steps\u2014concludes that only one AP is present, summarizing verification.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Wait, actually, in this sequence, there are no three-term APs?",
+    "class-1-reason": "This paragraph systematically checks all three-term combinations in a non-AP monotonic sequence, explicitly questioning and scrutinizing the result to ensure accuracy. The repeated 'let's check' and 'that can't be' indicate a verifying process.",
+    "class-1": "Verify",
+    "class-2-reason": "This sentence questions the previous result, expressing doubt and uncertainty about whether any three-term APs exist in the current example. The presence of the question mark and tentative phrasing indicates a meta-cognitive check/uncertainty.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "That can't be.",
+    "class-1-reason": "This paragraph systematically checks all three-term combinations in a non-AP monotonic sequence, explicitly questioning and scrutinizing the result to ensure accuracy. The repeated 'let's check' and 'that can't be' indicate a verifying process.",
+    "class-1": "Verify",
+    "class-2-reason": "This is a very short self-correction or doubt/hesitation ('That can't be.'), which expresses a meta-cognitive monitoring of the process, not a verification or an analysis.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "Wait, 1,2,4,5.",
+    "class-1-reason": "This paragraph systematically checks all three-term combinations in a non-AP monotonic sequence, explicitly questioning and scrutinizing the result to ensure accuracy. The repeated 'let's check' and 'that can't be' indicate a verifying process.",
+    "class-1": "Verify",
+    "class-2-reason": "Here, the model restates the sequence, likely as a mental reset or preparing to revisit the calculation; it functions as a brief holding/monitoring phrase rather than a plan, analysis, or verification.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "Let's check all triplets:",
+    "class-1-reason": "This paragraph systematically checks all three-term combinations in a non-AP monotonic sequence, explicitly questioning and scrutinizing the result to ensure accuracy. The repeated 'let's check' and 'that can't be' indicate a verifying process.",
+    "class-1": "Verify",
+    "class-2-reason": "Announces specific intent to exhaustively check all possible three-element combinations in the sequence\u2014a verification/evaluation step.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "1,2,4: differences 1 and 2, not AP.",
+    "class-1-reason": "This paragraph continues the direct checking of whether a specific triple forms an AP, by comparing differences step-by-step to assess validity. This focused checking matches the Verify episode.",
+    "class-1": "Verify",
+    "class-2-reason": "Lists a triplet and computes the differences to check if it forms an AP; this is explicit calculation and checking for the AP property.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "1,2,5: differences 1 and 3, not AP.",
+    "class-1-reason": "Again, this paragraph is methodically checking the differences for a potential AP, operating as part of a verification routine to confirm if this triple constitutes an AP.",
+    "class-1": "Verify",
+    "class-2-reason": "Calculates differences for another triplet to check for the AP property\u2014again, active checking and calculation.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "1,4,5: differences 3 and 1, not AP.",
+    "class-1-reason": "This paragraph maintains the same verification procedure, step-by-step checking if the triple forms an AP through difference calculations.",
+    "class-1": "Verify",
+    "class-2-reason": "Runs the same check for another triplet, performing calculations to determine if it forms an AP.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "2,4,5: differences 2 and 1, not AP.",
+    "class-1-reason": "This paragraph continues trying specific triplets in an example (2,4,5), calculating differences to see if it forms an AP. It\u2019s part of the small example experimentation, reflecting uncertainty and checking possible cases within the example\u2014a hallmark of exploring alternatives, not executing a fixed method.",
+    "class-1": "Explore",
+    "class-2-reason": "Checks the last triplet\u2019s differences\u2014noticing a pattern in non-APs, the process is still about actively verifying examples.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "So actually, this sequence has no three-term APs.",
+    "class-1-reason": "Here, the solver summarizes the findings from the previous explicit trials: that the example sequence has no three-term APs. This is a reflection on the result of an exploratory process for a small example and is evaluative, but not verifying a solution or method\u2014just reporting the result of that exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "States the negative finding after explicit checks\u2014it is the act of confirming the absence and thus is an evaluative/checking statement.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "So that's worse.",
+    "class-1-reason": "Here, the solver summarizes the findings from the previous explicit trials: that the example sequence has no three-term APs. This is a reflection on the result of an exploratory process for a small example and is evaluative, but not verifying a solution or method\u2014just reporting the result of that exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Offers a comparative, judgmental comment assessing this outcome as worse\u2014makes a qualitative evaluation.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Alternatively, maybe 1,3,5,7.",
+    "class-1-reason": "This paragraph explicitly proposes a different type of example sequence (1,3,5,7), considers possible APs in it, and mentions alternatives. The tone is speculative ('Alternatively, maybe ...'), which strongly signals an exploratory action per the guidebook.",
+    "class-1": "Explore",
+    "class-2-reason": "Suggests an alternative sequence, using speculative language ('maybe') to explore possibilities\u2014uncertainty and exploratory intent.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "That's an AP, and has three-term APs: 1,3,5; 3,5,7; and 1,5,9 (but 9 isn't in the sequence).",
+    "class-1-reason": "This paragraph explicitly proposes a different type of example sequence (1,3,5,7), considers possible APs in it, and mentions alternatives. The tone is speculative ('Alternatively, maybe ...'), which strongly signals an exploratory action per the guidebook.",
+    "class-1": "Explore",
+    "class-2-reason": "Considers the content of the new sequence, labels some as three-term APs and comments on the absence of one; this is exploring possibilities and forming ideas without settled conclusion.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "So only two APs, same as the previous AP.",
+    "class-1-reason": "This paragraph explicitly proposes a different type of example sequence (1,3,5,7), considers possible APs in it, and mentions alternatives. The tone is speculative ('Alternatively, maybe ...'), which strongly signals an exploratory action per the guidebook.",
+    "class-1": "Explore",
+    "class-2-reason": "Makes an evaluative but tentative comparison between the number of APs in different constructions; this is reasoning about differences among cases\u2014still in the phase of exploring options.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Alternatively, suppose I take 1,2,3,5.",
+    "class-1-reason": "The solver continues experimenting by picking another new example (1,2,3,5) and explicitly signals this is an alternative approach to try out and gain insight. The function is to see what happens in a different test case, an exploratory activity.",
+    "class-1": "Explore",
+    "class-2-reason": "Proposes a new possible sequence to explore; uses 'suppose' and 'alternatively' indicating tentative exploration.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Let's check triplets:",
+    "class-1-reason": "The solver continues experimenting by picking another new example (1,2,3,5) and explicitly signals this is an alternative approach to try out and gain insight. The function is to see what happens in a different test case, an exploratory activity.",
+    "class-1": "Explore",
+    "class-2-reason": "States intention to check triplets in the context of exploring options; the step is still not committed and is investigative.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "1,2,3: AP.",
+    "class-1-reason": "This paragraph checks whether a specific triplet (1,2,3) in a previous example is an AP. It conducts a direct check as part of exploring the new example\u2014again, this is experimenting with the small case rather than following a set solution process or verifying a global answer.",
+    "class-1": "Explore",
+    "class-2-reason": "Finds and tentatively labels a triplet in the new sequence as an AP; continues exploring structural possibilities.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "1,2,5: differences 1 and 3.",
+    "class-1-reason": "The paragraph lists a specific triple and computes the differences, then immediately checks if it's an AP. This is a systematic scan of the possibilities, part of the main calculation, not an explicit verification routine nor an exploration of a different method.",
+    "class-1": "General",
+    "class-2-reason": "Calculates differences for a specific triplet, providing structural detail to analyze the AP property.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "1,3,5: differences 2 and 2: AP.",
+    "class-1-reason": "Here the paragraph describes another triple, computes its differences, and recognizes it forms an AP. Again, this is a stepwise, matter-of-fact processing of cases, forwarding the computation according to a plan.",
+    "class-1": "General",
+    "class-2-reason": "Recognizes equal differences (2 and 2) and labels the triplet as an AP; confirms pattern explicitly.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "2,3,5: differences 1 and 2.",
+    "class-1-reason": "This is yet another case check (triple), with the differences calculated and conclusion about AP status. Rows of such enumeration are methodical evaluation, typical of General episodes.",
+    "class-1": "General",
+    "class-2-reason": "Reports computed differences for a specific triplet, contributing factual analysis (not yet making or exploring a new conjecture).",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So here, there are two APs: 1,2,3 and 1,3,5.",
+    "class-1-reason": "Summarizes the findings for this case, stating which three-term APs exist and comparing to an earlier result (the full AP). It's consolidating results within the solution path, not checking or exploring afresh.",
+    "class-1": "General",
+    "class-2-reason": "Summarizes which triplets were APs in this sequence\u2014confirms analytic findings by listing results.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So same as the full AP.",
+    "class-1-reason": "Summarizes the findings for this case, stating which three-term APs exist and comparing to an earlier result (the full AP). It's consolidating results within the solution path, not checking or exploring afresh.",
+    "class-1": "General",
+    "class-2-reason": "Compares the result to the all-AP case, making a factual statement about their equivalence.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Wait, so even though the sequence isn't a full AP, it still has two three-term APs.",
+    "class-1-reason": "Reflectively notes that the number of APs remains the same even though the sequence isn't a full AP; this is a generalizing observation within the ongoing computation, not an exploration of a new direction or a verification check.",
+    "class-1": "General",
+    "class-2-reason": "Reflects with 'Wait' and then articulates an observation about the number of APs, suggesting realization and self-monitoring.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "So in this case, same number.",
+    "class-1-reason": "Reflectively notes that the number of APs remains the same even though the sequence isn't a full AP; this is a generalizing observation within the ongoing computation, not an exploration of a new direction or a verification check.",
+    "class-1": "General",
+    "class-2-reason": "States a factual equivalence about the number of APs, summarizing and confirming previous analysis.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Hmm, interesting.",
+    "class-1-reason": "The paragraph shows speculative thinking about whether more APs are possible and raises a question about the extremal construction. This is exploratory behavior, not direct execution of a plan or checking an answer.",
+    "class-1": "Explore",
+    "class-2-reason": "Short interjection expressing interest and reflection on previous findings, aligns with monitoring or musing transitions.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "So maybe there are non-AP sequences that have the same number of APs as the full AP.",
+    "class-1-reason": "The paragraph shows speculative thinking about whether more APs are possible and raises a question about the extremal construction. This is exploratory behavior, not direct execution of a plan or checking an answer.",
+    "class-1": "Explore",
+    "class-2-reason": "Tentative suggestion introduced by 'maybe', expressing uncertainty about possibility in non-AP sequences.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "But can we have more?",
+    "class-1-reason": "The paragraph shows speculative thinking about whether more APs are possible and raises a question about the extremal construction. This is exploratory behavior, not direct execution of a plan or checking an answer.",
+    "class-1": "Explore",
+    "class-2-reason": "Rhetorical question exploring a further possibility with uncertainty ('can we have more?'), typically Explore.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Let me check with n=5.",
+    "class-1-reason": "The solver sets up a standard example (the full AP for n=5), methodically listing its APs. This is proceeding with systematic problem solving with no hint of speculation or verification.",
+    "class-1": "General",
+    "class-2-reason": "Announcing intent to check for n=5, describing a future step (next check), which aligns with Plan.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "Suppose the sequence is 1,2,3,4,5 (full AP).",
+    "class-1-reason": "The solver sets up a standard example (the full AP for n=5), methodically listing its APs. This is proceeding with systematic problem solving with no hint of speculation or verification.",
+    "class-1": "General",
+    "class-2-reason": "Restates the example being considered as a setup based on the problem, extracting/giving the sequence, which fits Read.",
+    "class-2": "Read"
+  },
+  {
+    "text": "It has four APs: 1,2,3; 2,3,4; 3,4,5; 1,3,5.",
+    "class-1-reason": "The solver sets up a standard example (the full AP for n=5), methodically listing its APs. This is proceeding with systematic problem solving with no hint of speculation or verification.",
+    "class-1": "General",
+    "class-2-reason": "Summarizing factual data about number of APs in a specific sequence with certainty \u2014 analyzing properties.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "If I modify it to 1,2,3,5,6.",
+    "class-1-reason": "Here, the solver tries a modification of the sequence and prepares to check the AP triplets, experimentally probing whether more APs can be formed. The act of constructing and investigating a new, non-standard example is exploratory.",
+    "class-1": "Explore",
+    "class-2-reason": "Announces tentative change to the sequence using 'If I modify...', introducing possibility without commitment.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Let's check triplets:",
+    "class-1-reason": "Here, the solver tries a modification of the sequence and prepares to check the AP triplets, experimentally probing whether more APs can be formed. The act of constructing and investigating a new, non-standard example is exploratory.",
+    "class-1": "Explore",
+    "class-2-reason": "States intent to check triplets in the new sequence, outlining next specific action \u2014 fits Plan.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "1,2,3: AP.",
+    "class-1-reason": "The solver identifies a specific triplet in the modified sequence and declares it an AP. This is a direct, fact-stating observation\u2014proceeding step-by-step through solution work.",
+    "class-1": "General",
+    "class-2-reason": "Factually determines and declares one triplet forms an AP, providing certain property \u2014 Analyze.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "2,3,5: differences 1 and 2.",
+    "class-1-reason": "The paragraph simply notes the differences for a specific triplet, as part of systematic checking in the triplet list. It continues the process of breaking down the given sequence without speculation or explicit checking.",
+    "class-1": "General",
+    "class-2-reason": "Analyzes properties of a specific triplet by evaluating differences\u2014analytic step without calculation.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "2,3,6: differences 1 and 3.",
+    "class-1-reason": "This paragraph checks whether 2,3,6 forms an arithmetic progression by comparing the differences between consecutive elements (1 and 3). The primary purpose is to evaluate if this specific triplet is an AP, which is checking a result.",
+    "class-1": "Verify",
+    "class-2-reason": "This sentence checks the differences between the terms in a triplet to determine if it's an AP or not (verification process).",
+    "class-2": "Verify"
+  },
+  {
+    "text": "1,3,5: differences 2 and 2: AP.",
+    "class-1-reason": "Here, the differences between 1,3,5 are calculated (2 and 2), and it is explicitly noted that this triplet forms an AP. The paragraph's function is to confirm whether this triplet is an AP.",
+    "class-1": "Verify",
+    "class-2-reason": "The calculation of differences is used to check for an AP and confirms it explicitly, which is an act of verification.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "1,3,6: differences 2 and 3.",
+    "class-1-reason": "Like 1 and 2, this paragraph examines whether 1,3,6 is an AP by computing the differences (2 and 3), thus checking validity.",
+    "class-1": "Verify",
+    "class-2-reason": "The differences are listed to check, not just calculate, but to verify if it's an AP.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "1,2,5: differences 1 and 3.",
+    "class-1-reason": "This paragraph is once again checking the differences in the triplet 1,2,5 (1 and 3) to see if it's an AP, indicating the verification purpose.",
+    "class-1": "Verify",
+    "class-2-reason": "Differences are found to check for AP, so this is verifying whether the triplet is an AP.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "1,2,6: differences 1 and 4.",
+    "class-1-reason": "It computes the differences between consecutive terms in 1,2,6 (1 and 4) to check for the AP property, which is a verification step.",
+    "class-1": "Verify",
+    "class-2-reason": "The differences are checked to confirm if it's an AP, which is verifying the sequence type.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "1,5,6: differences 4 and 1.",
+    "class-1-reason": "The paragraph computes differences for a specific triple in a direct, mechanical way, which is part of systematically checking all 3-term combinations in the sequence. It follows from previously stated general procedure.",
+    "class-1": "General",
+    "class-2-reason": "Only the differences are found and no explicit check or verification is mentioned\u2014just an arithmetic observation.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "3,5,6: differences 2 and 1.",
+    "class-1-reason": "Similarly, this paragraph continues the direct computation of differences for another triple by applying the established approach. It does not show speculation or confirmation.",
+    "class-1": "General",
+    "class-2-reason": "Just calculation of the differences, the result is not being verified for being an AP, thus calculation/implementation only.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "So APs: 1,2,3 and 1,3,5.",
+    "class-1-reason": "Here the solver summarizes which 3-term APs were found and compares the result to the earlier case. This is progress along the main line of reasoning, reporting an intermediate result.",
+    "class-1": "General",
+    "class-2-reason": "Clearly states which triplets among the tested ones are arithmetic progressions\u2014a summary, thus analysis/conclusion rather than calculation.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So two APs.",
+    "class-1-reason": "Here the solver summarizes which 3-term APs were found and compares the result to the earlier case. This is progress along the main line of reasoning, reporting an intermediate result.",
+    "class-1": "General",
+    "class-2-reason": "Explicitly counts how many APs result from the sequence, which is an analytic summary.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "The original had four.",
+    "class-1-reason": "Here the solver summarizes which 3-term APs were found and compares the result to the earlier case. This is progress along the main line of reasoning, reporting an intermediate result.",
+    "class-1": "General",
+    "class-2-reason": "States the result of the original sequence: a summary comparison, thus analysis/conclusion.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So worse.",
+    "class-1-reason": "Here the solver summarizes which 3-term APs were found and compares the result to the earlier case. This is progress along the main line of reasoning, reporting an intermediate result.",
+    "class-1": "General",
+    "class-2-reason": "'So worse.' is a brief evaluative summary commenting on the obtained outcome ('worse' than before), confirming the result, thus it is a Verify episode.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Alternatively, what if I have 1,2,4,5,7.",
+    "class-1-reason": "The phrase 'Alternatively, what if I have...' signals a shift in approach, trying a new candidate sequence to explore whether more APs could be gained. This is an explicit trial off the main line.",
+    "class-1": "Explore",
+    "class-2-reason": "The sentence proposes an alternative by suggesting 'what if I have 1,2,4,5,7', which is exploring a new idea/set-up, and contains uncertainty about its result.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Let's check:",
+    "class-1-reason": "The phrase 'Alternatively, what if I have...' signals a shift in approach, trying a new candidate sequence to explore whether more APs could be gained. This is an explicit trial off the main line.",
+    "class-1": "Explore",
+    "class-2-reason": "'Let's check:' expresses intent to proceed by checking the possibilities, which is a planning phrase for the next step.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "Possible APs:",
+    "class-1-reason": "The paragraph marks the beginning of systematically considering all possible APs in the new sequence\u2014setting up for computation, but still following methodical steps, without speculative language.",
+    "class-1": "General",
+    "class-2-reason": "'Possible APs:' lists the objects to be checked and is stating the setup for the subsequent checks, which counts as explanation/setup, so Analyze fits best.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "1,2,4: no.",
+    "class-1-reason": "This paragraph checks whether 1,2,4 is an arithmetic progression and determines it is not, as part of a systematic, step-by-step search for APs in a given sequence. It advances the main line reasoning for the problem's central goal.",
+    "class-1": "General",
+    "class-2-reason": "This is the process of checking if (1,2,4) is an AP and reporting 'no', which is implementing the planned checking procedure.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "1,2,5: no.",
+    "class-1-reason": "Here, the solver checks the triple 1,2,5 for being an AP and finds that it is not. As this is part of the routine process of checking all relevant triples for AP status in the current sequence, it is a direct step in the problem-solving plan.",
+    "class-1": "General",
+    "class-2-reason": "Similar to 5: checking (1,2,5) for AP and reporting outcome, which is the act of carrying out the check.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "1,2,7: no.",
+    "class-1-reason": "The solver examines 1,2,7 for AP status but finds it is not an AP. Again, this is a procedural application of the main plan (systematically checking for APs).",
+    "class-1": "General",
+    "class-2-reason": "Same as 5 and 6: (1,2,7) is checked and found not to be AP, so it's implementation of the check.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "1,4,5: no.",
+    "class-1-reason": "This paragraph checks 1,4,5 for being an AP and determines it fails. The purpose is to advance the count of APs for the constructed sequence, a standard solution step.",
+    "class-1": "General",
+    "class-2-reason": "Checking another triple (1,4,5) and reporting 'no', which means the check is being performed.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "1,4,7: yes, differences 3 and 3.",
+    "class-1-reason": "Here, 1,4,7 is checked and found to be an AP (with equal differences). Like the preceding paragraphs, this is a direct, systematic check that builds toward the solution.",
+    "class-1": "General",
+    "class-2-reason": "Checks (1,4,7) and finds it is an AP by computing and showing the common differences, which is active computation of the property in question.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "1,5,7: no.",
+    "class-1-reason": "The paragraph simply records whether 1,5,7 forms a 3-term arithmetic progression or not, mirroring a systematic case-check as part of a methodical process. No exploring or verifying beyond stating the result; thus, it's General.",
+    "class-1": "General",
+    "class-2-reason": "Checks the triple (1,5,7) and reports 'no', which is again directly performing the check.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "2,4,5: no.",
+    "class-1-reason": "Again, this paragraph states a result (2,4,5: no) as part of a step-by-step, exhaustive, planned listing. No sign of alternative strategy or explicit verification. General.",
+    "class-1": "General",
+    "class-2-reason": "This sentence checks if 2,4,5 forms an AP and asserts the negative result of a trial; it's an outcome of calculation within an enumeration process.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "2,4,7: no.",
+    "class-1-reason": "The listing (2,4,7: no) is part of the main plan of checking all possible triples, proceeding routinely and advancing the main argument. This is characteristic of General.",
+    "class-1": "General",
+    "class-2-reason": "This sentence similarly asserts the negative result for 2,4,7, which follows directly from evaluating the difference; a simple computation result.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "2,5,7: yes, differences 3 and 2.",
+    "class-1-reason": "This paragraph records (2,5,7: yes, differences 3 and 2), again as part of the main systematic enumeration. It states the result and the differences, as previously. There is no evidence of uncertainty, checking or new approach. General.",
+    "class-1": "General",
+    "class-2-reason": "Here the sentence evaluates 2,5,7 as an AP, indicating the outcome ('yes') and stating the specific differences, reflecting an actual computation/check.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "4,5,7: no.",
+    "class-1-reason": "It makes a direct declarative judgement on (4,5,7: no) as part of the systematic process the solver is implementing. This fits the General class.",
+    "class-1": "General",
+    "class-2-reason": "This gives the direct negative outcome of checking if 4,5,7 is an arithmetic progression\u2014another computational output.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "So APs: 1,4,7 and 2,5,8 (but 8 isn't there).",
+    "class-1-reason": "The solver reviews the results from previous attempts, verifies potential arithmetic progressions, and checks whether triplets like 2,5,7 form an AP by explicit calculation; the explicit checking of whether certain triplets are APs and reflecting on what the result is marks this as verification.",
+    "class-1": "Verify",
+    "class-2-reason": "This sentence summarizes which APs (in the candidate set) were found and clarifies that 2,5,8 is not possible because 8 is missing\u2014this is checking and confirming which ones actually exist.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Wait, 2,5,7: 5-2=3, 7-5=2.",
+    "class-1-reason": "The solver reviews the results from previous attempts, verifies potential arithmetic progressions, and checks whether triplets like 2,5,7 form an AP by explicit calculation; the explicit checking of whether certain triplets are APs and reflecting on what the result is marks this as verification.",
+    "class-1": "Verify",
+    "class-2-reason": "This checks/clarifies the differences for 2,5,7, re-calculating to confirm or disprove whether it's an AP\u2014explicit verification.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Not an AP.",
+    "class-1-reason": "The solver reviews the results from previous attempts, verifies potential arithmetic progressions, and checks whether triplets like 2,5,7 form an AP by explicit calculation; the explicit checking of whether certain triplets are APs and reflecting on what the result is marks this as verification.",
+    "class-1": "Verify",
+    "class-2-reason": "This confirms the outcome for 2,5,7 after recalculating\u2014providing final confirmation (evaluative, correctness check).",
+    "class-2": "Verify"
+  },
+  {
+    "text": "So only 1,4,7.",
+    "class-1-reason": "The solver reviews the results from previous attempts, verifies potential arithmetic progressions, and checks whether triplets like 2,5,7 form an AP by explicit calculation; the explicit checking of whether certain triplets are APs and reflecting on what the result is marks this as verification.",
+    "class-1": "Verify",
+    "class-2-reason": "This sentence counts only 1,4,7 as being a valid AP after verification among candidates\u2014summarizing the confirmed result.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "So one AP.",
+    "class-1-reason": "The solver reviews the results from previous attempts, verifies potential arithmetic progressions, and checks whether triplets like 2,5,7 form an AP by explicit calculation; the explicit checking of whether certain triplets are APs and reflecting on what the result is marks this as verification.",
+    "class-1": "Verify",
+    "class-2-reason": "This gives a final count of valid 3-term APs in this set, reporting the confirmed result (effectively, a correctness check of the answer).",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Worse than the full AP.",
+    "class-1-reason": "The solver reviews the results from previous attempts, verifies potential arithmetic progressions, and checks whether triplets like 2,5,7 form an AP by explicit calculation; the explicit checking of whether certain triplets are APs and reflecting on what the result is marks this as verification.",
+    "class-1": "Verify",
+    "class-2-reason": "This sentence compares the result to the 'full AP,' judging the relative optimality (or lack thereof) of the constructed set\u2014evaluative in nature.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Alternatively, maybe 1,3,5,7,9 (full AP).",
+    "class-1-reason": "The solver explores multiple possible sequences (like 1,3,5,7,9 and 1,2,3,4,5), lists out APs within each, and compares their counts. The paragraph is speculative and considers \u2018maybe\u2019 constructing other sequences, so the purpose is to probe/experiment various arrangements to see which yields more APs.",
+    "class-1": "Explore",
+    "class-2-reason": "Speculates on another possible sequence and uses 'maybe', expressing uncertainty and considering alternatives.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Then APs are 1,3,5; 3,5,7; 5,7,9; 1,5,9.",
+    "class-1-reason": "The solver explores multiple possible sequences (like 1,3,5,7,9 and 1,2,3,4,5), lists out APs within each, and compares their counts. The paragraph is speculative and considers \u2018maybe\u2019 constructing other sequences, so the purpose is to probe/experiment various arrangements to see which yields more APs.",
+    "class-1": "Explore",
+    "class-2-reason": "Lists out possible APs in a trial sequence, as part of investigating a new approach; continues exploration without calculation.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "So four APs.",
+    "class-1-reason": "The solver explores multiple possible sequences (like 1,3,5,7,9 and 1,2,3,4,5), lists out APs within each, and compares their counts. The paragraph is speculative and considers \u2018maybe\u2019 constructing other sequences, so the purpose is to probe/experiment various arrangements to see which yields more APs.",
+    "class-1": "Explore",
+    "class-2-reason": "States the tentative result from the ongoing exploration, still with uncertainty and no commitment to this being maximal.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "If I try to make another sequence with more, maybe 1,2,3,4,5.",
+    "class-1-reason": "The solver explores multiple possible sequences (like 1,3,5,7,9 and 1,2,3,4,5), lists out APs within each, and compares their counts. The paragraph is speculative and considers \u2018maybe\u2019 constructing other sequences, so the purpose is to probe/experiment various arrangements to see which yields more APs.",
+    "class-1": "Explore",
+    "class-2-reason": "Considers another possible sequence with the word 'maybe', indicating brainstorming and uncertainty about whether this has more APs.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Wait, that's the same as the full AP.",
+    "class-1-reason": "The solver explores multiple possible sequences (like 1,3,5,7,9 and 1,2,3,4,5), lists out APs within each, and compares their counts. The paragraph is speculative and considers \u2018maybe\u2019 constructing other sequences, so the purpose is to probe/experiment various arrangements to see which yields more APs.",
+    "class-1": "Explore",
+    "class-2-reason": "Reflects on the similarity between current and previous sequence with 'Wait', which signals metacognitive pause during exploration.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Let's see, the APs here are 1,2,3; 2,3,4; 3,4,5; 1,3,5.",
+    "class-1-reason": "The solver explores multiple possible sequences (like 1,3,5,7,9 and 1,2,3,4,5), lists out APs within each, and compares their counts. The paragraph is speculative and considers \u2018maybe\u2019 constructing other sequences, so the purpose is to probe/experiment various arrangements to see which yields more APs.",
+    "class-1": "Explore",
+    "class-2-reason": "Lists out the APs present in the sequence as a part of exploring the possible options; there's no analysis or calculation.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "So four APs.",
+    "class-1-reason": "The solver explores multiple possible sequences (like 1,3,5,7,9 and 1,2,3,4,5), lists out APs within each, and compares their counts. The paragraph is speculative and considers \u2018maybe\u2019 constructing other sequences, so the purpose is to probe/experiment various arrangements to see which yields more APs.",
+    "class-1": "Explore",
+    "class-2-reason": "States the number of APs after exploring, indicating tentative summary of findings; remains within exploration.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Same as the previous full AP.",
+    "class-1-reason": "The solver explores multiple possible sequences (like 1,3,5,7,9 and 1,2,3,4,5), lists out APs within each, and compares their counts. The paragraph is speculative and considers \u2018maybe\u2019 constructing other sequences, so the purpose is to probe/experiment various arrangements to see which yields more APs.",
+    "class-1": "Explore",
+    "class-2-reason": "Notes the similarity to earlier case, still part of exploring and comparing different cases.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Wait, but 1,3,5,7,9 has APs: consecutive triplets with difference 2, and then 1,5,9.",
+    "class-1-reason": "The paragraph is an explicit check and count of the number of three-term APs in 1,3,5,7,9, systematically verifying it matches the earlier enumeration; the tone is reviewing and confirming.",
+    "class-1": "Verify",
+    "class-2-reason": "'Wait, but...' introduces a check, then recalls and confirms the composition of APs, serving as verification of a previous exploration.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "So four APs as well.",
+    "class-1-reason": "The paragraph is an explicit check and count of the number of three-term APs in 1,3,5,7,9, systematically verifying it matches the earlier enumeration; the tone is reviewing and confirming.",
+    "class-1": "Verify",
+    "class-2-reason": "Restates the number of APs, confirming a previous result with certainty rather than tentatively; this is verification.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Wait, maybe the number of APs depends on the common difference?",
+    "class-1-reason": "The solver reflects on whether the maximal number of APs depends on the difference by questioning and then negates the possibility; there is explicit hypothesis testing with uncertainty.",
+    "class-1": "Explore",
+    "class-2-reason": "The sentence expresses uncertainty and contemplates whether the common difference affects the AP count, with 'maybe' indicating speculative exploration.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "No, in a full AP, regardless of the difference, the number of three-term APs is determined by the indices.",
+    "class-1-reason": "The solver reflects on whether the maximal number of APs depends on the difference by questioning and then negates the possibility; there is explicit hypothesis testing with uncertainty.",
+    "class-1": "Explore",
+    "class-2-reason": "This sentence asserts a certain conclusion about AP structure, reasoning based on indices rather than testing or tentativeness.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So perhaps for n=5, no matter how you arrange the sequence as an AP, you always get four APs, which seems to be the maximum.",
+    "class-1-reason": "This draws a general conjecture about the maximum number of APs, synthesizing the investigation so far into a candidate answer. The paragraph presents a conclusion based on what\u2019s observed, so it is proceeding along the main problem-solving path.",
+    "class-1": "General",
+    "class-2-reason": "The sentence considers a possible outcome, using 'perhaps' and 'seems', showing uncertainty about the maximum, thus exploring ideas.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Alternatively, suppose we have a sequence that is not an AP but has more APs.",
+    "class-1-reason": "This paragraph proposes investigating a specific new example (1,2,3,4,6) to see if a non-AP sequence can have more APs than an actual AP. This is a speculative, investigative move \u2014 characteristic of exploration, since the solver is seeking insight by testing a new configuration.",
+    "class-1": "Explore",
+    "class-2-reason": "The sentence proposes a hypothetical (alternative) arrangement, introduced tentatively with 'suppose' and 'alternatively,' indicating exploration.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "For example, 1,2,3,4,6.",
+    "class-1-reason": "This paragraph proposes investigating a specific new example (1,2,3,4,6) to see if a non-AP sequence can have more APs than an actual AP. This is a speculative, investigative move \u2014 characteristic of exploration, since the solver is seeking insight by testing a new configuration.",
+    "class-1": "Explore",
+    "class-2-reason": "An example sequence is offered as a possible test case, which is a step in exploring different configurations.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Let's check:",
+    "class-1-reason": "This paragraph proposes investigating a specific new example (1,2,3,4,6) to see if a non-AP sequence can have more APs than an actual AP. This is a speculative, investigative move \u2014 characteristic of exploration, since the solver is seeking insight by testing a new configuration.",
+    "class-1": "Explore",
+    "class-2-reason": "The sentence indicates the intent to check or test, which is proposing an action but not committing to a specified strategy. It's an exploratory pause.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "1,2,3: AP",
+    "class-1-reason": "Here, the solver checks whether 1,2,3 forms an AP within the chosen sequence. This is a direct, factual examination as part of an explicit check of possible APs in the test sequence. Since the purpose is checking, this is verification.",
+    "class-1": "Verify",
+    "class-2-reason": "This sentence confirms the result of checking if a subsequence is an AP, serving as a correctness check.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "2,3,4: AP",
+    "class-1-reason": "This paragraph checks the triple 2,3,4 for being an AP. Like the previous step, it's focused on verifying whether this triplet is an AP as part of checking all possibilities in the test sequence.",
+    "class-1": "Verify",
+    "class-2-reason": "This is another explicit check, confirming whether a subsequence is an AP, functioning as verification.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "1,2,4: no",
+    "class-1-reason": "The solver checks 1,2,4 for being an AP. The focus is confirmation/verification of each possible triplet in the sequence, fitting the verify category.",
+    "class-1": "Verify",
+    "class-2-reason": "This records the negative outcome of a test, functioning as the conclusion of a verification step.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "1,3,4: no",
+    "class-1-reason": "Here, the solver checks a final triplet (1,3,4), again only to confirm or deny if it forms an AP. The intent and function is checking, i.e. verification.",
+    "class-1": "Verify",
+    "class-2-reason": "Another explicit negative check, concluding the process of verifying whether this particular subsequence forms an AP.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "1,2,6: no",
+    "class-1-reason": "This paragraph is individually checking if 1,2,6 forms an arithmetic progression; it functions as part of the process of testing possible 3-term APs in the example sequence, which is an exploratory act in this context.",
+    "class-1": "Explore",
+    "class-2-reason": "Checks the triplet 1,2,6 by whether it forms an AP; the 'no' is direct verification of the case.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "1,3,6: no",
+    "class-1-reason": "This paragraph tries out whether 1,3,6 is a 3-term AP in the sequence; like the previous, it is part of a local search meant to discover possible AP triples, i.e. an exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Checks the triplet 1,3,6 by whether it forms an AP; the 'no' is direct verification of the case.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "1,4,6: differences 3 and 2.",
+    "class-1-reason": "Here, differences between terms (3 and 2) are explicitly computed to check for equal spacing; since the results are analyzed as part of checking various combinations, it's an exploratory process.",
+    "class-1": "Explore",
+    "class-2-reason": "Lists and computes/notes the differences between adjacent elements in 1,4,6; this is carrying out the calculation step.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "2,3,6: no",
+    "class-1-reason": "This step tests whether 2,3,6 is an AP, as part of systematically investigating possible triples in a specific sequence\u2014this is exploratory reasoning.",
+    "class-1": "Explore",
+    "class-2-reason": "Checks the triplet 2,3,6 by whether it forms an AP; this is a direct verification ('no') of the case.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "2,4,6: yes, differences 2 and 2.",
+    "class-1-reason": "This paragraph examines 2,4,6, calculates differences or checks for equal spacing, and finds that it is an AP; the act is still part of the trial-and-error investigation of the sequence's AP structure.",
+    "class-1": "Explore",
+    "class-2-reason": "Checks the triplet 2,4,6 and identifies it as an AP due to equal differences. This is direct verification and includes brief calculation.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "3,4,6: no",
+    "class-1-reason": "The paragraph simply checks whether the triplet 3,4,6 forms an AP, finding it does not. This is a direct computation along the main solution route, checking a specific case to enumerate APs, typical of the General approach for this kind of combinatorial count.",
+    "class-1": "General",
+    "class-2-reason": "Checks if 3,4,6 forms an AP; 'no' is a direct result of this verification.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "So APs: 1,2,3; 2,3,4; 2,4,6.",
+    "class-1-reason": "Here, the paragraph summarizes the found APs in the sequence, lists them, and notes the total count is three, relating it to the ongoing process of maximizing APs. This is methodical reasoning along the planned solution path.",
+    "class-1": "General",
+    "class-2-reason": "Summarizes the three APs found in the previous checks; this is reporting the verified findings.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "So three APs.",
+    "class-1-reason": "Here, the paragraph summarizes the found APs in the sequence, lists them, and notes the total count is three, relating it to the ongoing process of maximizing APs. This is methodical reasoning along the planned solution path.",
+    "class-1": "General",
+    "class-2-reason": "States the total number of APs identified (three); this is a conclusion based on prior verifications.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Still less than four.",
+    "class-1-reason": "Here, the paragraph summarizes the found APs in the sequence, lists them, and notes the total count is three, relating it to the ongoing process of maximizing APs. This is methodical reasoning along the planned solution path.",
+    "class-1": "General",
+    "class-2-reason": "Compares the count found to the maximum possible (four); this is a judgment matching findings to expectations.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Hmm.",
+    "class-1-reason": "The paragraph conjectures that the maximum occurs when the sequence is itself an AP, then directly asserts a general formula and provides the boxed answer. Although it uses the speculative 'maybe,' the bulk is to present the final plan and formula, not to probe alternatives or explore failed attempts, making it General.",
+    "class-1": "General",
+    "class-2-reason": "Short interjection expressing reflection and a pause in the reasoning process.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "So seems like the full AP gives the maximum number.",
+    "class-1-reason": "The paragraph conjectures that the maximum occurs when the sequence is itself an AP, then directly asserts a general formula and provides the boxed answer. Although it uses the speculative 'maybe,' the bulk is to present the final plan and formula, not to probe alternatives or explore failed attempts, making it General.",
+    "class-1": "General",
+    "class-2-reason": "It asserts a definite conclusion about the maximum case, based on prior exploration, not suggesting or proposing tentatively.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So maybe in general, the maximum number is achieved when the sequence is an AP, and the number is floor((n -1)^2 /4).",
+    "class-1-reason": "The paragraph conjectures that the maximum occurs when the sequence is itself an AP, then directly asserts a general formula and provides the boxed answer. Although it uses the speculative 'maybe,' the bulk is to present the final plan and formula, not to probe alternatives or explore failed attempts, making it General.",
+    "class-1": "General",
+    "class-2-reason": "It proposes a possible general result with a 'maybe', expressing uncertainty about the maximum and the formula.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Therefore, the answer is \\boxed{\\left\\lfloor \\dfrac{(n-1)^2}{4} \\right\\rfloor}.",
+    "class-1-reason": "The paragraph conjectures that the maximum occurs when the sequence is itself an AP, then directly asserts a general formula and provides the boxed answer. Although it uses the speculative 'maybe,' the bulk is to present the final plan and formula, not to probe alternatives or explore failed attempts, making it General.",
+    "class-1": "General",
+    "class-2-reason": "It presents the answer as a boxed/explicit result, directly implementing the formula as the solution.",
+    "class-2": "Implement"
+  },
+  {
+    "text": "But wait, let me check n=3.",
+    "class-1-reason": "This paragraph pauses to check the proposed formula by plugging in n=3, comparing actual versus expected, and concluding 'Correct.' Since its sole purpose is to check the validity of the result against a concrete case, it is a classic Verify episode.",
+    "class-1": "Verify",
+    "class-2-reason": "It expresses a pause and intent to check the derived formula for a specific value of n (n=3).",
+    "class-2": "Verify"
+  },
+  {
+    "text": "For n=3, any three-term monotone sequence is an AP, so there's 1 AP.",
+    "class-1-reason": "This paragraph pauses to check the proposed formula by plugging in n=3, comparing actual versus expected, and concluding 'Correct.' Since its sole purpose is to check the validity of the result against a concrete case, it is a classic Verify episode.",
+    "class-1": "Verify",
+    "class-2-reason": "It analyzes the n=3 case by reasoning out the actual number of APs (1) in any monotone sequence of three terms to check the result.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "According to the formula, floor((3 -1)^2 /4) = floor(4/4)=1.",
+    "class-1-reason": "This paragraph pauses to check the proposed formula by plugging in n=3, comparing actual versus expected, and concluding 'Correct.' Since its sole purpose is to check the validity of the result against a concrete case, it is a classic Verify episode.",
+    "class-1": "Verify",
+    "class-2-reason": "It evaluates the proposed formula at n=3 and computes the result for validation.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Correct.",
+    "class-1-reason": "This paragraph pauses to check the proposed formula by plugging in n=3, comparing actual versus expected, and concluding 'Correct.' Since its sole purpose is to check the validity of the result against a concrete case, it is a classic Verify episode.",
+    "class-1": "Verify",
+    "class-2-reason": "It confirms the match between the calculated value and the actual count, serving as a verification step.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "n=4: floor((4 -1)^2 /4)= floor(9/4)=2.",
+    "class-1-reason": "Similarly, this paragraph puts n=4 into the candidate formula, computes the result, and affirms that reality matches expectation. This is explicit verification of the result for a small concrete case.",
+    "class-1": "Verify",
+    "class-2-reason": "It computes the formula for n=4 to cross-check with the pattern and actual sequence.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Which matches.",
+    "class-1-reason": "Similarly, this paragraph puts n=4 into the candidate formula, computes the result, and affirms that reality matches expectation. This is explicit verification of the result for a small concrete case.",
+    "class-1": "Verify",
+    "class-2-reason": "It states that the actual count matches the computed value, continuing the verification.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "n=5: floor(16/4)=4.",
+    "class-1-reason": "States n=5, computes floor((n-1)^2 / 4) = 4, says 'Correct.' This is a straightforward checking of the formula for a specific value, directly confirming the output matches expectation. It is verifying correctness for this value.",
+    "class-1": "Verify",
+    "class-2-reason": "It computes the formula for n=5 (the result only), presumably for continued checking, an explicit calculation for verification.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Correct.",
+    "class-1-reason": "States n=5, computes floor((n-1)^2 / 4) = 4, says 'Correct.' This is a straightforward checking of the formula for a specific value, directly confirming the output matches expectation. It is verifying correctness for this value.",
+    "class-1": "Verify",
+    "class-2-reason": "It is confirming the previous calculation/result for n=5, serving as an explicit affirmation of correctness.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "n=6: floor(25/4)=6.25\u21926.",
+    "class-1-reason": "Checks the formula at n=6, does the usual calculation, then explicitly describes the combinatorial count of APs for a full AP sequence, verifies that it matches, and concludes 'So correct.' The purpose is clearly to validate the general formula with another check.",
+    "class-1": "Verify",
+    "class-2-reason": "Performs the calculation for n=6 and applies the floor function, as part of the process of cross-checking the formula against a specific value.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Let's check: for n=6, a full AP would have C(3,2)+C(3,2)=3+3=6.",
+    "class-1-reason": "Checks the formula at n=6, does the usual calculation, then explicitly describes the combinatorial count of APs for a full AP sequence, verifies that it matches, and concludes 'So correct.' The purpose is clearly to validate the general formula with another check.",
+    "class-1": "Verify",
+    "class-2-reason": "Announces an intention to check by counting APs in the case n=6 and then presents a calculation, all for confirmation, not forward motion in the solution.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Yes, so 6 APs.",
+    "class-1-reason": "Checks the formula at n=6, does the usual calculation, then explicitly describes the combinatorial count of APs for a full AP sequence, verifies that it matches, and concludes 'So correct.' The purpose is clearly to validate the general formula with another check.",
+    "class-1": "Verify",
+    "class-2-reason": "Affirms the result of the checking/calculation, confirming that the count matches expectations.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "So correct.",
+    "class-1-reason": "Checks the formula at n=6, does the usual calculation, then explicitly describes the combinatorial count of APs for a full AP sequence, verifies that it matches, and concludes 'So correct.' The purpose is clearly to validate the general formula with another check.",
+    "class-1": "Verify",
+    "class-2-reason": "Summarizes that the check matched, affirming the outcome of the verification.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "But let's verify with another example.",
+    "class-1-reason": "Announces intent to verify explicitly: 'let's verify with another example.' Proceeds to set up a test of n=6 with sequence 1,2,3,4,5,6. The tone and goal is to numerically validate that the formula's predicted number is consistent in an explicit example.",
+    "class-1": "Verify",
+    "class-2-reason": "Announces a plan to double-check using a different example, which in this context is a verification move.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Suppose n=6, sequence 1,2,3,4,5,6.",
+    "class-1-reason": "Announces intent to verify explicitly: 'let's verify with another example.' Proceeds to set up a test of n=6 with sequence 1,2,3,4,5,6. The tone and goal is to numerically validate that the formula's predicted number is consistent in an explicit example.",
+    "class-1": "Verify",
+    "class-2-reason": "Introduces a specific sequence for n=6 as an explicit example to test the hypothesis, i.e., as part of the cross-checking process.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "The three-term APs are:",
+    "class-1-reason": "Announces intent to verify explicitly: 'let's verify with another example.' Proceeds to set up a test of n=6 with sequence 1,2,3,4,5,6. The tone and goal is to numerically validate that the formula's predicted number is consistent in an explicit example.",
+    "class-1": "Verify",
+    "class-2-reason": "Begins listing all the three-term APs, which is a step in the process of checking comprehensiveness/correctness of the count.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Consecutive triplets: 1,2,3; 2,3,4; 3,4,5; 4,5,6.",
+    "class-1-reason": "Lists the consecutive triplets for n=6, i.e., the direct mechanical step of identifying which triplets are APs in the example set up in paragraph 3. This step is part of the verification routine.",
+    "class-1": "Verify",
+    "class-2-reason": "Enumerates APs found among consecutive triplets to confirm the total count for this case, i.e., verifying.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Non-consecutive: 1,3,5; 2,4,6; 1,4,7 (7 not present); so only 1,3,5 and 2,4,6.",
+    "class-1-reason": "Lists the non-consecutive APs, counts all 3-term APs in the n=6 sequence, states that the total is 6 APs, and concludes 'Correct.' This is the final tally in the verification process showing that the actual count matches the formula.",
+    "class-1": "Verify",
+    "class-2-reason": "Adds non-consecutive APs for completeness of checking, explains which are valid in the context for this n=6 sequence to verify the total.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Total of 6 APs.",
+    "class-1-reason": "Lists the non-consecutive APs, counts all 3-term APs in the n=6 sequence, states that the total is 6 APs, and concludes 'Correct.' This is the final tally in the verification process showing that the actual count matches the formula.",
+    "class-1": "Verify",
+    "class-2-reason": "States the total calculated from prior checking; this is confirmation of the earlier calculation.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Correct.",
+    "class-1-reason": "Lists the non-consecutive APs, counts all 3-term APs in the n=6 sequence, states that the total is 6 APs, and concludes 'Correct.' This is the final tally in the verification process showing that the actual count matches the formula.",
+    "class-1": "Verify",
+    "class-2-reason": "Short confirmation of previous result; a validation rather than computation or explanation.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "So yes, the formula holds.",
+    "class-1-reason": "This paragraph confidently summarizes the previous computations and states the general formula for the maximum number of APs with full conviction, moving the solution to final answer. No signs of exploration or verification, just stating the solution.",
+    "class-1": "General",
+    "class-2-reason": "Asserts confirmation that the formula fits; this is explicitly judging correctness/fit.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Therefore, the maximum number of three-term arithmetic progressions is indeed floor[(n-1)^2 /4].",
+    "class-1-reason": "This paragraph confidently summarizes the previous computations and states the general formula for the maximum number of APs with full conviction, moving the solution to final answer. No signs of exploration or verification, just stating the solution.",
+    "class-1": "General",
+    "class-2-reason": "Final conclusion about the result; this is a confirmation that the derived formula is indeed the answer, acting as final validation.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "But wait, the problem states \"a monotone sequence of n distinct reals\".",
+    "class-1-reason": "The paragraph briefly re-examines the problem wording and affirms that the maximization occurs for equally spaced sequences, then clearly concludes with the boxed answer. This is presenting the main solution path without exploration\u2014there is reflection, but no testing or searching for alternatives.",
+    "class-1": "General",
+    "class-2-reason": "Draws attention to a potential issue and re-examines problem conditions, reflecting on task requirements; this is meta-cognitive reflection (monitoring for consistency with problem statement).",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "So even if the sequence is not equally spaced, but arranged in a way that maximizes the number of APs.",
+    "class-1-reason": "The paragraph briefly re-examines the problem wording and affirms that the maximization occurs for equally spaced sequences, then clearly concludes with the boxed answer. This is presenting the main solution path without exploration\u2014there is reflection, but no testing or searching for alternatives.",
+    "class-1": "General",
+    "class-2-reason": "Analyzes the effect of relaxing the equal spacing requirement, inferring about possible arrangements; drawing logical implications.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "But according to our examples, the maximum seems to be achieved by the equally spaced (i.",
+    "class-1-reason": "The paragraph briefly re-examines the problem wording and affirms that the maximization occurs for equally spaced sequences, then clearly concludes with the boxed answer. This is presenting the main solution path without exploration\u2014there is reflection, but no testing or searching for alternatives.",
+    "class-1": "General",
+    "class-2-reason": "Cites evidence from previous examples to support a mathematical conclusion; this is an analytic inference instead of an explicit check or calculation.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "e.",
+    "class-1-reason": "The paragraph briefly re-examines the problem wording and affirms that the maximization occurs for equally spaced sequences, then clearly concludes with the boxed answer. This is presenting the main solution path without exploration\u2014there is reflection, but no testing or searching for alternatives.",
+    "class-1": "General",
+    "class-2-reason": "This is a fragment (e.g., 'i.e.'), not a standalone sentence, but in this context, it clarifies or sets up the next sentence's explanation.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": ", arithmetic progression) sequence.",
+    "class-1-reason": "The paragraph briefly re-examines the problem wording and affirms that the maximization occurs for equally spaced sequences, then clearly concludes with the boxed answer. This is presenting the main solution path without exploration\u2014there is reflection, but no testing or searching for alternatives.",
+    "class-1": "General",
+    "class-2-reason": "Concludes/explains that the maximizing sequence is an AP, clarifying prior analytic reasoning.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Therefore, the maximum number is floor[(n-1)^2 /4], so the answer is \\boxed{\\left\\lfloor \\dfrac{(n-1)^2}{4} \\right\\rfloor}.",
+    "class-1-reason": "The paragraph briefly re-examines the problem wording and affirms that the maximization occurs for equally spaced sequences, then clearly concludes with the boxed answer. This is presenting the main solution path without exploration\u2014there is reflection, but no testing or searching for alternatives.",
+    "class-1": "General",
+    "class-2-reason": "Summarizes and restates the final answer with the boxed formula; this is a concluding confirmation/verdict about the answer.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "But just to be thorough, let's consider another structure.",
+    "class-1-reason": "Here, the solver expresses uncertainty and actively considers alternative examples with a new structure (overlapping APs), asking what would happen. The speculative 'just to be thorough' and 'Suppose...' signals a search for possible exceptions, which is characteristic of exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Announces the intention to explore a different structure and explicitly signals not being certain of the earlier argument.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Suppose we have a sequence that consists of two overlapping arithmetic progressions.",
+    "class-1-reason": "Here, the solver expresses uncertainty and actively considers alternative examples with a new structure (overlapping APs), asking what would happen. The speculative 'just to be thorough' and 'Suppose...' signals a search for possible exceptions, which is characteristic of exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Poses a hypothetical scenario for consideration, suggesting uncertainty and brainstorming a structure (two overlapping APs).",
+    "class-2": "Explore"
+  },
+  {
+    "text": "For example, 1,2,3,4,5,7.",
+    "class-1-reason": "Here, the solver expresses uncertainty and actively considers alternative examples with a new structure (overlapping APs), asking what would happen. The speculative 'just to be thorough' and 'Suppose...' signals a search for possible exceptions, which is characteristic of exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Provides a speculative example to illustrate the exploratory scenario; shows no definitive deduction or analysis.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Wait, in this case, the APs would be:",
+    "class-1-reason": "Here, the solver expresses uncertainty and actively considers alternative examples with a new structure (overlapping APs), asking what would happen. The speculative 'just to be thorough' and 'Suppose...' signals a search for possible exceptions, which is characteristic of exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "Prefaces an exploration step with 'Wait', signifying a pause and preparation to consider the APs within the given example.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "1,2,3; 2,3,4; 3,4,5; 1,3,5; 2,4,6 (6 not present); 4,5,7 (differences 1 and 2).",
+    "class-1-reason": "This is a continuation of the exploration in paragraph 3; the solver tries a concrete sequence, counts the APs, and compares with the maximal case, finding that this arrangement is worse. The work is to check a specific non-standard structure for possible improvement over the known best.",
+    "class-1": "Explore",
+    "class-2-reason": "Lists example APs within the proposed sequence as part of generating possibilities (not calculating or confirming a result yet).",
+    "class-2": "Explore"
+  },
+  {
+    "text": "So APs: four, same as n=6 would have 6 APs in a full AP.",
+    "class-1-reason": "This is a continuation of the exploration in paragraph 3; the solver tries a concrete sequence, counts the APs, and compares with the maximal case, finding that this arrangement is worse. The work is to check a specific non-standard structure for possible improvement over the known best.",
+    "class-1": "Explore",
+    "class-2-reason": "Compares the number of APs found to the earlier scenario, as part of the exploration to see if a different structure yields more APs.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "So this is worse.",
+    "class-1-reason": "This is a continuation of the exploration in paragraph 3; the solver tries a concrete sequence, counts the APs, and compares with the maximal case, finding that this arrangement is worse. The work is to check a specific non-standard structure for possible improvement over the known best.",
+    "class-1": "Explore",
+    "class-2-reason": "Draws a tentative, comparative judgment within the exploration process about the effectiveness of the alternative structure.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Alternatively, maybe arranging the sequence with multiple APs.",
+    "class-1-reason": "Again, the solver explores yet another arrangement to see if a different non-equally spaced sequence could yield more APs. The words 'Alternatively, maybe...' and introduction of another variant are clear exploration markers.",
+    "class-1": "Explore",
+    "class-2-reason": "Speculates another arrangement for maximizing APs, using uncertain language ('maybe'), characteristic of the Explore stage.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "For example, 1,2,3,5,6,7.",
+    "class-1-reason": "Again, the solver explores yet another arrangement to see if a different non-equally spaced sequence could yield more APs. The words 'Alternatively, maybe...' and introduction of another variant are clear exploration markers.",
+    "class-1": "Explore",
+    "class-2-reason": "Gives another constructed example as part of the process of exploring different possible sequence structures.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "The APs here:",
+    "class-1-reason": "Again, the solver explores yet another arrangement to see if a different non-equally spaced sequence could yield more APs. The words 'Alternatively, maybe...' and introduction of another variant are clear exploration markers.",
+    "class-1": "Explore",
+    "class-2-reason": "Sets up to explore the set of APs present in the new example, without yet computing or confirming anything.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "1,2,3; 5,6,7; 1,3,5 (diff 2); 2,5,8 (nope); 3,5,7 (diff 2); 1,5,9 (nope).",
+    "class-1-reason": "The solver is listing all three-term arithmetic progressions in a particular sequence (1,2,3,5,6,7), trying to check how many APs this non-equally spaced ordering contains \u2014 this is testing a new structure explicitly to see if the number can be improved, embodying uncertainty and investigating alternatives.",
+    "class-1": "Explore",
+    "class-2-reason": "This sentence lists possible three-term arithmetic progressions or failed attempts as trial enumeration and partial elimination, reflecting examination of candidate APs in an uncertain, brainstorming way.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "So APs: 1,2,3; 5,6,7; 1,3,5; 3,5,7.",
+    "class-1-reason": "The solver is listing all three-term arithmetic progressions in a particular sequence (1,2,3,5,6,7), trying to check how many APs this non-equally spaced ordering contains \u2014 this is testing a new structure explicitly to see if the number can be improved, embodying uncertainty and investigating alternatives.",
+    "class-1": "Explore",
+    "class-2-reason": "Summarizes the viable APs discovered in the previous exploratory step, still in the context of finding out what patterns exist, before settling on a specific analysis.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "So four APs.",
+    "class-1-reason": "The solver is listing all three-term arithmetic progressions in a particular sequence (1,2,3,5,6,7), trying to check how many APs this non-equally spaced ordering contains \u2014 this is testing a new structure explicitly to see if the number can be improved, embodying uncertainty and investigating alternatives.",
+    "class-1": "Explore",
+    "class-2-reason": "States the count of APs found in this arrangement; this is a summary/conclusion of an exploration rather than a confirmed verification or computation.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Still less than six.",
+    "class-1-reason": "The solver is listing all three-term arithmetic progressions in a particular sequence (1,2,3,5,6,7), trying to check how many APs this non-equally spaced ordering contains \u2014 this is testing a new structure explicitly to see if the number can be improved, embodying uncertainty and investigating alternatives.",
+    "class-1": "Explore",
+    "class-2-reason": "Compares the current result to the previous best; still exploratory and tentatively comparing outcomes, not actively verifying a solution or performing planned mathematics.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Alternatively, 1,2,4,5,7,8.",
+    "class-1-reason": "The solver suggests another candidate sequence (1,2,4,5,7,8) to try, explicitly considering an alternate configuration in search of a possible improvement; this represents exploring further alternatives.",
+    "class-1": "Explore",
+    "class-2-reason": "Presents an alternative sequence for examination, expressing the intention to explore new possibilities for AP structures.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Let's see:",
+    "class-1-reason": "The solver suggests another candidate sequence (1,2,4,5,7,8) to try, explicitly considering an alternate configuration in search of a possible improvement; this represents exploring further alternatives.",
+    "class-1": "Explore",
+    "class-2-reason": "A very brief interjection signaling the intention to examine the new arrangement's arithmetic progressions, but still in the act of exploring.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "1,2,4: no.",
+    "class-1-reason": "This paragraph begins to check, for the chosen sequence, whether 1,2,4 forms an AP. This is a systematic, step-by-step verification by checking each possible triple, essentially confirming if each candidate triple is an AP, not exploring methodologically new alternatives but running through options.",
+    "class-1": "Verify",
+    "class-2-reason": "Judges whether 1,2,4 forms a valid arithmetic progression and rejects it, explicitly evaluating correctness, which is verification.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "1,2,5: no.",
+    "class-1-reason": "This paragraph continues the checking process, now with the triple 1,2,5. The paragraph\u2019s sole function is to verify if this specific triple constitutes an AP in the chosen sequence.",
+    "class-1": "Verify",
+    "class-2-reason": "Checks if 1,2,5 is a valid AP and rejects it, which is performing verification of that trial case.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "1,4,5: no.",
+    "class-1-reason": "Similarly, this paragraph checks if 1,4,5 forms an AP, continuing the verification of all three-term possibilities in the sequence. Its main role is validation, not exploration or advancing a systematic solution.",
+    "class-1": "Verify",
+    "class-2-reason": "Assesses the AP status of 1,4,5 and concludes it is invalid, representing another explicit verification step.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "1,2,7: no.",
+    "class-1-reason": "The paragraph is simply testing whether 1,2,7 forms an arithmetic progression, following the main problem-solving approach by checking specific triplets, with no speculative or meta-exploratory reasoning. This fits the General category as checking specific instances is directly part of proceeding through candidate triplets.",
+    "class-1": "General",
+    "class-2-reason": "Attempts to check if 1,2,7 fits as a three-term AP and rejects it, which is an evaluating or verifying action.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "1,5,7: diff 4 and 2.",
+    "class-1-reason": "Here, the model checks if 1,5,7 is an AP by computing the differences. This is part of systematically examining all relevant triplets as per the solution plan, without exploratory conjecture or explicit verification of an already derived result.",
+    "class-1": "General",
+    "class-2-reason": "States a property about the numbers (differences), summarizing analytic calculation of differences between values, not proposing or planning.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "2,4,5: no.",
+    "class-1-reason": "This paragraph directly tests 2,4,5 as a possible AP and declares 'no'\u2014which is aligned with the mainline try-all-combinations approach, not a separate exploration or verification phase.",
+    "class-1": "General",
+    "class-2-reason": "Makes a judgment about whether a particular triple forms an AP, i.e., checking explicitly; this is a confirmation step.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "2,5,7: diff 3 and 2.",
+    "class-1-reason": "Calculating the differences for 2,5,7 follows the direct, planned process of checking all combinations for APs, maintaining the systematic method outlined previously. No signs of exploration or verification as a separate routine.",
+    "class-1": "General",
+    "class-2-reason": "States the differences for 2,5,7, which is analytic, summarizing what happens to differences between these numbers (no uncertainty, not a conclusion yet).",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "4,5,7: no.",
+    "class-1-reason": "This is another direct, non-speculative check of whether 4,5,7 forms an AP. The process is in line with the established solving approach: try each triplet and state the result, which is General.",
+    "class-1": "General",
+    "class-2-reason": "Making a definitive statement after checking whether this triple forms an AP; this is a confirmatory step.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Similarly on the higher end.",
+    "class-1-reason": "The paragraph speculates on the higher end of the sequence and hypothesizes about the number of three-term APs, explicitly expressing uncertainty ('maybe two or three') and exploring the consequences of changing the sequence structure.",
+    "class-1": "Explore",
+    "class-2-reason": "Suggests looking at a similar situation, continuation of exploring possibilities, but is vague and tentative (no commitment or calculation yet).",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Not many APs.",
+    "class-1-reason": "The paragraph speculates on the higher end of the sequence and hypothesizes about the number of three-term APs, explicitly expressing uncertainty ('maybe two or three') and exploring the consequences of changing the sequence structure.",
+    "class-1": "Explore",
+    "class-2-reason": "Tentative conclusion about findings so far, expressing uncertainty and a general observation with 'not many', not a formal analytic deduction.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "So maybe two or three.",
+    "class-1-reason": "The paragraph speculates on the higher end of the sequence and hypothesizes about the number of three-term APs, explicitly expressing uncertainty ('maybe two or three') and exploring the consequences of changing the sequence structure.",
+    "class-1": "Explore",
+    "class-2-reason": "Speculative estimate with uncertainty ('maybe'), not a deduction or confirmation.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "So in all these cases, deviating from the full AP structure reduces the number of APs.",
+    "class-1-reason": "This paragraph summarizes observations and states a general principle that deviating from the arithmetic progression reduces the number of APs, reinforcing that the maximum occurs for the full AP. There is no exploring or verifying; it draws a general conclusion from earlier examples.",
+    "class-1": "General",
+    "class-2-reason": "States a definite result from consideration of cases (if deviating from AP, you get fewer APs), an analytic summary/conclusion.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So that reinforces that the maximum is achieved by the full AP.",
+    "class-1-reason": "This paragraph summarizes observations and states a general principle that deviating from the arithmetic progression reduces the number of APs, reinforcing that the maximum occurs for the full AP. There is no exploring or verifying; it draws a general conclusion from earlier examples.",
+    "class-1": "General",
+    "class-2-reason": "Draws an analytic conclusion ('reinforces') about which sequence structure maximizes APs; not verifying but asserting based on prior cases.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Another angle: suppose we try to model this as a graph problem.",
+    "class-1-reason": "Here the solver tries to reframe the problem as a graph question, initially exploring a new perspective before correcting and connecting the new approach back to the original problem. The exploratory intent and shift in reasoning dominates.",
+    "class-1": "Explore",
+    "class-2-reason": "Suggests a new approach using tentative language ('suppose we try'); proposes to consider a new idea without committing to it.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Each term is a vertex, and an edge connects two terms if their average is also present.",
+    "class-1-reason": "Here the solver tries to reframe the problem as a graph question, initially exploring a new perspective before correcting and connecting the new approach back to the original problem. The exploratory intent and shift in reasoning dominates.",
+    "class-1": "Explore",
+    "class-2-reason": "Proposes a possible modeling approach (graph), expressing a speculative idea for representation; tentative phrasing.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Then the number of three-term APs is the number of edges in this graph.",
+    "class-1-reason": "Here the solver tries to reframe the problem as a graph question, initially exploring a new perspective before correcting and connecting the new approach back to the original problem. The exploratory intent and shift in reasoning dominates.",
+    "class-1": "Explore",
+    "class-2-reason": "Speculatively connects structure of the graph to APs, continuing the uncertain exploration.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Wait, no.",
+    "class-1-reason": "Here the solver tries to reframe the problem as a graph question, initially exploring a new perspective before correcting and connecting the new approach back to the original problem. The exploratory intent and shift in reasoning dominates.",
+    "class-1": "Explore",
+    "class-2-reason": "Self-correction and immediate retraction of a prior idea; indicates hesitation and monitoring of the reasoning.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "Actually, each three-term AP corresponds to a pair of terms whose average is present.",
+    "class-1-reason": "Here the solver tries to reframe the problem as a graph question, initially exploring a new perspective before correcting and connecting the new approach back to the original problem. The exploratory intent and shift in reasoning dominates.",
+    "class-1": "Explore",
+    "class-2-reason": "Restates and corrects the previous approach to suggest a new tentative idea for APs; still exploring conceptual mappings.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "So the number of three-term APs is equal to the number of such pairs.",
+    "class-1-reason": "Here the solver tries to reframe the problem as a graph question, initially exploring a new perspective before correcting and connecting the new approach back to the original problem. The exploratory intent and shift in reasoning dominates.",
+    "class-1": "Explore",
+    "class-2-reason": "Describes a consequence of the new tentative mapping; still part of the exploratory thinking.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Therefore, maximizing the number of three-term APs is equivalent to maximizing the number of pairs (a, c) such that (a + c)/2 is also in the sequence.",
+    "class-1-reason": "Here the solver tries to reframe the problem as a graph question, initially exploring a new perspective before correcting and connecting the new approach back to the original problem. The exploratory intent and shift in reasoning dominates.",
+    "class-1": "Explore",
+    "class-2-reason": "Draws an equivalence between maximizing APs and maximizing pairs under the model, still as an outcome of the exploration.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "In a sorted sequence, for two terms a and c, with a < c, the average (a + c)/2 must be a term in the sequence between a and c.",
+    "class-1-reason": "This paragraph logically develops the implications of the previously introduced idea, deriving a property in the context of the sorted sequence. It methodically explains the reduced form of the problem using established ideas.",
+    "class-1": "General",
+    "class-2-reason": "Deduces a concrete structural property of sorted sequences related to APs; explains a certain, general property.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So the problem reduces to choosing as many pairs (a, c) as possible such that their average is also in the sequence.",
+    "class-1-reason": "This paragraph logically develops the implications of the previously introduced idea, deriving a property in the context of the sorted sequence. It methodically explains the reduced form of the problem using established ideas.",
+    "class-1": "General",
+    "class-2-reason": "Concludes and summarizes the structural reduction for the problem with certainty; not tentative.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "In the arithmetic progression, this is exactly the pairs where the indices have even sum.",
+    "class-1-reason": "The text draws a conclusion based on earlier reasoning, applying the known attribute that in an arithmetic progression the indices have even sums, and refers to it as 'previously established'. This is a declarative, solution-advancing statement, not exploratory or verifying.",
+    "class-1": "General",
+    "class-2-reason": "Provides a structural property of APs in the context of the original sequence (indices condition) with certainty.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So as previously established.",
+    "class-1-reason": "The text draws a conclusion based on earlier reasoning, applying the known attribute that in an arithmetic progression the indices have even sums, and refers to it as 'previously established'. This is a declarative, solution-advancing statement, not exploratory or verifying.",
+    "class-1": "General",
+    "class-2-reason": "Cites that this result matches what was determined earlier; confirms or summarizes established findings.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "But in a non-AP sequence, how many such pairs can we have?",
+    "class-1-reason": "This paragraph investigates how many pairs (a, c) can have their average in a non-AP sequence. It speculates about maximizing the count of such pairs and searches for an arrangement strategy, reflecting exploratory reasoning.",
+    "class-1": "Explore",
+    "class-2-reason": "The sentence expresses uncertainty/questioning about how many pairs can exist in a non-AP sequence, explicitly using a question mark and hypothesizing.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "For each pair (a, c), if the average is present, that's one AP.",
+    "class-1-reason": "This paragraph investigates how many pairs (a, c) can have their average in a non-AP sequence. It speculates about maximizing the count of such pairs and searches for an arrangement strategy, reflecting exploratory reasoning.",
+    "class-1": "Explore",
+    "class-2-reason": "This sentence states a factual relationship between pairs and APs, explaining what counts as an AP; it is a certain analytic deduction, not uncertain or implementational.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "To maximize the total number, we need as many such pairs as possible.",
+    "class-1-reason": "This paragraph investigates how many pairs (a, c) can have their average in a non-AP sequence. It speculates about maximizing the count of such pairs and searches for an arrangement strategy, reflecting exploratory reasoning.",
+    "class-1": "Explore",
+    "class-2-reason": "The sentence announces the intention to maximize the count and describes the desired outcome before implementing any specific method; it is a plan of action.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "However, in a general monotone sequence, the elements can be arranged in such a way that more averages fall into the sequence.",
+    "class-1-reason": "This paragraph argues why the AP maximizes the pair count and discusses what happens if you deviate from the AP, but it does so by making conceptual, logical reasoning and connecting facts established earlier, not entertaining alternative approaches or checking work.",
+    "class-1": "General",
+    "class-2-reason": "This sentence discusses the structure of a general monotone sequence and reflects on possibilities for arranging elements, which is an analytic observation about the setup.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "But in reality, arranging the sequence as an AP maximizes the number of such pairs because every pair with an even distance has their average in the sequence, and there's no overlap or gaps.",
+    "class-1-reason": "This paragraph argues why the AP maximizes the pair count and discusses what happens if you deviate from the AP, but it does so by making conceptual, logical reasoning and connecting facts established earlier, not entertaining alternative approaches or checking work.",
+    "class-1": "General",
+    "class-2-reason": "The sentence provides an analytic claim about the AP maximizing the pairs due to lack of overlap or gaps; it's reasoning with certainty.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "If you deviate from the AP, you might create some averages that are present, but you lose others.",
+    "class-1-reason": "This paragraph argues why the AP maximizes the pair count and discusses what happens if you deviate from the AP, but it does so by making conceptual, logical reasoning and connecting facts established earlier, not entertaining alternative approaches or checking work.",
+    "class-1": "General",
+    "class-2-reason": "The sentence explains what happens if you deviate from AP\u2014making an analytic inference about the effect of deviation.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "For example, inserting a number that is not in the AP would disrupt the existing averages.",
+    "class-1-reason": "This paragraph considers what would happen if a non-AP element is inserted and directly reasons (with an example) that it would disrupt averages. This is a logical justification for the case for AP, not exploratory because it doesn't search for new approaches or question the main plan.",
+    "class-1": "General",
+    "class-2-reason": "This gives a specific example supporting the analytic argument, demonstrating analytically that inserting a non-AP number disrupts averages.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "So maybe you can't have more averages than in the AP case.",
+    "class-1-reason": "This paragraph considers what would happen if a non-AP element is inserted and directly reasons (with an example) that it would disrupt averages. This is a logical justification for the case for AP, not exploratory because it doesn't search for new approaches or question the main plan.",
+    "class-1": "General",
+    "class-2-reason": "The phrase 'maybe you can't' shows uncertainty, tentatively proposing that you can't do better than the AP case, hence exploratory.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "Alternatively, consider that in the AP, the number of such pairs is maximized because of the regular spacing.",
+    "class-1-reason": "This paragraph gives a conceptual reason why AP maximizes the pairs due to regular spacing and states that any deviation reduces the count. It is a deeper logical justification, but sticks to established reasoning, not an exploration.",
+    "class-1": "General",
+    "class-2-reason": "This is an analytic summary that restates the reason why the AP maximizes the number, using logical certainty about regular spacing.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Any deviation would cause some averages not to be in the sequence, thus reducing the count.",
+    "class-1-reason": "This paragraph gives a conceptual reason why AP maximizes the pairs due to regular spacing and states that any deviation reduces the count. It is a deeper logical justification, but sticks to established reasoning, not an exploration.",
+    "class-1": "General",
+    "class-2-reason": "The sentence asserts a definite analytic conclusion: Any deviation reduces the count due to missing averages.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Therefore, the maximum number is indeed achieved by the arithmetic progression, giving floor[(n-1)^2 /4] three-term APs.",
+    "class-1-reason": "This is a final conclusion that plainly states the maximum value formula and confirms the answer. It does not verify or check the result, so it should be General.",
+    "class-1": "General",
+    "class-2-reason": "This sentence confirms and summarizes that the arithmetic progression achieves the maximum, referencing previous reasoning and presenting the result as a conclusion.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "Hence, the answer should be \\boxed{\\left\\lfloor \\dfrac{(n-1)^2}{4} \\right\\rfloor}.",
+    "class-1-reason": "This paragraph provides a direct conclusion by boxing the answer, restating the main solution with confidence, and does not perform any checking or exploration.",
+    "class-1": "General",
+    "class-2-reason": "This sentence expresses the answer in a formal mathematical box, signaling certainty and conclusion consistent with result verification.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "**Final Answer**\nThe maximum possible number of three-term arithmetic progressions is \\boxed{\\left\\lfloor \\dfrac{(n-1)^2}{4} \\right\\rfloor}.",
+    "class-1-reason": "This paragraph summarizes the final answer and restates the reasoning for maximizing the number of three-term APs in a monotone sequence; it is expository and advances the main line without checking or exploring alternatives.",
+    "class-1": "General",
+    "class-2-reason": "This sentence is an explicit final answer box with the result; it confirms the endpoint of reasoning.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "</think>To find the maximum number of three-term arithmetic progressions (APs) in a monotone sequence of \\( n \\) distinct real numbers, we start by considering the structure of such sequences.",
+    "class-1-reason": "This paragraph summarizes the final answer and restates the reasoning for maximizing the number of three-term APs in a monotone sequence; it is expository and advances the main line without checking or exploring alternatives.",
+    "class-1": "General",
+    "class-2-reason": "This sentence restates the problem goal and sets up the approach, reflecting understanding the prompt rather than inferring or calculating.",
+    "class-2": "Read"
+  },
+  {
+    "text": "A three-term AP is a sequence \\( a, b, c \\) such that \\( 2b = a + c \\).",
+    "class-1-reason": "This paragraph summarizes the final answer and restates the reasoning for maximizing the number of three-term APs in a monotone sequence; it is expository and advances the main line without checking or exploring alternatives.",
+    "class-1": "General",
+    "class-2-reason": "The sentence states the definition of a 3-term arithmetic progression exactly; it is recalling background knowledge needed for the problem.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "For a sequence to maximize the number of three-term APs, it should be structured as an arithmetic progression.",
+    "class-1-reason": "This paragraph explains why an arithmetic progression achieves maximality for the desired property and elaborates the solution in a confident manner with no speculative or checking language.",
+    "class-1": "General",
+    "class-2-reason": "This is a certain inference about the best structure to maximize the number of three-term APs.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "In an arithmetic progression, the number of three-term APs is determined by the number of pairs of terms whose average is also present in the sequence.",
+    "class-1-reason": "This paragraph explains why an arithmetic progression achieves maximality for the desired property and elaborates the solution in a confident manner with no speculative or checking language.",
+    "class-1": "General",
+    "class-2-reason": "This sentence explains why the arithmetic progression structure achieves the maximum, involving inference and explanation.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "For a sequence of length \\( n \\):\n- If \\( n \\) is even, the number of three-term APs is given by \\( \\frac{n}{2} \\left( \\frac{n}{2} - 1 \\right) \\).",
+    "class-1-reason": "This paragraph details the computation/formulas for both cases (even/odd n) of the problem, in a methodical, declarative way; it proceeds with the solution without digression or verification.",
+    "class-1": "General",
+    "class-2-reason": "This sentence states the formula for the even n case, a product of analytic reasoning; it is not merely a calculation, but a presentation of a result.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "- If \\( n \\) is odd, the number of three-term APs is given by \\( \\left( \\frac{n - 1}{2} \\right)^2 \\).",
+    "class-1-reason": "This paragraph details the computation/formulas for both cases (even/odd n) of the problem, in a methodical, declarative way; it proceeds with the solution without digression or verification.",
+    "class-1": "General",
+    "class-2-reason": "Similarly, this sentence states the formula for odd n, still presenting analytic reasoning and summarizing the outcome.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "Both cases can be unified using the floor function to express the result as \\( \\left\\lfloor \\frac{(n - 1)^2}{4} \\right\\rfloor \\).",
+    "class-1-reason": "This paragraph summarizes and unifies the previous formulas using the floor function, simply synthesizing the findings in the main solution path.",
+    "class-1": "General",
+    "class-2-reason": "This sentence explains how both cases can be unified using the floor function, indicating inference and conceptual explanation.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "### Key Steps:\n1.",
+    "class-1-reason": "This paragraph lays out the main strategy and solution path: defining what a three-term AP is, explaining why an arithmetic progression maximizes the count, and describing how to count them. Each step is direct, systematic problem-solving, moving through established facts with no speculation or checking.",
+    "class-1": "General",
+    "class-2-reason": "This is a section heading label ('Key Steps:') and does not itself contain any mathematical reasoning, planning, analysis, etc., but marks a structural change or pause\u2014fits the meta-cognitive function.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "**Understanding Arithmetic Progressions**: A three-term AP requires the middle term to be the average of the first and third terms.",
+    "class-1-reason": "This paragraph lays out the main strategy and solution path: defining what a three-term AP is, explaining why an arithmetic progression maximizes the count, and describing how to count them. Each step is direct, systematic problem-solving, moving through established facts with no speculation or checking.",
+    "class-1": "General",
+    "class-2-reason": "This sentence restates the requirement for a 3-term arithmetic progression (middle term is the average of first and third). It explains or establishes a core mathematical definition necessary for further reasoning.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "2.",
+    "class-1-reason": "This paragraph lays out the main strategy and solution path: defining what a three-term AP is, explaining why an arithmetic progression maximizes the count, and describing how to count them. Each step is direct, systematic problem-solving, moving through established facts with no speculation or checking.",
+    "class-1": "General",
+    "class-2-reason": "This is a step label ('2.'), not a mathematical statement, and indicates a transition or organizational marker\u2014again a meta-comment.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "**Maximizing APs in a Monotone Sequence**: The sequence must be structured to allow the maximum number of such averages, which is achieved by an arithmetic progression.",
+    "class-1-reason": "This paragraph lays out the main strategy and solution path: defining what a three-term AP is, explaining why an arithmetic progression maximizes the count, and describing how to count them. Each step is direct, systematic problem-solving, moving through established facts with no speculation or checking.",
+    "class-1": "General",
+    "class-2-reason": "This sentence asserts that to maximize the number of APs, the sequence should itself be an arithmetic progression, directly relating sequence structure to outcome. It's an explanatory/deductive (certain) statement.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "3.",
+    "class-1-reason": "This paragraph lays out the main strategy and solution path: defining what a three-term AP is, explaining why an arithmetic progression maximizes the count, and describing how to count them. Each step is direct, systematic problem-solving, moving through established facts with no speculation or checking.",
+    "class-1": "General",
+    "class-2-reason": "This is a step label ('3.'), serving as an organizational or transition marker without substantive content.",
+    "class-2": "Monitor"
+  },
+  {
+    "text": "**Counting APs in an Arithmetic Progression**: For each term as the middle term, count pairs of terms equidistant from it.",
+    "class-1-reason": "This paragraph lays out the main strategy and solution path: defining what a three-term AP is, explaining why an arithmetic progression maximizes the count, and describing how to count them. Each step is direct, systematic problem-solving, moving through established facts with no speculation or checking.",
+    "class-1": "General",
+    "class-2-reason": "This sentence outlines a method ('For each term as the middle... count pairs...') for determining the number of APs\u2014 explaining the logical procedure/the mechanism behind counting. This is clear exposition, not actual calculation or just a plan.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "This results in the formula \\( \\left\\lfloor \\frac{(n - 1)^2}{4} \\right\\rfloor \\).",
+    "class-1-reason": "This paragraph lays out the main strategy and solution path: defining what a three-term AP is, explaining why an arithmetic progression maximizes the count, and describing how to count them. Each step is direct, systematic problem-solving, moving through established facts with no speculation or checking.",
+    "class-1": "General",
+    "class-2-reason": "This sentence states the result of the preceding analysis as a general formula, summarizing the conclusion of the reasoning process\u2014not calculation, but analytic expression.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "### Conclusion:\nThe maximum number of three-term arithmetic progressions in a monotone sequence of \\( n \\) distinct reals is given by:",
+    "class-1-reason": "This is a summary/conclusion that restates the main result: the answer to the original problem, without entering into verification or further exploration.",
+    "class-1": "General",
+    "class-2-reason": "This is a heading or introductory sentence for the conclusion, summarizing what is being answered. It restates the problem's goal just before presenting the answer\u2014matches the definition of Read (if rephrasing the task) or Monitor (if only as transitional heading), but here it sets up the answer and refers directly back to the question prompt.",
+    "class-2": "Read"
+  },
+  {
+    "text": "\\[\n\\boxed{\\left\\lfloor \\dfrac{(n-1)^2}{4} \\right\\rfloor}\n\\]",
+    "class-1-reason": "This paragraph simply presents the boxed final formula as the answer, without any checking or evaluation.",
+    "class-1": "General",
+    "class-2-reason": "This is the boxed final formula/answer matching what is asked for, given as a direct conclusion/result. According to the guidebook, final answers after analysis/implementation should be labeled 'Implement' if they immediately follow calculation or 'Verify' if they assert confirmation, but here it's simply reporting the formula. Based on guidance, since it's the presentation of the main answer (not merely checking or calculation, but finalizing the result), 'Implement' best fits.",
+    "class-2": "Implement"
+  }
+]

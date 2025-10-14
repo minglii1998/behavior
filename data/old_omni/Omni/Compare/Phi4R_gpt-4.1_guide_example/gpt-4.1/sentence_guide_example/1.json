@@ -1,0 +1,697 @@
+[
+    {
+        "class": "Read",
+        "text": "<think>We are asked: \"Find all the functions f: Z -> Z that satisfy the following property: if a, b, c are integers such that a+b+c=0, then f(a)+f(b)+f(c)=a^2+b^2+c^2."
+    },
+    {
+        "class": "Read",
+        "text": "\" Let me re-read: Problem: \"Find all the functions f: Z->Z satisfying the following property: if a, b, c are integers such that a+b+c=0, then f(a)+f(b)+f(c)=a^2+b^2+c^2."
+    },
+    {
+        "text": "\" We want to determine all such functions.",
+        "gt_class": "Analyze",
+        "labeled_class": "Read"
+    },
+    {
+        "text": "Let's start: Let f be a function from integers to integers.",
+        "gt_class": "Analyze",
+        "labeled_class": "Read"
+    },
+    {
+        "text": "The equation: For all a, b, c in Z with a+b+c=0, f(a) + f(b) + f(c) = a^2 + b^2 + c^2.",
+        "gt_class": "Analyze",
+        "labeled_class": "Read"
+    },
+    {
+        "text": "Let's try to set up some candidate forms.",
+        "gt_class": "Plan",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Explore",
+        "text": "Let's assume f(x) = x^2 + g(x) where g is something?"
+    },
+    {
+        "text": "But then f(a)+f(b)+f(c)= a^2+b^2+c^2 + g(a)+g(b)+g(c).",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "And equation is: a^2+b^2+c^2 + g(a)+g(b)+g(c) = a^2+b^2+c^2, so that forces g(a)+g(b)+g(c)=0 whenever a+b+c=0.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "So g is any function from Z to Z such that if a+b+c=0 then g(a)+g(b)+g(c)=0.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "But note we need that for all triple a, b, c with sum zero.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Explore",
+        "text": "But then maybe also try specific values: Let a=b=0, c=0, then g(0)+g(0)+g(0)=3g(0)=0, so g(0)=0."
+    },
+    {
+        "text": "Let a = x, b=-x, c=0 then g(x)+g(-x)+g(0)=g(x)+g(-x)=0 for all x.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "So g is an odd function.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Let a = x, b = -x, c=0, indeed.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "But what about a = x, b = 0, c = -x: same.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "But then consider a = x, b = x, c = -2x, then g(x)+g(x)+g(-2x)=0, so 2g(x)+g(-2x)=0, but g(-2x) = -g(2x), so then 2g(x) - g(2x)=0, or g(2x)=2g(x).",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "That is a homogeneity property with respect to doubling.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Explore",
+        "text": "More generally, we might try to guess g is linear."
+    },
+    {
+        "text": "Let g(x)=cx for some constant c in Z.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Then f(x)=x^2+cx.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "And then condition becomes: f(a)+f(b)+f(c)= (a^2+ c a) + (b^2+ c b) + (c^2+ c c) = a^2+b^2+c^2 + c(a+b+c)=a^2+b^2+c^2, because a+b+c=0.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Verify",
+        "text": "So that works."
+    },
+    {
+        "text": "And then any function of the form f(x)=x^2+ c x is a candidate.",
+        "gt_class": "Analyze",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "But does that cover all possibilities?",
+        "gt_class": "Verify",
+        "labeled_class": "Explore"
+    },
+    {
+        "text": "Let's try a different possibility: f(x)=x^2.",
+        "gt_class": "Verify",
+        "labeled_class": "Explore"
+    },
+    {
+        "class": "Analyze",
+        "text": "But that's a special case of f(x)=x^2+cx with c=0."
+    },
+    {
+        "class": "Explore",
+        "text": "Now let\u2019s try: is there any possibility that g is not linear but still satisfies g(x)+g(y)+g(-x-y)=0 for all x,y in Z."
+    },
+    {
+        "text": "And also g(0)=0 and g(-x)=-g(x).",
+        "gt_class": "Explore",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Analyze",
+        "text": "And for x=0, g(0)=0."
+    },
+    {
+        "class": "Analyze",
+        "text": "And we already deduced g(2x)=2g(x)."
+    },
+    {
+        "class": "Explore",
+        "text": "But can we get something like g is additive?"
+    },
+    {
+        "text": "Let's check additivity: Let y=0, then g(x)+g(0)+g(-x)=g(x)-g(x)=0, trivial.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "Let y=x, then g(x)+g(x)+g(-2x)=2g(x)-g(2x)=0, so g(2x)=2g(x).",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "Let y=-x, then g(x)+g(-x)+g(0)=0.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "Not new.",
+        "gt_class": "Verify",
+        "labeled_class": "Monitor"
+    },
+    {
+        "text": "Take arbitrary x, y.",
+        "gt_class": "Analyze",
+        "labeled_class": "Plan"
+    },
+    {
+        "text": "The condition is: for all x, y in Z, we have g(x)+g(y)+g(-x-y)=0.",
+        "gt_class": "Analyze",
+        "labeled_class": "Read"
+    },
+    {
+        "class": "Analyze",
+        "text": "That is a well-known Cauchy type equation with condition g(-x-y) = -g(x+y) so the condition becomes g(x)+g(y)=g(x+y) for all x, y in Z."
+    },
+    {
+        "text": "So g is additive.",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Analyze",
+        "text": "And since g is additive and f: Z->Z, it's known that the only additive functions from Z to Z are linear (f(n)=n*g(1))."
+    },
+    {
+        "class": "Analyze",
+        "text": "So then g(x)= kx for some integer k."
+    },
+    {
+        "text": "So the only possible solutions are f(x)=x^2+ kx.",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Verify",
+        "text": "But wait, is that indeed the full solution?"
+    },
+    {
+        "class": "Verify",
+        "text": "Let's check: f(x)=x^2+kx."
+    },
+    {
+        "text": "Then f(a)+f(b)+f(c)= a^2+b^2+c^2 + k(a+b+c)= a^2+b^2+c^2, since a+b+c=0.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Verify",
+        "text": "So yes, it's a solution."
+    },
+    {
+        "class": "Explore",
+        "text": "But wait: But perhaps also we can consider functions of the form f(x)=x^2+ c?"
+    },
+    {
+        "class": "Verify",
+        "text": "Let's check: f(x)=x^2+c constant."
+    },
+    {
+        "text": "Then f(a)+f(b)+f(c)= (a^2+b^2+c^2)+3c, which equals a^2+b^2+c^2 if and only if 3c=0 so c=0.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "So not.",
+        "gt_class": "Verify",
+        "labeled_class": "Monitor"
+    },
+    {
+        "class": "Explore",
+        "text": "Wait, what about f(x)=x^2+ p(x) where p is any function with property p(x)+p(y)+p(z)=0 whenever x+y+z=0?"
+    },
+    {
+        "class": "Analyze",
+        "text": "We already found that that forces p to be additive (and odd)."
+    },
+    {
+        "class": "Analyze",
+        "text": "But as explained, the additive functions from Z to Z are linear."
+    },
+    {
+        "class": "Verify",
+        "text": "But wait, check: any additive function g: Z->Z must satisfy g(n)= n*g(1)."
+    },
+    {
+        "text": "So g(x)=kx for some integer k.",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "text": "So then answer: f(x)=x^2+kx for some integer k.",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "text": "Wait, are there any other possibilities?",
+        "gt_class": "Explore",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "Let's check constant term: if f(x)=x^2 + c, then summing gives a^2+b^2+c^2 +3c, so then 3c=0."
+    },
+    {
+        "text": "So c=0.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "text": "But then it's same as the linear solution with k=0.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "Now check: f(x)=x^2+2x."
+    },
+    {
+        "text": "Then f(a)+f(b)+f(c)= a^2+b^2+c^2+2(a+b+c)=a^2+b^2+c^2.",
+        "gt_class": "Analyze",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "So yes."
+    },
+    {
+        "text": "Thus the answer: f(x)= x^2 + k x, for any integer constant k.",
+        "gt_class": "Verify",
+        "labeled_class": "Plan"
+    },
+    {
+        "class": "Analyze",
+        "text": "But wait, note that k can be any integer, including negative integers."
+    },
+    {
+        "text": "But wait: Are there any restrictions on k?",
+        "gt_class": "Explore",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "Let's check f: Z->Z, f(x)= x^2 + kx."
+    },
+    {
+        "class": "Verify",
+        "text": "That is indeed an integer for any integer x."
+    },
+    {
+        "class": "Verify",
+        "text": "So answer: f(x)= x^2+ kx, for some integer constant k."
+    },
+    {
+        "class": "Verify",
+        "text": "But we should double-check that there is no other possibility."
+    },
+    {
+        "class": "Verify",
+        "text": "Let's check by plugging a=b=0, c=0 gives f(0)=0, so f(0)=0."
+    },
+    {
+        "text": "Then let a=x, b=-x, c=0 gives f(x)+f(-x)= x^2+kx + x^2 - kx=2x^2.",
+        "gt_class": "Implement",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "So that is consistent with f(x)=x^2+ kx."
+    },
+    {
+        "class": "Verify",
+        "text": "Yes."
+    },
+    {
+        "class": "Verify",
+        "text": "Double-check: Let a=1, b=2, c=-3."
+    },
+    {
+        "text": "f(1)+f(2)+f(-3)= (1+ k) + (4+2k) + (9-3k)=14, and 1^2+2^2+(-3)^2= 1+4+9=14.",
+        "gt_class": "Implement",
+        "labeled_class": "Verify"
+    },
+    {
+        "class": "Verify",
+        "text": "So yes."
+    },
+    {
+        "text": "So answer: f(x)= x^2 + k x, for any integer k.",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Explore",
+        "text": "I want to consider potential non-linear solution: f(x)= x^2+g(x), with g additive."
+    },
+    {
+        "class": "Analyze",
+        "text": "But as argued, g(x)= kx for all x."
+    },
+    {
+        "text": "So that is it.",
+        "gt_class": "Verify",
+        "labeled_class": "Monitor"
+    },
+    {
+        "text": "I should check the domain: f: Z-> Z.",
+        "gt_class": "Verify",
+        "labeled_class": "Plan"
+    },
+    {
+        "text": "f(x)= x^2+ kx.",
+        "gt_class": "Verify",
+        "labeled_class": "Analyze"
+    },
+    {
+        "class": "Verify",
+        "text": "That is indeed the answer."
+    },
+    {
+        "text": "I must mention that f(0)=0.",
+        "gt_class": "Verify",
+        "labeled_class": "Plan"
+    },
+    {
+        "class": "Analyze",
+        "text": "f is determined by f(1)= 1 + k."
+    },
+    {
+        "text": "So answer: All such functions are given by f(n)= n^2 + n * f(1)-1, wait, careful: if we let c = f(1)-1, then f(n)= n^2+ n*(f(1)-1).",
+        "gt_class": "Verify",
+        "labeled_class": "Monitor"
+    },
+    {
+        "class": "Analyze",
+        "text": "But it's simpler: Let k be any integer and define f(x)= x^2 + k x."
+    },
+    {
+        "text": "But I need to check: f(x)= x^2+ k x is clearly the complete set.",
+        "gt_class": "Verify",
+        "labeled_class": "Plan"
+    },
+    {
+        "class": "Verify",
+        "text": "So answer: f(x)= x^2+ k x for an arbitrary integer k."
+    },
+    {
+        "class": "Explore",
+        "text": "Let me check possibility: f(x)= x^2+ k x + C."
+    },
+    {
+        "class": "Analyze",
+        "text": "But then f(0)=C must equal 0 because of a=0, b=0, c=0."
+    },
+    {
+        "class": "Analyze",
+        "text": "So constant term is forced to be 0."
+    },
+    {
+        "class": "Verify",
+        "text": "Thus answer: f(x)= x^2+ k x, where k is any integer."
+    },
+    {
+        "text": "I can also check: f is determined by its behavior on two points.",
+        "gt_class": "Verify",
+        "labeled_class": "Plan"
+    },
+    {
+        "class": "Explore",
+        "text": "I might consider the possibility of \"wild\" additive functions from Z to Z."
+    },
+    {
+        "class": "Analyze",
+        "text": "But there is no \"wild\" additive function because Z is a free abelian group of countable rank, but additive functions from Z to Z are always linear."
+    },
+    {
+        "class": "Analyze",
+        "text": "Actually, more precisely, any group homomorphism from Z to Z is given by multiplication by an integer, so g(n)= n*g(1)."
+    },
+    {
+        "class": "Verify",
+        "text": "Thus answer: f(x)= x^2+cx, where c is any integer."
+    },
+    {
+        "text": "Thus answer: f(n)= n^2+ cn for any constant c in Z.",
+        "gt_class": "Verify",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "Thus answer: f(x)=x^2+cx for all x in Z.",
+        "gt_class": "Verify",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "Thus answer: The set of all solutions is { f: Z->Z such that f(x)= x^2 + k x for some integer k }.",
+        "gt_class": "Verify",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "I must now produce final answer.",
+        "gt_class": "Monitor",
+        "labeled_class": "Plan"
+    },
+    {
+        "text": "We'll produce a final answer.",
+        "gt_class": "Monitor",
+        "labeled_class": "Plan"
+    },
+    {
+        "text": "Thus answer: f(n)= n^2+kn for some integer k.",
+        "gt_class": "Verify",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Verify",
+        "text": "I must also check possibility: f(1)= 1+k, but then f(-1)= 1- k, and summing them gives 2."
+    },
+    {
+        "text": "I must now produce final answer message.",
+        "gt_class": "Monitor",
+        "labeled_class": "Plan"
+    },
+    {
+        "class": "Plan",
+        "text": "I'll produce final answer in plain text with explanation."
+    },
+    {
+        "text": "I'll produce final answer.",
+        "gt_class": "Monitor",
+        "labeled_class": "Plan"
+    },
+    {
+        "class": "Monitor",
+        "text": "I'll produce final answer message."
+    },
+    {
+        "text": "I'll produce final answer message.",
+        "gt_class": "Plan",
+        "labeled_class": "Monitor"
+    },
+    {
+        "text": "I'll produce final answer message.",
+        "gt_class": "Plan",
+        "labeled_class": "Monitor"
+    },
+    {
+        "class": "Read",
+        "text": "</think>We wish to find all functions f from the integers to the integers such that for all integers a, b, and c with"
+    },
+    {
+        "text": "a + b + c = 0",
+        "gt_class": "Analyze",
+        "labeled_class": "Read"
+    },
+    {
+        "text": "the equation",
+        "gt_class": "Analyze",
+        "labeled_class": "Read"
+    },
+    {
+        "text": "f(a) + f(b) + f(c) = a\u00b2 + b\u00b2 + c\u00b2",
+        "gt_class": "Analyze",
+        "labeled_class": "Read"
+    },
+    {
+        "text": "holds.",
+        "gt_class": "Analyze",
+        "labeled_class": "Read"
+    },
+    {
+        "class": "Plan",
+        "text": "Step 1."
+    },
+    {
+        "class": "Plan",
+        "text": "Write f(x) in a suggestive form."
+    },
+    {
+        "class": "Analyze",
+        "text": "Since the right\u2010hand side of the equation is a sum of squares, it is natural to try a function of the form"
+    },
+    {
+        "class": "Analyze",
+        "text": "f(x) = x\u00b2 + g(x),"
+    },
+    {
+        "class": "Analyze",
+        "text": "where g is some function from \u2124 to \u2124."
+    },
+    {
+        "text": "Substituting this into the equation gives",
+        "gt_class": "Analyze",
+        "labeled_class": "Plan"
+    },
+    {
+        "text": "[a\u00b2 + g(a)] + [b\u00b2 + g(b)] + [c\u00b2 + g(c)] = a\u00b2 + b\u00b2 + c\u00b2.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Analyze",
+        "text": "Cancelling the quadratic terms we obtain"
+    },
+    {
+        "class": "Analyze",
+        "text": "g(a) + g(b) + g(c) = 0\u2003\u2003whenever\u2003\u2003a + b + c = 0."
+    },
+    {
+        "text": "Step 2.",
+        "gt_class": "Plan",
+        "labeled_class": "Monitor"
+    },
+    {
+        "class": "Plan",
+        "text": "Analyze the condition on g."
+    },
+    {
+        "text": "We need g: \u2124 \u2192 \u2124 such that for all integers a, b, c with a + b + c = 0, the sum g(a) + g(b) + g(c) = 0.",
+        "gt_class": "Analyze",
+        "labeled_class": "Read"
+    },
+    {
+        "class": "Monitor",
+        "text": "Notice:"
+    },
+    {
+        "text": "\u2022 If we take a = b = c = 0, then\n\u2003\u2003g(0) + g(0) + g(0) = 3g(0) = 0\u2003\u2003\u21d2\u2003\u2003g(0) = 0.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "\u2022 If we take a = x, b = -x, c = 0 (since x + (\u2013x) + 0 = 0), then\n\u2003\u2003g(x) + g(\u2013x) + g(0) = g(x) + g(\u2013x) = 0.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Analyze",
+        "text": "Thus, g(\u2013x) = \u2013g(x), which means g is an odd function."
+    },
+    {
+        "class": "Analyze",
+        "text": "Now, let\u2019s take a = x, b = y, and c = \u2013x \u2013 y (since x + y + (\u2013x \u2013 y) = 0)."
+    },
+    {
+        "class": "Analyze",
+        "text": "Then the condition becomes"
+    },
+    {
+        "text": "g(x) + g(y) + g(\u2013x \u2013 y) = 0.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "But since g is odd, g(\u2013x \u2013 y) = \u2013g(x + y).",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Analyze",
+        "text": "Hence, we have"
+    },
+    {
+        "text": "g(x) + g(y) \u2013 g(x + y) = 0\u2003\u2003or\u2003\u2003g(x + y) = g(x) + g(y).",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "class": "Analyze",
+        "text": "This is Cauchy\u2019s functional equation on the integers."
+    },
+    {
+        "class": "Analyze",
+        "text": "It is well known that every solution g: \u2124 \u2192 \u2124 to this equation is linear; that is, there exists an integer k such that"
+    },
+    {
+        "class": "Analyze",
+        "text": "g(x) = kx\u2003\u2003for all integers x."
+    },
+    {
+        "text": "Step 3.",
+        "gt_class": "Plan",
+        "labeled_class": "Monitor"
+    },
+    {
+        "class": "Plan",
+        "text": "Write the final form of f."
+    },
+    {
+        "class": "Analyze",
+        "text": "Recall that f(x) = x\u00b2 + g(x) and we have just found that g(x) = kx for some integer k."
+    },
+    {
+        "text": "Therefore,",
+        "gt_class": "Analyze",
+        "labeled_class": "Monitor"
+    },
+    {
+        "text": "f(x) = x\u00b2 + kx\u2003\u2003for some integer k.",
+        "gt_class": "Analyze",
+        "labeled_class": "Implement"
+    },
+    {
+        "text": "Verification:",
+        "gt_class": "Plan",
+        "labeled_class": "Monitor"
+    },
+    {
+        "class": "Verify",
+        "text": "For any integers a, b, and c with a + b + c = 0, we have\n\u2003\u2003f(a) + f(b) + f(c) = (a\u00b2 + ka) + (b\u00b2 + kb) + (c\u00b2 + kc)\n\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003= (a\u00b2 + b\u00b2 + c\u00b2) + k(a + b + c)\n\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2003= a\u00b2 + b\u00b2 + c\u00b2\u2003\u2003(since a + b + c = 0)."
+    },
+    {
+        "class": "Verify",
+        "text": "Thus, the function satisfies the given condition."
+    },
+    {
+        "class": "Monitor",
+        "text": "Final Answer:"
+    },
+    {
+        "text": "The functions f: \u2124 \u2192 \u2124 that satisfy\n\u2003\u2003f(a) + f(b) + f(c) = a\u00b2 + b\u00b2 + c\u00b2\u2003\u2003whenever\u2003a + b + c = 0\nare exactly those of the form",
+        "gt_class": "Verify",
+        "labeled_class": "Read"
+    },
+    {
+        "text": "f(x) = x\u00b2 + kx\u2003\u2003for some integer k.",
+        "gt_class": "Verify",
+        "labeled_class": "Implement"
+    }
+]

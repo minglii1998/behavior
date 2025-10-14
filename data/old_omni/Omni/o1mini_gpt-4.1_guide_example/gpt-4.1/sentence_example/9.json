@@ -1,0 +1,86 @@
+[
+  {
+    "text": "To determine the maximum number of three-term arithmetic progressions (APs) in a monotone (increasing) sequence of \\( n \\) distinct real numbers, let's analyze the conditions required for such APs.",
+    "class-1-reason": "The paragraph sets up the overall approach for how to find the maximum number of three-term APs in a given sequence; it is focused on planning and global problem definition.",
+    "class-1": "General",
+    "class-2-reason": "The sentence announces an intent to analyze the problem and frames the next step (analyzing the conditions) before carrying it out.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "### Definition:\nA three-term arithmetic progression in the sequence \\( a_1 < a_2 < \\dots < a_n \\) consists of indices \\( (i, j, k) \\) with \\( i < j < k \\) such that:\n\\[\na_j = \\frac{a_i + a_k}{2}\n\\]\nThis implies:\n\\[\na_k = 2a_j - a_i\n\\]",
+    "class-1-reason": "This paragraph formalizes the mathematical definition of a three-term AP for the problem, laying groundwork and terminology, which is general setup for the solution.",
+    "class-1": "General",
+    "class-2-reason": "This is an explanation\u2014restating the formal condition under which a three-term arithmetic progression occurs, using math relationships.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "### Maximizing the Number of APs:\nTo maximize the number of APs, we need to maximize the number of valid triples \\( (i, j, k) \\) that satisfy the above condition.",
+    "class-1-reason": "The paragraph transitions to strategizing how to achieve the maximum, discussing the high-level goal and method; this is still general planning for solution.",
+    "class-1": "General",
+    "class-2-reason": "The sentence outlines the main goal and what must be maximized, indicating the plan to be followed to find the solution.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "Here's how you can approach this:",
+    "class-1-reason": "The paragraph transitions to strategizing how to achieve the maximum, discussing the high-level goal and method; this is still general planning for solution.",
+    "class-1": "General",
+    "class-2-reason": "This is a direct planning/announcing of the solution approach, telling the reader what will be done next.",
+    "class-2": "Plan"
+  },
+  {
+    "text": "1. **Middle Element Focus:** For each \\( j \\) (the middle element of the AP), identify how many valid pairs \\( (i, k) \\) exist such that \\( i < j < k \\) and \\( a_k = 2a_j - a_i \\).",
+    "class-1-reason": "Here the reasoning starts to analyze concrete cases by considering fixing the middle element and exploring related index pairs\u2014this is the start of mathematical exploration towards the solution.",
+    "class-1": "Explore",
+    "class-2-reason": "The sentence introduces a method to explore for maximizing APs, focusing on possible choices for the middle element and related pairs. The wording is about considering how many options exist for each element\u2014as a tentative exploration of solution structure.",
+    "class-2": "Explore"
+  },
+  {
+    "text": "2. **Constraints on Indices:**\n   - \\( i \\) must be less than \\( j \\).",
+    "class-1-reason": "This paragraph lists the explicit constraints derived from the exploration in the previous paragraph, specifying the allowable index relations needed to form a valid AP in the sequence, which extends the exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "It restates or clarifies the index constraint without deeper inference; here, it's just defining the setting for further reasoning.",
+    "class-2": "Read"
+  },
+  {
+    "text": "- \\( k = 2j - i \\) must be greater than \\( j \\) and within the sequence bounds (\\( k \\leq n \\)).",
+    "class-1-reason": "This paragraph lists the explicit constraints derived from the exploration in the previous paragraph, specifying the allowable index relations needed to form a valid AP in the sequence, which extends the exploration.",
+    "class-1": "Explore",
+    "class-2-reason": "It lays out a direct constraint (bounds for k) and is simply restating the requirements for validity of indices in an AP, based on earlier definitions.",
+    "class-2": "Read"
+  },
+  {
+    "text": "3. **Counting Valid Pairs:**\n   The number of valid \\( i \\) for each \\( j \\) is:\n   \\[\n   \\text{min}(j - 1, n - j)\n   \\]\n   This is because \\( i \\) can range from \\( 1 \\) to \\( j - 1 \\), but \\( k \\) must not exceed \\( n \\), limiting \\( i \\) further when \\( j \\) is near the ends of the sequence.",
+    "class-1-reason": "This paragraph is analyzing and counting the number of valid pairs by reasoning about the structure of index choices for each j; it is working out how the valid triples are counted and why the minimum applies.",
+    "class-1": "General",
+    "class-2-reason": "This is analyzing: it derives and explains how the min formula for valid i arises, connecting index ranges to structural requirements.",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "4. **Total APs:**\n   Summing over all possible \\( j \\), the total number of APs is:\n   \\[\n   \\sum_{j=1}^{n} \\text{min}(j - 1, n - j)\n   \\]\n   This summation evaluates to:\n   \\[\n   \\left\\lfloor \\frac{(n - 1)^2}{4} \\right\\rfloor\n   \\]\n   where \\( \\lfloor \\cdot \\rfloor \\) denotes the floor function.",
+    "class-1-reason": "This paragraph sums up over all possible j and derives a general formula for the total number of APs, transitioning from specific counting to a general solution.",
+    "class-1": "General",
+    "class-2-reason": "The sentence uses the formula from the prior analysis, setting up the sum over j, evaluating the sum, and stating the closed form and interpreting the floor function\u2014these are analytic steps (deduction, not mere calculation).",
+    "class-2": "Analyze"
+  },
+  {
+    "text": "### Example Calculations:\n- **For \\( n = 5 \\):**\n  \\[\n  \\left\\lfloor \\frac{(5 - 1)^2}{4} \\right\\rfloor = \\left\\lfloor \\frac{16}{4} \\right\\rfloor = 4 \\text{ APs}\n  \\]\n  \n- **For \\( n = 6 \\):**\n  \\[\n  \\left\\lfloor \\frac{(6 - 1)^2}{4} \\right\\rfloor = \\left\\lfloor \\frac{25}{4} \\right\\rfloor = 6 \\text{ APs}\n  \\]",
+    "class-1-reason": "This paragraph provides specific examples (for n=5 and n=6) to verify and illustrate that the derived formula works in concrete cases.",
+    "class-1": "Verify",
+    "class-2-reason": "This applies the previous general formula to specific examples as a correctness check, confirming the formula yields appropriate values\u2014so it's a verification.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "### Conclusion:\nThe maximum number of three-term arithmetic progressions in a monotone sequence of \\( n \\) distinct real numbers is given by the floor of \\( \\frac{(n - 1)^2}{4} \\).",
+    "class-1-reason": "This paragraph summarizes and states the general result based on previous work, reaffirming the established answer.",
+    "class-1": "General",
+    "class-2-reason": "This sentence asserts the final answer/conclusion based on prior analysis and work, confirming the solution and closing the argument, which is a verification move.",
+    "class-2": "Verify"
+  },
+  {
+    "text": "\\[\n\\boxed{\\left\\lfloor\\,\\frac{(n-1)^2}{4}\\,\\right\\rfloor}\n\\]",
+    "class-1-reason": "This is the boxed final answer, restating the general result for clarity; it presents the outcome of the general reasoning.",
+    "class-1": "General",
+    "class-2-reason": "This is the boxed/formatted answer, which confirms and presents the final result, acting as a verification and validation of what has been solved.",
+    "class-2": "Verify"
+  }
+]

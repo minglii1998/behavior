@@ -1,0 +1,218 @@
+import json
+import os
+import argparse
+import time
+import torch
+from torch.utils.data import Dataset, DataLoader
+from transformers import BertTokenizer, BertForSequenceClassification, get_linear_schedule_with_warmup
+from torch.optim import AdamW
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, classification_report, cohen_kappa_score
+from tqdm import tqdm
+
+parser = argparse.ArgumentParser()
+# parser.add_argument('--path', type=str, default='data/sentence_gt', help='Path to the data directory')
+parser.add_argument('--model', type=str, default='google-bert/bert-base-uncased', help='BERT model name')
+parser.add_argument('--epochs', type=int, default=5, help='Number of training epochs')
+parser.add_argument('--batch_size', type=int, default=16, help='Batch size for training and evaluation')
+parser.add_argument('--learning_rate', type=float, default=2e-5, help='Learning rate for AdamW optimizer')
+parser.add_argument('--max_len', type=int, default=512, help='Maximum sequence length for tokenizer')
+parser.add_argument('--save_path', type=str, default='model/paragraph/bert', help='Path to save the trained model')
+args = parser.parse_args()
+
+# Setup device
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print(f"Using device: {device}")
+
+label_dict = {
+'Read': 0,
+'Monitor': 1,
+'Analyze': 2,
+'Plan': 3,
+'Implement': 4,
+'Verify': 5,
+'Explore': 6
+}
+num_labels = len(label_dict)
+
+# Load Tokenizer
+tokenizer = BertTokenizer.from_pretrained(args.model)
+
+# Define Dataset Class
+class TextClassificationDataset(Dataset):
+    def __init__(self, texts, labels, tokenizer, max_len):
+        self.texts = texts
+        self.labels = labels
+        self.tokenizer = tokenizer
+        self.max_len = max_len
+
+    def __len__(self):
+        return len(self.texts)
+
+    def __getitem__(self, item):
+        text = str(self.texts[item])
+        label = self.labels[item]
+
+        encoding = self.tokenizer.encode_plus(
+            text,
+            add_special_tokens=True,
+            max_length=self.max_len,
+            return_token_type_ids=False,
+            padding='max_length',
+            truncation=True,
+            return_attention_mask=True,
+            return_tensors='pt',
+        )
+
+        return {
+            'text': text,
+            'input_ids': encoding['input_ids'].flatten(),
+            'attention_mask': encoding['attention_mask'].flatten(),
+            'labels': torch.tensor(label, dtype=torch.long)
+        }
+
+# Load Data
+path_dirs = ['Omni/Omini_Nan_labels/deepseekR1/sentence', 'Omni/Omini_Nan_labels/Phi4R/sentence', 'Omni/Omini_Nan_labels/Qwen3_32B/sentence', 'Omni/Omini_Nan_labels/QwQ32B/sentence']
+all_texts = []
+all_labels = []
+print('Loading and preprocessing data...')
+for path_dir in path_dirs:
+    for file_name in sorted(os.listdir(path_dir)):
+        if file_name.endswith('.json'):
+            print(f'Processing {file_name}...')
+            with open(os.path.join(path_dir, file_name), 'r') as f:
+                data = json.load(f)
+            for item in tqdm(data):
+                try:
+                    all_labels.append(label_dict[item['class-2']])
+                    all_texts.append(item['text'])
+                except:
+                    continue
+
+print(len(all_texts))
+# Split data
+train_texts, val_texts, train_labels, val_labels = train_test_split(
+all_texts, all_labels, test_size=0.3, random_state=42
+)
+
+train_dataset = TextClassificationDataset(train_texts, train_labels, tokenizer, args.max_len)
+val_dataset = TextClassificationDataset(val_texts, val_labels, tokenizer, args.max_len)
+
+train_data_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True)
+val_data_loader = DataLoader(val_dataset, batch_size=args.batch_size)
+
+# Initialize Model
+model = BertForSequenceClassification.from_pretrained(
+    args.model,
+    num_labels=num_labels,
+    output_attentions=False,
+    output_hidden_states=False,
+)
+model.to(device)
+
+# Optimizer and Scheduler
+optimizer = AdamW(model.parameters(), lr=args.learning_rate, eps=1e-8)
+total_steps = len(train_data_loader) * args.epochs
+scheduler = get_linear_schedule_with_warmup(
+optimizer,
+num_warmup_steps=0, # Default to 0 warmup steps
+num_training_steps=total_steps
+)
+
+# Training Loop
+print("Starting training...")
+for epoch in range(args.epochs):
+    print(f'Epoch {epoch + 1}/{args.epochs}')
+    print('-' * 10)
+
+    model.train()
+    total_train_loss = 0
+
+    for batch in tqdm(train_data_loader, desc="Training"):
+        input_ids = batch['input_ids'].to(device)
+        attention_mask = batch['attention_mask'].to(device)
+        labels = batch['labels'].to(device)
+
+        model.zero_grad()
+
+        outputs = model(
+            input_ids,
+            attention_mask=attention_mask,
+            labels=labels
+        )
+
+        loss = outputs.loss
+        total_train_loss += loss.item()
+        loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0) # Gradient clipping
+        optimizer.step()
+        scheduler.step()
+
+    avg_train_loss = total_train_loss / len(train_data_loader)
+    print(f'Training Loss: {avg_train_loss}')
+
+    # Evaluation
+    print("Evaluating...")
+    model.eval()
+    all_preds = []
+    all_true_labels = []
+
+    with torch.no_grad():
+        for batch in tqdm(val_data_loader, desc="Evaluating"):
+            input_ids = batch['input_ids'].to(device)
+            attention_mask = batch['attention_mask'].to(device)
+            labels = batch['labels'].to(device)
+
+            outputs = model(
+                input_ids,
+                attention_mask=attention_mask
+            )
+
+            logits = outputs.logits
+            preds = torch.argmax(logits, dim=1).cpu().numpy()
+            all_preds.extend(preds)
+            all_true_labels.extend(labels.cpu().numpy())
+    
+    accuracy = accuracy_score(all_true_labels, all_preds)
+    report = classification_report(
+        all_true_labels, 
+        all_preds, 
+        target_names=label_dict.keys(),
+        zero_division=0, # Added to handle cases with no predicted samples for a class
+        output_dict=True
+    )
+    kappas = cohen_kappa_score(all_true_labels, all_preds)
+    print(f'Validation Accuracy: {accuracy}')
+
+# Save the model and tokenizer
+print(f"Saving model to {args.save_path}")
+if not os.path.exists(args.save_path):
+    os.makedirs(args.save_path)
+
+model.save_pretrained(args.save_path)
+tokenizer.save_pretrained(args.save_path)
+print("Model and tokenizer saved.")
+
+
+with open('method/sentence/leaderboard_omni.json', 'r') as f:
+    leaderboard = json.load(f)
+
+bert_exists = False
+for entry in leaderboard:
+    if entry['model'] == 'bert':
+        entry['accuracy'] = accuracy
+        entry['kappas'] = kappas
+        entry['report'] = report
+        bert_exists = True
+        break
+
+if not bert_exists:
+    leaderboard.append({
+        'model': 'bert',    
+        'accuracy': accuracy,
+        'kappas': kappas,
+        'report': report
+    })
+
+with open('method/sentence/leaderboard_omni.json', 'w') as f:
+    json.dump(leaderboard, f, indent=4)
