@@ -4,7 +4,7 @@ import json
 from tqdm import tqdm
 from transformers import AutoTokenizer
 
-google_client = genai.Client(api_key='AIzaSyD8sGhAfMyxJx0-LcKFbZkhUh8keJcDt-Y')
+google_client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 def get_embedding(text, type = 'gemini'):
     if type == 'gemini':
@@ -170,7 +170,9 @@ def split_response_into_paragraphs(response):
 
 def split_paragraph_into_sentences(paragraph):
     splits = []
+    splits_indices = []
     current = ''
+    sentence_start = 0
     i = 0
     in_math_block = False
     math_delimiter = None  # Track whether we're in $ or $$ block
@@ -215,6 +217,25 @@ def split_paragraph_into_sentences(paragraph):
                         if start_pos == 0 or not text[start_pos - 1].isalnum():
                             return True
         return False
+    
+    def add_split(end_pos):
+        """Helper to add a split with correct indices for stripped content"""
+        stripped = current.strip()
+        if stripped:
+            # Find where the stripped content actually starts in the original paragraph
+            # by skipping leading whitespace from sentence_start
+            actual_start = sentence_start
+            while actual_start < end_pos and paragraph[actual_start].isspace():
+                actual_start += 1
+            
+            # Find where the stripped content actually ends in the original paragraph
+            # by going backwards from end_pos and skipping trailing whitespace
+            actual_end = end_pos
+            while actual_end > actual_start and paragraph[actual_end - 1].isspace():
+                actual_end -= 1
+            
+            splits.append(stripped)
+            splits_indices.append((actual_start, actual_end))
     
     while i < len(paragraph):
         char = paragraph[i]
@@ -263,8 +284,9 @@ def split_paragraph_into_sentences(paragraph):
                 
                 # Only split if it's not in a mathematical context
                 if not is_math_context:
-                    splits.append(current.strip())
+                    add_split(i + 1)
                     current = ''
+                    sentence_start = i + 1
             elif char in '.?!':
                 # Check if dot is part of an abbreviation
                 if char == '.' and is_abbreviation_context(paragraph, i):
@@ -280,18 +302,20 @@ def split_paragraph_into_sentences(paragraph):
                         pass  # Continue with the loop, don't split
                     else:
                         # This is a sentence-ending punctuation
-                        splits.append(current.strip())
+                        add_split(i + 1)
                         current = ''
+                        sentence_start = i + 1
                 else:
                     # This is a sentence-ending punctuation
-                    splits.append(current.strip())
+                    add_split(i + 1)
                     current = ''
+                    sentence_start = i + 1
         
         i += 1
     
     if current:  # Add any remaining text
-        splits.append(current.strip())
-    return splits
+        add_split(len(paragraph))
+    return splits, splits_indices
 
 def is_valid_sentence(sentence):
     """Check if a sentence is valid (not empty, not just dashes or punctuation)"""
